@@ -52,7 +52,6 @@ package com.Blockelot;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -79,6 +78,7 @@ public class Configuration implements Serializable {
 
     public String Permission_Editor = "Blockelot.WorldEditor.Editor";
     public String Permission_Copy = "Blockelot.WorldEditor.Editor.Copy";
+    public String Permission_Cut = "Blockelot.WorldEditor.Editor.Cut";
     public String Permission_Delete = "Blockelot.WorldEditor.Editor.Delete";
     public String Permission_Distr = "Blockelot.WorldEditor.Editor.Distr";
     public String Permission_Paste = "Blockelot.WorldEditor.Editor.Paste";

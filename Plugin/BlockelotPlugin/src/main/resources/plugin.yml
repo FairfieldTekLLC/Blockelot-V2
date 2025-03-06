@@ -61,7 +61,12 @@ commands:
     permission: Blockelot.WorldEditor.User.Select
     usage: /b.we.select
            /b.we.select X Y Z
-           
+                      
+  b.we.cut:
+    description: Copies your selection to the clipboard.
+    permission: Blockelot.WorldEditor.Editor.Cut
+    usage: /b.we.cut 
+    
   b.we.copy:
     description: Copies your selection to the clipboard.
     permission: Blockelot.WorldEditor.Editor.Copy

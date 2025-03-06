@@ -1,133 +1,254 @@
-USE [Blockelot]
+USE [MineCraft]
 GO
-/****** Object:  Table [dbo].[Category]    Script Date: 3/6/2025 7:44:14 AM ******/
+/****** Object:  Table [dbo].[BlockBank]    Script Date: 3/6/2025 8:15:57 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Category](
-	[Id] [int] NOT NULL,
-	[Name] [varchar](100) NOT NULL,
- CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[BlockBank](
+	[pkBlockBankId] [uniqueidentifier] NOT NULL,
+	[fkUserId] [int] NOT NULL,
+	[fkWorldId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_BlockBank] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
+	[pkBlockBankId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Classes]    Script Date: 3/6/2025 7:44:14 AM ******/
+/****** Object:  Table [dbo].[BlockBankContents]    Script Date: 3/6/2025 8:15:57 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Classes](
-	[pkClassId] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](50) NOT NULL,
- CONSTRAINT [PK_Classes] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[BlockBankContents](
+	[pkId] [uniqueidentifier] NOT NULL,
+	[fkBlockBankId] [uniqueidentifier] NOT NULL,
+	[Material] [nvarchar](100) NOT NULL,
+	[Amount] [int] NOT NULL,
+ CONSTRAINT [PK_BlockBankContents] PRIMARY KEY CLUSTERED 
 (
-	[pkClassId] ASC
+	[pkId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClassLevel]    Script Date: 3/6/2025 7:44:14 AM ******/
+/****** Object:  Table [dbo].[Directory]    Script Date: 3/6/2025 8:15:57 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[ClassLevel](
-	[fkClassId] [int] NOT NULL,
-	[Lvl] [int] NOT NULL,
-	[Title] [nvarchar](50) NOT NULL,
-	[ExpToLevel] [int] NOT NULL,
- CONSTRAINT [PK_ClassLevel] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[Directory](
+	[PkDirectoryId] [int] IDENTITY(1,1) NOT NULL,
+	[DirectoryName] [varchar](50) NOT NULL,
+	[FkParentId] [int] NULL,
+	[FkUserId] [int] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+ CONSTRAINT [PK_Directory] PRIMARY KEY CLUSTERED 
 (
-	[fkClassId] ASC,
-	[Lvl] ASC
+	[PkDirectoryId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClassStat]    Script Date: 3/6/2025 7:44:14 AM ******/
+/****** Object:  Table [dbo].[Schematic]    Script Date: 3/6/2025 8:15:57 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[ClassStat](
-	[pkClassStatId] [int] IDENTITY(1,1) NOT NULL,
-	[fkClassId] [int] NOT NULL,
-	[STR] [int] NOT NULL,
-	[STA] [int] NOT NULL,
-	[DEX] [int] NOT NULL,
-	[WIS] [int] NOT NULL,
-	[CHA] [int] NOT NULL,
-	[AC] [int] NOT NULL,
- CONSTRAINT [PK_ClassStat] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[Schematic](
+	[PkSchematicId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[FkOwnerId] [int] NOT NULL,
+	[FkDirectoryId] [int] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[BlockDataJson] [nvarchar](max) NOT NULL,
+	[BlockTypeJson] [nvarchar](max) NOT NULL,
+	[BlockInveJson] [nvarchar](max) NOT NULL,
+	[NumberOfBlocks] [int] NOT NULL,
+ CONSTRAINT [PK_Schematic] PRIMARY KEY CLUSTERED 
 (
-	[pkClassStatId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[MobExp]    Script Date: 3/6/2025 7:44:14 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[MobExp](
-	[pkMonsterId] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](100) NOT NULL,
-	[Exp] [int] NOT NULL,
- CONSTRAINT [PK_MonsterExperienceTable] PRIMARY KEY CLUSTERED 
-(
-	[pkMonsterId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Players]    Script Date: 3/6/2025 7:44:14 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Players](
-	[pkPlayerId] [int] IDENTITY(1,1) NOT NULL,
-	[fkClassId] [int] NOT NULL,
-	[Uuid] [nvarchar](100) NOT NULL,
-	[HpCur] [int] NOT NULL,
-	[Exp] [int] NOT NULL,
-	[Lvl] [int] NOT NULL,
-	[InventoryJson] [nvarchar](max) NOT NULL,
-	[ArmorJson] [nvarchar](max) NOT NULL,
-	[EnderJson] [nvarchar](max) NOT NULL,
-	[LastWorld] [nvarchar](max) NULL,
- CONSTRAINT [PK_Players] PRIMARY KEY CLUSTERED 
-(
-	[pkPlayerId] ASC
+	[PkSchematicId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tag]    Script Date: 3/6/2025 7:44:14 AM ******/
+/****** Object:  Table [dbo].[SchematicData]    Script Date: 3/6/2025 8:15:57 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Tag](
-	[Id] [int] NOT NULL,
-	[Name] [varchar](100) NOT NULL,
- CONSTRAINT [PK_Tag] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[SchematicData](
+	[FKSchematicId] [int] NOT NULL,
+	[Seq] [int] NOT NULL,
+	[BlockData] [nvarchar](max) NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SchematicData_old]    Script Date: 3/6/2025 8:15:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SchematicData_old](
+	[X] [int] NOT NULL,
+	[Y] [int] NOT NULL,
+	[Z] [int] NOT NULL,
+	[FkSchematicId] [int] NOT NULL,
+	[FkBlockTypeId] [int] NOT NULL,
+	[FkBlockDataIndex] [int] NOT NULL,
+	[FkBlockContentsIndex] [int] NOT NULL,
+	[FkBlockStorageIndex] [int] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserProperty]    Script Date: 3/6/2025 8:15:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserProperty](
+	[pkUserPropertyId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[DefaultValue] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_UserProperty] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
+	[pkUserPropertyId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserPropertyUser]    Script Date: 3/6/2025 8:15:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserPropertyUser](
+	[fkUserId] [int] NOT NULL,
+	[fkUserPropertyId] [int] NOT NULL,
+ CONSTRAINT [PK_UserPropertyUser] PRIMARY KEY CLUSTERED 
+(
+	[fkUserId] ASC,
+	[fkUserPropertyId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[ClassLevel]  WITH CHECK ADD  CONSTRAINT [FK_ClassLevel_Classes] FOREIGN KEY([fkClassId])
-REFERENCES [dbo].[Classes] ([pkClassId])
+/****** Object:  Table [dbo].[Users]    Script Date: 3/6/2025 8:15:57 AM ******/
+SET ANSI_NULLS ON
 GO
-ALTER TABLE [dbo].[ClassLevel] CHECK CONSTRAINT [FK_ClassLevel_Classes]
+SET QUOTED_IDENTIFIER ON
 GO
-ALTER TABLE [dbo].[ClassStat]  WITH CHECK ADD  CONSTRAINT [FK_ClassStat_Classes] FOREIGN KEY([fkClassId])
-REFERENCES [dbo].[Classes] ([pkClassId])
+CREATE TABLE [dbo].[Users](
+	[PkUserId] [int] IDENTITY(1,1) NOT NULL,
+	[UniqueId] [varchar](100) NOT NULL,
+	[EmailAddress] [varchar](255) NOT NULL,
+	[Confirmed] [bit] NOT NULL,
+	[LastAuth] [varchar](5) NULL,
+	[LastAuthDt] [datetime] NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[PkUserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[ClassStat] CHECK CONSTRAINT [FK_ClassStat_Classes]
+/****** Object:  Table [dbo].[Worlds]    Script Date: 3/6/2025 8:15:57 AM ******/
+SET ANSI_NULLS ON
 GO
-ALTER TABLE [dbo].[Players]  WITH CHECK ADD  CONSTRAINT [FK_Players_Classes] FOREIGN KEY([fkClassId])
-REFERENCES [dbo].[Classes] ([pkClassId])
+SET QUOTED_IDENTIFIER ON
 GO
-ALTER TABLE [dbo].[Players] CHECK CONSTRAINT [FK_Players_Classes]
+CREATE TABLE [dbo].[Worlds](
+	[pkWorldId] [uniqueidentifier] NOT NULL,
+	[IPAddress] [nvarchar](50) NOT NULL,
+	[LastVersion] [nvarchar](50) NOT NULL,
+	[ServerName] [nvarchar](1000) NOT NULL,
+	[LastUpdated] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_Worlds_1] PRIMARY KEY CLUSTERED 
+(
+	[pkWorldId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WorldUsers]    Script Date: 3/6/2025 8:15:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WorldUsers](
+	[fkWorldId] [uniqueidentifier] NOT NULL,
+	[fkUserId] [int] NOT NULL,
+	[LastDt] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_WorldUsers] PRIMARY KEY CLUSTERED 
+(
+	[fkWorldId] ASC,
+	[fkUserId] ASC,
+	[LastDt] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Directory] ADD  DEFAULT (NULL) FOR [FkParentId]
+GO
+ALTER TABLE [dbo].[Directory] ADD  CONSTRAINT [DF_Directory_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[Schematic] ADD  CONSTRAINT [DF_Schematic_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF_Users_Confirmed]  DEFAULT ((0)) FOR [Confirmed]
+GO
+ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF__Users__LastAuth__3A81B327]  DEFAULT (NULL) FOR [LastAuth]
+GO
+ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF__Users__LastAuthD__3B75D760]  DEFAULT (NULL) FOR [LastAuthDt]
+GO
+ALTER TABLE [dbo].[Worlds] ADD  CONSTRAINT [DF_Worlds_pkWorldId]  DEFAULT (newsequentialid()) FOR [pkWorldId]
+GO
+ALTER TABLE [dbo].[BlockBank]  WITH CHECK ADD  CONSTRAINT [FK_BlockBank_Users] FOREIGN KEY([fkUserId])
+REFERENCES [dbo].[Users] ([PkUserId])
+GO
+ALTER TABLE [dbo].[BlockBank] CHECK CONSTRAINT [FK_BlockBank_Users]
+GO
+ALTER TABLE [dbo].[BlockBank]  WITH CHECK ADD  CONSTRAINT [FK_BlockBank_Worlds] FOREIGN KEY([fkWorldId])
+REFERENCES [dbo].[Worlds] ([pkWorldId])
+GO
+ALTER TABLE [dbo].[BlockBank] CHECK CONSTRAINT [FK_BlockBank_Worlds]
+GO
+ALTER TABLE [dbo].[BlockBankContents]  WITH CHECK ADD  CONSTRAINT [FK_BlockBankContents_BlockBank] FOREIGN KEY([fkBlockBankId])
+REFERENCES [dbo].[BlockBank] ([pkBlockBankId])
+GO
+ALTER TABLE [dbo].[BlockBankContents] CHECK CONSTRAINT [FK_BlockBankContents_BlockBank]
+GO
+ALTER TABLE [dbo].[Directory]  WITH CHECK ADD  CONSTRAINT [FK_Directory_Directory] FOREIGN KEY([FkParentId])
+REFERENCES [dbo].[Directory] ([PkDirectoryId])
+GO
+ALTER TABLE [dbo].[Directory] CHECK CONSTRAINT [FK_Directory_Directory]
+GO
+ALTER TABLE [dbo].[Directory]  WITH CHECK ADD  CONSTRAINT [FK_Directory_Users] FOREIGN KEY([FkUserId])
+REFERENCES [dbo].[Users] ([PkUserId])
+GO
+ALTER TABLE [dbo].[Directory] CHECK CONSTRAINT [FK_Directory_Users]
+GO
+ALTER TABLE [dbo].[Schematic]  WITH CHECK ADD  CONSTRAINT [FK_Schematic_Directory] FOREIGN KEY([FkDirectoryId])
+REFERENCES [dbo].[Directory] ([PkDirectoryId])
+GO
+ALTER TABLE [dbo].[Schematic] CHECK CONSTRAINT [FK_Schematic_Directory]
+GO
+ALTER TABLE [dbo].[Schematic]  WITH CHECK ADD  CONSTRAINT [FK_Schematic_Users] FOREIGN KEY([FkOwnerId])
+REFERENCES [dbo].[Users] ([PkUserId])
+GO
+ALTER TABLE [dbo].[Schematic] CHECK CONSTRAINT [FK_Schematic_Users]
+GO
+ALTER TABLE [dbo].[SchematicData_old]  WITH NOCHECK ADD  CONSTRAINT [FK_SchematicData_Schematic] FOREIGN KEY([FkSchematicId])
+REFERENCES [dbo].[Schematic] ([PkSchematicId])
+GO
+ALTER TABLE [dbo].[SchematicData_old] CHECK CONSTRAINT [FK_SchematicData_Schematic]
+GO
+ALTER TABLE [dbo].[UserPropertyUser]  WITH CHECK ADD  CONSTRAINT [FK_UserPropertyUser_UserProperty] FOREIGN KEY([fkUserPropertyId])
+REFERENCES [dbo].[UserProperty] ([pkUserPropertyId])
+GO
+ALTER TABLE [dbo].[UserPropertyUser] CHECK CONSTRAINT [FK_UserPropertyUser_UserProperty]
+GO
+ALTER TABLE [dbo].[UserPropertyUser]  WITH CHECK ADD  CONSTRAINT [FK_UserPropertyUser_Users] FOREIGN KEY([fkUserId])
+REFERENCES [dbo].[Users] ([PkUserId])
+GO
+ALTER TABLE [dbo].[UserPropertyUser] CHECK CONSTRAINT [FK_UserPropertyUser_Users]
+GO
+ALTER TABLE [dbo].[WorldUsers]  WITH CHECK ADD  CONSTRAINT [FK_WorldUsers_Users] FOREIGN KEY([fkUserId])
+REFERENCES [dbo].[Users] ([PkUserId])
+GO
+ALTER TABLE [dbo].[WorldUsers] CHECK CONSTRAINT [FK_WorldUsers_Users]
+GO
+ALTER TABLE [dbo].[WorldUsers]  WITH CHECK ADD  CONSTRAINT [FK_WorldUsers_Worlds] FOREIGN KEY([fkWorldId])
+REFERENCES [dbo].[Worlds] ([pkWorldId])
+GO
+ALTER TABLE [dbo].[WorldUsers] CHECK CONSTRAINT [FK_WorldUsers_Worlds]
 GO

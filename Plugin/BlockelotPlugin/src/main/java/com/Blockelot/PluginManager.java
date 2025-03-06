@@ -60,6 +60,7 @@ import com.Blockelot.worldeditor.commands.Clear;
 import com.Blockelot.worldeditor.commands.ClearHistory;
 import com.Blockelot.worldeditor.commands.ClipDimensions;
 import com.Blockelot.worldeditor.commands.Copy;
+import com.Blockelot.worldeditor.commands.Cut;
 import com.Blockelot.worldeditor.commands.Delete;
 import com.Blockelot.worldeditor.commands.Demographics;
 import com.Blockelot.worldeditor.commands.Help;
@@ -149,6 +150,7 @@ public class PluginManager {
         plugin.getCommand("b.we.print").setExecutor((CommandExecutor) new Print());
         plugin.getCommand("b.we.select").setExecutor((CommandExecutor) new Select());
 
+        plugin.getCommand("b.we.cut").setExecutor((CommandExecutor) new Cut());
         plugin.getCommand("b.we.copy").setExecutor((CommandExecutor) new Copy());
         plugin.getCommand("b.we.del").setExecutor((CommandExecutor) new Delete());
         plugin.getCommand("b.we.delete").setExecutor((CommandExecutor) new Delete());

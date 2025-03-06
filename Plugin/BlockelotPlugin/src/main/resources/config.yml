@@ -15,6 +15,7 @@ settings:
     select: Blockelot.WorldEditor.User.Select
     editor: Blockelot.WorldEditor.Editor
     copy: Blockelot.WorldEditor.Editor.Copy
+    cut: Blockelot.WorldEditor.Editor.Cut
     delete: Blockelot.WorldEditor.Editor.Delete
     distr: Blockelot.WorldEditor.Editor.Distr
     paste: Blockelot.WorldEditor.Editor.Paste
