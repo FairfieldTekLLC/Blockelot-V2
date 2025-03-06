@@ -1,0 +1,28 @@
+html { background: #fbfcf0; }
+
+body { display: none; }
+
+.text-danger { color: #a94250; }
+
+.rules-list-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.top-wrapper.main {
+    background-color: #77bb97;
+    background-image: url(../images/pattern.png);
+    background-position: 0 0 fixed;
+    background-size: auto;
+    position: relative;
+}
+
+.map-frame {
+    min-height: 450px;
+    width: 100%;
+}
+
+.Command {
+    white-space: nowrap;
+    
+}

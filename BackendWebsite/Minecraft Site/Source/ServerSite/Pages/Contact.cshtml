@@ -1,0 +1,110 @@
+﻿@page
+@model ContactModel
+@{
+    ViewData["Title"] = "Contact";
+}
+
+@section PageHeader
+{
+    <!-- Page Header
+    ================================================== -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Contact</h1>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="title">
+            <h2>Contact Information</h2>
+        </div>
+        <p>You can contact us any time on our server or via <a href="https://discord.gg/sKdSfjV">Discord</a> BUT if you wish to contact us if you cant get onto those methods please use the form on this page</p>
+        <!-- Contact Info -->
+        <ul class="contact-info-list">
+            <li>
+                <span class="icon">
+                    <i class="fa fa-envelope"></i>
+                </span>
+                <a href="mailto:Vince@fairfieldtek.com">Vince@fairfieldtek.com</a>
+
+            </li>
+        </ul>
+        <!-- Contact Info / End -->
+        <!-- Social Links / End -->
+        @*<ul class="social-list social-list__footer list-unstyled">
+            <li>
+                <a href="#">
+                    <i class="fa fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/sycoinc">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/user/PwegoCinema">
+                    <i class="fa fa-youtube"></i>
+                </a>
+            </li>
+        </ul>*@
+        <!-- Social Links / End -->
+    </div>
+    <div class="col-md-8">
+        <div class="title">
+            <h2>Contact us</h2>
+        </div>
+        <!-- Contact Form || EDIT THE SEND TO EMAIL IN THE SEND.PHP FILE INCLUDED IN THE ZIP FOLDER OF THIS THEME-->
+        <form method="post" id="contact-form" role="form" class="contact-form" asp-antiforgery="true">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="name" class="sr-only">Name</label>
+                        <input type="text" class="form-control input-lg requiredField" id="name" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email address</label>
+                        <input type="email" class="form-control input-lg requiredField" id="email" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="message" class="sr-only">Email address</label>
+                        <textarea name="message" id="message" cols="30" rows="6" placeholder="Message" class="form-control input-lg requiredField"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- Response container -->
+                    <div id="response" class="left text-left">
+                        <div class="alert alert-danger fade in">
+                            <strong>Error!</strong> Wrong type of message!
+                        </div>
+                        <div class="alert alert-success fade in">
+                            <strong>Success!</strong> Thank you for your message. We will reply as soon as we can!
+                        </div>
+                    </div>
+                    <!-- Response container / End -->
+                </div>
+                <div class="col-md-3">
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary btn-lg" disabled>send</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Contact Form / End -->
+    </div>
+</div>
+
+@section Scripts
+{
+    <!-- Contact Page specific scripts
+    ================================================== -->
+
+    <!-- Form -->
+    <script src="js/jquery.contact-form-validate.js"></script>
+}

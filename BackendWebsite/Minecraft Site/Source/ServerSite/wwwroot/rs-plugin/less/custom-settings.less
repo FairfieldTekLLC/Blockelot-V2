@@ -1,0 +1,292 @@
+/*********************************
+	-	Custom Revolution Slider Styles -
+**********************************/
+
+/* Captions */
+.tp-caption.eco-md-dark {
+	font-size: 60px;
+	font-family: @font-family-alt;
+	text-transform: uppercase;
+	color: @tp-caption-dark;
+	text-shadow: 0 2px 0 rgba(red(@page-header-link-color), green(@page-header-link-color), blue(@page-header-link-color), .5);
+}
+.tp-caption.eco-sm-dark {
+	font-size: 40px;
+	font-family: @font-family-alt;
+	text-transform: uppercase;
+	color: @tp-caption-dark;
+	text-shadow: 0 1px 0 rgba(red(@page-header-link-color), green(@page-header-link-color), blue(@page-header-link-color), .5);
+}
+.tp-caption.eco-md-light {
+	font-size: 60px;
+	font-family: @font-family-alt;
+	text-transform: uppercase;
+	color: @tp-caption-light;
+	text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+.tp-caption.eco-lg-light {
+	font-size: 99px;
+	font-family: @font-family-alt;
+	text-transform: uppercase;
+	color: @tp-caption-light;
+	text-shadow: 0 2px 0 rgba(0,0,0,.4);
+}
+.tp-caption.eco-txt-regular {
+	font-size: 16px;
+	line-height: 24px;
+	color: @tp-caption-light;
+}
+.tp-caption.eco-txt-regular-bg {
+	font-size: 13px;
+	line-height: 21px;
+	padding: 10px 20px;
+	color: @tp-caption-light;
+	background: rgba(red(@tp-caption-dark), green(@tp-caption-dark), blue(@tp-caption-dark), .5);
+
+	p {
+		margin-bottom: .5em;
+	}
+	a {
+		color: @body-bg;
+	}
+}
+.tp-caption.eco-cursive {
+	font-size: 22px;
+	line-height: 1.2em;
+	color: @tp-caption-cursive;
+	font-family: 'Architects Daughter', cursive;
+}
+.tp-caption.eco-large {
+	font-size: 60px;
+	line-height: 1em;
+	font-family: @font-family-alt;
+	text-transform: uppercase;
+	padding: 5px 33px;
+}
+.tp-caption.eco-normal {
+	font-size: 24px;
+	line-height: 1em;
+	font-family: @font-family-alt;
+	text-transform: uppercase;
+	padding: 4px 20px;
+}
+.tp-caption.eco-color-primary {
+	color: @tp-caption-light;
+	background: @brand-primary;
+}
+.tp-caption.eco-color-secondary {
+	color: @tp-caption-light;
+	background: @brand-secondary;
+}
+.tp-caption.eco-color-tertiary {
+	color: @tp-caption-light;
+	background: @brand-tertiary;
+}
+
+
+// Bullets
+.tp-bullets.simplebullets.round .bullet {	
+	width:16px;
+	height:16px; 
+	margin-left:8px;
+	border-radius: 50%;
+	background: @tp-bullet-bg;
+	border: 3px solid @tp-bullet-border;
+	.transition(0.2s);
+
+	&.selected,
+	&:hover {
+		border-width: 8px;
+	}
+}
+.tp-bullets.simplebullets.round .bullet.last {
+	margin-right:8px;
+}
+
+// Arrows
+.tp-leftarrow.default,
+.tp-rightarrow.default{
+	overflow: hidden;
+	width: 30px;
+	height: 30px;
+	border-radius: @border-radius-small;
+	background: rgba(red(@tp-arrow-color), green(@tp-arrow-color), blue(@tp-arrow-color), .1);
+
+	&:hover {
+		cursor: pointer;
+		background: rgba(red(@tp-arrow-hover-color), green(@tp-arrow-hover-color), blue(@tp-arrow-hover-color), .1);
+	}
+}
+.tp-leftarrow.default {
+	
+	&:before {
+		content:"";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 15px solid rgba(red(@tp-arrow-color), green(@tp-arrow-color), blue(@tp-arrow-color), .1);
+	}
+	&:after {
+		content:"";
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-right: 15px solid @tp-arrow-color;
+	}
+
+	&:hover {
+		
+		&:before {
+			border-left: 15px solid rgba(red(@tp-arrow-hover-color), green(@tp-arrow-hover-color), blue(@tp-arrow-hover-color), .1);
+		}
+		&:after {
+			border-right: 15px solid @tp-arrow-hover-color;
+		}
+
+	}
+}
+.tp-rightarrow.default { 
+	margin: 0;
+
+	&:after {
+		content:"";
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-right: 15px solid rgba(red(@tp-arrow-color), green(@tp-arrow-color), blue(@tp-arrow-color), .1);
+	}
+	&:before {
+		content:"";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 15px solid @tp-arrow-color;
+	}
+
+	&:hover {
+
+		&:after {
+			border-left: 15px solid @tp-arrow-hover-color;
+		}
+		
+		&:before {
+			border-right: 15px solid rgba(red(@tp-arrow-hover-color), green(@tp-arrow-hover-color), blue(@tp-arrow-hover-color), .1);
+		}
+	}
+}
+
+// Slider Contacts
+.slider-infobar {
+	display: block;
+	position: absolute;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	bottom: -50px;
+	text-align: center;
+	color: @tp-infobar-color;
+	.transition(0.3s);
+
+	&.active {
+		bottom: 0;
+
+		& > .infobar-trigger:before {
+			content:"\f068";
+		}
+	}
+
+	> .infobar-trigger {
+		position: absolute;
+		top: -25px;
+		left: 50%;
+		display: block;
+		margin-left: -25px;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background: @tp-infobar-bg;
+		line-height: 30px;
+		color: @tp-infobar-plus-color;
+		.transition(0.2s);
+
+		&:before {
+			content:"\f067";
+		}
+
+		&:hover {
+			cursor: pointer;
+			background: darken(@tp-infobar-bg, 10%);
+		}
+	}
+
+	ul {
+		.list-unstyled();
+		.list-inline();
+		background: @tp-infobar-bg;
+		height: 50px;
+		line-height: 50px;
+		margin-bottom: 0;
+		position: relative;
+
+		> li {
+			padding-right: 10px;
+			font-size: 11px;
+
+			@media (min-width: @screen-sm-min) {
+				font-size: 13px;
+				padding-right: 10px;
+			}
+
+			&:before {
+				color: @tp-infobar-link-color;
+				padding-right: 0;
+
+				@media (min-width: @screen-sm-min) {
+					padding-right: 18px;
+					content:"/";
+				}
+			}
+			&:first-child:before{
+				display: none;
+			}
+			.highlight {
+				color: @tp-infobar-link-color;
+			}
+			.name {
+				display: none;
+
+				@media (min-width: @screen-sm-min) {
+					display: inline-block;
+				}
+			}
+
+			> a {
+				color: @tp-infobar-link-color;
+
+				&:hover {
+					text-decoration: underline;
+					color: darken(@tp-infobar-link-color, 5%);
+				}
+			}
+			.fa {
+				margin-right: 5px;
+
+				@media (min-width: @screen-sm-min) {
+					display: none;
+				}
+			}
+		}
+	}
+}

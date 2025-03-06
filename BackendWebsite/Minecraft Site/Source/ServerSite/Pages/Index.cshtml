@@ -1,0 +1,412 @@
+﻿@page
+@using System.Data.SqlClient
+@using MySql.Data.MySqlClient
+@using ServerSite.WorldEdit
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["IsIndexPage"] = true;
+}
+
+@section Slider{
+    <!-- Slider
+    ================================================== -->
+    <div class="tp-banner-holder">
+        <div class="tp-banner-holder-inner">
+            <div class="tp-banner-container">
+                <div class="tp-banner">
+                    <ul>
+                        <!-- SLIDE#1 -->
+                        <li data-transition="fadetobottomfadefromtop" data-slotamount="7" data-masterspeed="1500">
+                            <!-- MAIN IMAGE (blank) -->
+                            <img src="rs-plugin/images/transparent.png" alt="slidebg1" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER #1 -->
+                            <div class="tp-caption eco-large eco-color-primary customin customout fadeout"
+                                 data-x="415"
+                                 data-y="190"
+                                 data-speed="500"
+                                 data-start="400"
+                                 data-easing="Power4.easeOut"
+                                 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                                 data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                                 data-endeasing="Power1.easeIn">
+                                Welcome To
+                            </div>
+                            <!-- LAYER #2 -->
+                            <div class="tp-caption eco-lg-light customin customout fadeout"
+                                 data-x="470"
+                                 data-y="230"
+                                 data-speed="800"
+                                 data-start="1200"
+                                 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                                 data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                                 data-easing="Power4.easeOut">
+                                Blockelot
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="slider-infobar active">
+                <i class="fa infobar-trigger"></i>
+                <ul>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <span class="name">Database</span>
+                        <span class="highlight">
+                            @{
+                                try
+                                {
+                                    using SqlConnection conn = new SqlConnection { ConnectionString = Constants.DbConnString };
+                                    conn.Open();
+                                    WriteLiteral("OK");
+                                }
+                                catch (Exception e)
+                                {
+                                    WriteLiteral("NOT OK");
+                                }
+                            }
+                        </span>
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <span class="name">Download</span>
+                        <span class="highlight"><a href="http://www.blockelot.com/Blockelot.com.jar"></a></span>
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <span class="name">Get Blockelot!</span>
+                        <span class="highlight"><a href="https://www.spigotmc.org/resources/blockelot.86738/">GET BLOCKELOT</a></span>
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <span class="name">Minecraft Server IP:</span>
+                        <span class="highlight">50.241.174.244:25565</span>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope"></i>
+                        <span class="name">Discord:</span>
+                        <a href="https://discord.gg/sKdSfjV" target="_blank">https://discord.gg/sKdSfjV</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope"></i>
+                        <span class="name">Patreon</span>
+                        <a href="https://www.patreon.com/Blockelot" target="_blank">https://www.patreon.com/Blockelot</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope"></i>
+                        <span class="name">GitHub</span>
+                        <a href="https://github.com/FairfieldTekLLC/net.fairfieldtek.minecraft" target="_blank">https://github.com/FairfieldTekLLC/net.fairfieldtek.minecraft</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- Slider / End -->
+}
+
+<!-- Features -->
+<div class="title-bordered" data-animation="fadeInUp" data-animation-delay="0">
+    <h2>Features</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="col-md-12">
+            <ul class="list-group list-group__color-secondary">
+                <li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
+                    <h5 class="bold">What is Blockelot?</h5>
+                    <p>Blockelot is a SpigotMc plugin that allows players to save there Minecraft creations to the cloud.</p>
+                    <p>
+                        Once a server owner loads the plugin, and the players register in Blockelot in game, they will be able to cut and paste any part of the world and save the selection in the cloud.
+                    </p>
+                    <p>The player can then go to any other Minecraft server with Blockelot loaded and restore their creations there. How many times have you built something in a world and then the server shuts down and you lose all your creations.</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lxU55TY_zsA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </li>
+                <li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
+                    <h5 class="bold">Features</h5>
+                    <ul>Customizable Permission support.</ul>
+                    <ul>Block Banning</ul>
+                    <ul>Simple Configuration, just put jar in plugins, rest is automagic!</ul>
+                    <ul>Got cpu issues?  All setting are in configuration.</ul>
+                    <ul>Tired of have a million chests?  Enable Block Bank!</ul>
+                    <ul>A really cool developer!</ul>
+
+                </li>
+                <li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
+                    <h5 class="bold">What are the commands?</h5>
+                    <table width="100%">
+                        <tr>
+                            <td nowrap class="bold">
+                                <center>Help</center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <table width="800px">
+                                        <tr>
+                                            <td nowrap class="bold" width="500px">/b.help</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Shows the help screen.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.about</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Provides Author information.</td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td nowrap class="bold">
+                                <center>Banking</center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <table width="800px">
+                                        <tr>
+                                            <td nowrap class="bold" width="500px">/b.bbinv</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Request a inventory report from bank.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.bbdep [Material] [Amount]</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Deposit material in bank.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.bbdep true</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Deposit all blocks in inventory in bank.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.bbwd [Material] [Amount]</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Withdrawl material from bank.</td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td nowrap class="bold">
+                                <center>World Editing</center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <table width="800px">
+                                        <tr>
+                                            <td nowrap nowrap class="bold" width="500px">/b.we.clear</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Clears the Selections and the Clipboard.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.clearHistory</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Clears the undo history of you pastes.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.size</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Prints the dimensions of your selection</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.print</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Prints your selection start and selection end.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.select</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Sets a selection point</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.copy</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Copies your selection into your clipboard.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.del</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Set Selection into MINECRAFT:AIR</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.delete</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Set Selection into MINECRAFT:AIR</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.distr</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Gets the block distribution of the current clipboard.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.paste</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Pastes your clipboard to the world.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.paste X Y Z</td>
+                                            <td style="width: 10px"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.paste [Rotational Axis X or Y or Z] [Degrees 90 180 270)]</td>
+                                            <td style="width: 10px"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.paste x y z</td>
+                                            <td style="width: 10px"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.paste x y z [Rotational Axis X or Y or Z] [Degrees 90 180 270)]</td>
+                                            <td style="width: 10px"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.stripmine</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Clears the Chunk and puts all blocks in chests</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we/stripmine true</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Clears the chunk and deposits blocks in bank, leaves rest in chests</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.we.undo</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Undoes your last action</td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td nowrap class="bold">
+                                <center>Registration</center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <table width="800px">
+                                        <tr><td nowrap class="bold">/b.reg [EmailAddress]</td><td style="width: 10px"></td>Registers your player to your email address.<td></td></tr>
+                                        <tr><td nowrap class="bold">/b.auth</td><td style="width: 10px"></td>Forces a reconnection to the cloud storage.<td></td></tr>
+                                    </table>
+                                </center>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td nowrap class="bold">
+                                <center>File System</center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <table width="800px">
+
+                                        <tr><td nowrap class="bold">/b.ls</td><td style="width: 10px"></td>List Files and Folders.<td></td></tr>
+                                        <tr><td nowrap class="bold">/b.cd [Directory]</td><td style="width: 10px"></td>Change Directory.<td></td></tr>
+                                        <tr><td nowrap class="bold">/b.rm [File]</td><td style="width: 10px"></td>Deletes the Schematic.<td></td></tr>
+                                        <tr><td nowrap class="bold">/b.rm [Folder]</td><td style="width: 10px"></td>Delets the folder.<td></td></tr>
+                                        <tr><td nowrap class="bold">/b.mk [Folder]</td><td style="width: 10px"></td>Creates a folder.<td></td></tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.save [File]</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Saves the current clipboard to the file.</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap class="bold">/b.load [File]</td>
+                                            <td style="width: 10px"></td>
+                                            <td>Loads the file into the clipboard.</td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!-- Features / End -->
+
+<div class="spacer-lg"></div>
+
+<!-- Team -->
+<div class="title-bordered" data-animation="fadeInUp" data-animation-delay="0">
+    <h2>The Programming Team</h2>
+</div>
+<div class="team-list-wrapper">
+    <ul class="team-list">
+        <li class="member" data-animation="fadeInLeft" data-animation-delay="0">
+            <div class="clearfix">
+                <figure class="thumbnail">
+                    <a>
+                        <img src="images/deathbat_head.png" alt="" class="img-responsive">
+                    </a>
+                </figure>
+                <header class="member-header">
+                    <h3>ChapleKeep</h3>
+                    <span class="info">Founder/Admin</span>
+                </header>
+                <div class="member-desc">
+                    ChapleKeep is just a cool guy..... (chuckle)
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- Team / End -->
+
+@section Scripts{
+    <!-- Home Page specific scripts
+    ================================================== -->
+    <!-- jQuery REVOLUTION Slider -->
+    <script src="rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.tp-banner').revolution({
+                delay: 6000,
+                startwidth: 1140,
+                startheight: 480,
+                hideThumbs: 10,
+                fullWidth: "on",
+                forceFullWidth: "on",
+                hideCaptionAtLimit: 480,
+                //navigationType: "none",
+                soloArrowLeftHOffset: 20,
+                soloArrowRightHOffset: 20,
+                soloArrowLeftVOffset: 20,
+                soloArrowRightVOffset: 20
+            });
+        });
+    </script>
+}

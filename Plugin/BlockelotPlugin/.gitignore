@@ -1,0 +1,43 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# temporary files
+*.tmp
+
+# Build output folders
+bin/
+out/
+target/
+
+# Intellij files
+.idea/
+*.ipr
+*.iws
+*.iml
+
+# Eclipse files
+.settings/
+.project
+*.classpath
+
+# NetBeans files
+nbproject/
+
+# Gradle files
+.gradle/
+build/
+
+# Maven files
+/target/
+
+# Operating System files
+.DS_Store
+Thumbs.db

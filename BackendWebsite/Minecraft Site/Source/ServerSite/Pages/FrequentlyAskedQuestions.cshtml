@@ -1,0 +1,127 @@
+﻿@page
+@model ServerSite.Pages.FrequentlyAskedQuestionsModel
+@{
+    ViewData["Title"] = "FrequentlyAskedQuestions";
+}
+
+@section PageHeader
+{
+    <!-- Page Header
+    ================================================== -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <!-- Accordion Alt -->
+        <div class="panel-group accordion accordion__alt" id="accordion1">
+            <div class="panel">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#acc1-collapse1" class="panel-title">
+                        <span class="panel-title-inner">
+                            I still have questions, who can help me?
+                        </span>
+                    </a>
+                </div>
+                <div id="acc1-collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <p>For any questions you may have, not covered by this FAQ, look for one of the server admins.</p>
+                        <strong>Owner/Admin:</strong> DeathBat
+                        <br/>
+                        <strong>Admin/Moderator:</strong> Tannayr
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#acc1-collapse2" class="panel-title collapsed">
+                        <span class="panel-title-inner">
+                            Can I build anywhere?
+                        </span>
+                    </a>
+                </div>
+                <div id="acc1-collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>For the most part yes, just don't build too close to any neighbors without talking with them first.</p>
+                        We ask that you also stay away from the main spawn point. There is an entire world out there in which to build in, explore it.
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#acc1-collapse3" class="panel-title collapsed">
+                        <span class="panel-title-inner">
+                            Can I be an admin?
+                        </span>
+                    </a>
+                </div>
+                <div id="acc1-collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p class="no-bottom-margin">More than likely no. The server is small and we don't currently feel that we need any more admins.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#acc1-collapse4" class="panel-title collapsed">
+                        <span class="panel-title-inner">
+                            Can I be put into creative?
+                        </span>
+                    </a>
+                </div>
+                <div id="acc1-collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p class="no-bottom-margin">More than likely no. If you have an ambitious build that you are wanting to tackle, get in touch with an admin.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#acc1-collapse5" class="panel-title collapsed">
+                        <span class="panel-title-inner">
+                            I think someone has stolen from me; what should I do?
+                        </span>
+                    </a>
+                </div>
+                <div id="acc1-collapse5" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>Contact an admin in-game by sending them a private message, or use the contact us form on this site.</p>
+                        Do not confront anyone if you witness or suspect them of stealing from you. Let an admin know, and they will assess the situation.
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#acc1-collapse6" class="panel-title collapsed">
+                        <span class="panel-title-inner">
+                            May I record gameplay on the server?
+                        </span>
+                    </a>
+                </div>
+                <div id="acc1-collapse6" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p class="no-bottom-margin">Yes, but for the privacy of the other players on the server, we request that you turn off the chat feature and refrain from using the tab button, showing who is on at the time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Accordion Alt / End -->
+    </div>
+    <div class="col-md-3 col-sm-12" data-animation="bounce" data-animation-delay="0">
+        <!-- Call to Action - alternative -->
+        <div class="cta cta__ver">
+            <h2 class="cta-title">Need More Info</h2>
+            <div class="cta-txt">
+                Send us an email!
+            </div>
+            <div class="cta-btn">
+                <a asp-page="./Contact" class="btn btn-primary btn-lg">Contact us</a>
+            </div>
+        </div>
+        <!-- Call to Action - alternative / End -->
+    </div>
+</div>
