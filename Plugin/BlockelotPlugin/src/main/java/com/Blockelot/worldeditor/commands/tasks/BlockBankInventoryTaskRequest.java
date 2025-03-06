@@ -6,10 +6,6 @@ import com.Blockelot.worldeditor.container.PlayerInfo;
 import com.Blockelot.worldeditor.http.BlockBankInventoryItem;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import com.Blockelot.Util.MiscUtil;
 
 /**

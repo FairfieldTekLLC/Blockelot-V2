@@ -33,7 +33,6 @@ public class RM
                     return true;
                 }
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Rm");
-                PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
                 player.sendMessage(ChatColor.RED + "Requesting directory removal.");
                 new RmTaskRequest(PluginManager.GetPlayerInfo(player.getUniqueId()), args[0]).runTaskAsynchronously((org.bukkit.plugin.Plugin) PluginManager.Plugin);
             } catch (Exception e) {

@@ -73,22 +73,22 @@ public class Paste
             return Axis.N;
         }
         switch (args[pos]) {
-            case "X": {
+            case "X" -> {
                 return Axis.X;
             }
-            case "x": {
+            case "x" -> {
                 return Axis.X;
             }
-            case "Y": {
+            case "Y" -> {
                 return Axis.Y;
             }
-            case "y": {
+            case "y" -> {
                 return Axis.Y;
             }
-            case "Z": {
+            case "Z" -> {
                 return Axis.Z;
             }
-            case "z": {
+            case "z" -> {
                 return Axis.Z;
             }
         }

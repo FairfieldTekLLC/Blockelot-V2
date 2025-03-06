@@ -9,7 +9,6 @@ import com.Blockelot.worldeditor.http.BlockBankInventoryItem;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -80,7 +79,7 @@ public class BlockBankDepositTaskRequest extends HttpRequestor {
             request.setUuid(PlayerInfo.getUUID());
             request.SetWid(PluginManager.getWorldId());
             request.setAuth(PlayerInfo.getLastAuth());
-            ArrayList<BlockBankInventoryItem> toDeposit = new ArrayList<BlockBankInventoryItem>();
+            ArrayList<BlockBankInventoryItem> toDeposit = new ArrayList<>();
 
             if (DepItems) {
                 BlockBankInventoryItem[] t = new BlockBankInventoryItem[ToDeposit.size()];

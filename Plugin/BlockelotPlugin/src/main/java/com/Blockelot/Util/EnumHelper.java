@@ -12,7 +12,7 @@ public class EnumHelper {
 
     public static EntityType getEntityType(String name) {
         for (EntityType e : EntityType.values()) {
-            if (e.name() == name) {
+            if (e.name().equals(name)) {
                 return e;
             }
         }
@@ -37,41 +37,35 @@ public class EnumHelper {
         int y = 0;
         int z = 0;
         switch (let[0]) {
-            case '-': {
+            case '-' ->  {
                 x = -1;
-                break;
             }
-            case '+': {
+            case '+' ->  {
                 x = 1;
-                break;
             }
-            case '0': {
+            case '0' -> {
                 x = 0;
             }
         }
         switch (let[1]) {
-            case '-': {
+            case '-' ->  {
                 y = -1;
-                break;
             }
-            case '+': {
+            case '+' ->  {
                 y = 1;
-                break;
             }
-            case '0': {
+            case '0' -> {
                 y = 0;
             }
         }
         switch (let[2]) {
-            case '-': {
+            case '-' ->  {
                 z = -1;
-                break;
             }
-            case '+': {
+            case '+' ->  {
                 z = 1;
-                break;
             }
-            case '0': {
+            case '0' -> {
                 z = 0;
             }
         }
@@ -86,45 +80,36 @@ public class EnumHelper {
         String yc = "*";
         String zc = "*";
         switch (x) {
-            case 0: {
+            case 0 ->  {
                 xc = "0";
-                break;
             }
-            case 1: {
+            case 1 ->  {
                 xc = "+";
-                break;
             }
-            case -1: {
+            case -1 ->  {
                 xc = "-";
-                break;
             }
         }
         switch (y) {
-            case 0: {
+            case 0 ->  {
                 yc = "0";
-                break;
             }
-            case 1: {
+            case 1 ->  {
                 yc = "+";
-                break;
             }
-            case -1: {
+            case -1 ->  {
                 yc = "-";
-                break;
             }
         }
         switch (z) {
-            case 0: {
+            case 0 ->  {
                 zc = "0";
-                break;
             }
-            case 1: {
+            case 1 ->  {
                 zc = "+";
-                break;
             }
-            case -1: {
+            case -1 ->  {
                 zc = "-";
-                break;
             }
         }
         return xc + yc + zc;

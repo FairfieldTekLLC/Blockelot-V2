@@ -28,17 +28,11 @@ import com.Blockelot.worldeditor.commands.filesystem.RM;
 import com.Blockelot.worldeditor.commands.filesystem.Register;
 import com.Blockelot.worldeditor.commands.filesystem.SaveClipboard;
 import com.Blockelot.worldeditor.container.PlayerInfo;
-import com.Blockelot.Tools;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
-
-
-
 import java.util.logging.Logger;
-
 import java.util.HashMap;
 import java.util.UUID;
-import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class PluginManager {
 
@@ -122,19 +116,8 @@ public class PluginManager {
         plugin.getCommand("b.bbwd").setExecutor((CommandExecutor) new BlockBankWithdrawl());
         plugin.getCommand("b.help").setExecutor((CommandExecutor) new Help());
         plugin.getCommand("b.about").setExecutor((CommandExecutor) new About());
-
-//        if (!setupEconomy()) {
-//            log.severe(String.format("[%s] - Disabled due to no Vault dependency found!",plugin.getDescription().getName()));
-//            PluginManager.Plugin.getServer().getPluginManager().disablePlugin(PluginManager.Plugin);
-//            return false;
-//        }
-//        
-//        setupPermissions();
-//        setupChat();
         ServerUtil.consoleLog("Calling home... no really, I am.");
-
         ServerUtil.consoleLog("No reason for concern, how do you think the cloud storage works?");
-
         try {
             Verify.Register(Plugin);
         } catch (Exception e) {
@@ -153,39 +136,4 @@ public class PluginManager {
         PlayerInfoList.clear();
     }
 
-//    private static boolean setupEconomy() {
-//        if (PluginManager.Plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
-//            return false;
-//        }
-//        RegisteredServiceProvider<Economy> rsp = PluginManager.Plugin.getServer().getServicesManager().getRegistration(Economy.class);
-//        if (rsp == null) {
-//            return false;
-//        }
-//        econ = rsp.getProvider();
-//        return econ != null;
-//    }
-//
-//    private static boolean setupChat() {
-//        RegisteredServiceProvider<Chat> rsp = PluginManager.Plugin.getServer().getServicesManager().getRegistration(Chat.class);
-//        chat = rsp.getProvider();
-//        return chat != null;
-//    }
-//
-//    private static boolean setupPermissions() {
-//        RegisteredServiceProvider<Permission> rsp = PluginManager.Plugin.getServer().getServicesManager().getRegistration(Permission.class);
-//        perms = rsp.getProvider();
-//        return perms != null;
-//    }
-//
-//    public static Economy getEconomy() {
-//        return econ;
-//    }
-//
-//    public static Permission getPermissions() {
-//        return perms;
-//    }
-//
-//    public static Chat getChat() {
-//        return chat;
-//    }
 }

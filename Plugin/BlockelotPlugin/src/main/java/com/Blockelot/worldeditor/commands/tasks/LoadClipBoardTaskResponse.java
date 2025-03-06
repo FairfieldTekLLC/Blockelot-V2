@@ -64,7 +64,7 @@ public class LoadClipBoardTaskResponse
                 pi.getPlayer().sendMessage(ChatColor.YELLOW + "Loading Schematic...");
                 pi.ClipSchematic.LoadResponse(Response);
                 MadeRequest = true;
-                blocks = new ArrayList<BlockInfo>();
+                blocks = new ArrayList<>();
 
                 player.sendMessage("Expect Blocks:" + Response.getTotalNumberOfBlocks());
                 player.sendMessage("Total Blocks: " + (Response.getBlocks().length / 7));

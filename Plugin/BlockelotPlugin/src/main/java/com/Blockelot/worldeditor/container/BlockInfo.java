@@ -300,8 +300,8 @@ public final class BlockInfo {
 
         BlockData newBlockData = this.getBlockData();
 
-        if (newBlockData instanceof Directional) {
-            return EnumHelper.ToCodeFromBlockFace(((Directional) newBlockData).getFacing());
+        if (newBlockData instanceof Directional directional) {
+            return EnumHelper.ToCodeFromBlockFace(directional.getFacing());
         }
         return "";
     }
@@ -309,8 +309,8 @@ public final class BlockInfo {
     public BlockFace GetBlockFace() {
 
         BlockData newBlockData = this.getBlockData();
-        if (newBlockData instanceof Directional) {
-            return ((Directional) newBlockData).getFacing();
+        if (newBlockData instanceof Directional directional) {
+            return directional.getFacing();
         }
 
         return BlockFace.SELF;
@@ -320,9 +320,9 @@ public final class BlockInfo {
     public void SetBlockFace(BlockFace face) {
 
         BlockData newBlockData = this.getBlockData();
-        if (newBlockData instanceof Directional) {
+        if (newBlockData instanceof Directional directional) {
             try {
-                ((Directional) newBlockData).setFacing(face);
+                directional.setFacing(face);
             } catch (Exception ex) {
                 //Logger.getLogger(BlockInfo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -339,8 +339,8 @@ public final class BlockInfo {
 
         try {
             BlockData newBlockData = this.getBlockData();
-            if (newBlockData instanceof Directional) {
-                ((Directional) newBlockData).setFacing(EnumHelper.ToBlockFaceFromCode(code));
+            if (newBlockData instanceof Directional directional) {
+                directional.setFacing(EnumHelper.ToBlockFaceFromCode(code));
                 setBlockData(newBlockData.getAsString());
             }
         } catch (Exception ex) {
@@ -393,33 +393,33 @@ public final class BlockInfo {
         int z = bf.getModZ();
         block0:
         switch (degrees) {
-            case 90: {
+            case 90 ->  {
                 switch (j) {
-                    case "00+": {
+                    case "00+" -> {
                         x = 0;
                         y = 0;
                         z = 1;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         x = 0;
                         y = 0;
                         z = -1;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         if (this.IsStairs()) {
                             x = -1;
                             y = 0;
@@ -431,7 +431,7 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "-00": {
+                    case "-00" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -440,11 +440,10 @@ public final class BlockInfo {
                         z = 0;
                     }
                 }
-                break;
             }
-            case 180: {
+            case 180 ->  {
                 switch (j) {
-                    case "00+": {
+                    case "00+" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -453,7 +452,7 @@ public final class BlockInfo {
                         z = 1;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -462,19 +461,19 @@ public final class BlockInfo {
                         z = -1;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = -1;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = 1;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -483,7 +482,7 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "-00": {
+                    case "-00" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -492,35 +491,34 @@ public final class BlockInfo {
                         z = 0;
                     }
                 }
-                break;
             }
-            case 270: {
+            case 270 -> {
                 switch (j) {
-                    case "00+": {
+                    case "00+" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         x = 0;
                         y = 0;
                         z = -1;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -529,7 +527,7 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "-00": {
+                    case "-00" -> {
                         x = 0;
                         y = 1;
                         z = 0;
@@ -549,119 +547,117 @@ public final class BlockInfo {
         int z = bf.getModZ();
         block0:
         switch (degrees) {
-            case 90: {
+            case 90 ->  {
                 switch (j) {
-                    case "00+": {
+                    case "00+" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = 1;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = -1;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         x = 0;
                         y = 0;
                         z = -1;
                         break block0;
                     }
-                    case "-00": {
+                    case "-00" -> {
                         x = 0;
                         y = 0;
                         z = 1;
                     }
                 }
-                break;
             }
-            case 180: {
+            case 180 ->  {
                 switch (j) {
-                    case "00+": {
+                    case "00+" -> {
                         x = 0;
                         y = 0;
                         z = -1;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         x = 0;
                         y = 0;
                         z = 1;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = 1;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = -1;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "-00": {
+                    case "-00" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                     }
                 }
-                break;
             }
-            case 270: {
+            case 270 -> {
                 switch (j) {
-                    case "00+": {
+                    case "00+" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = 1;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = -1;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         x = 0;
                         y = 0;
                         z = 1;
                         break block0;
                     }
-                    case "-00": {
+                    case "-00" -> {
                         x = 0;
                         y = 0;
                         z = -1;
@@ -681,21 +677,21 @@ public final class BlockInfo {
         int z = bf.getModZ();
         block0:
         switch (degrees) {
-            case 90: {
+            case 90 ->  {
                 switch (j) {
-                    case "-00": {
+                    case "-00" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = 0;
                         z = -1;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         if (this.IsStairs()) {
                             x = 0;
                             y = 0;
@@ -707,7 +703,7 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "00+": {
+                    case "00+" -> {
                         if (this.IsStairs()) {
                             x = 0;
                             y = 0;
@@ -720,24 +716,23 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = 0;
                         z = 1;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         x = 1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
                 }
-                break;
             }
-            case 180: {
+            case 180 ->  {
                 switch (j) {
-                    case "-00": {
+                    case "-00" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -746,13 +741,13 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = 1;
                         z = 0;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         if (this.IsStairs()) {
                             this.Invert();
                         }
@@ -761,7 +756,7 @@ public final class BlockInfo {
                         z = 1;
                         break block0;
                     }
-                    case "00+": {
+                    case "00+" -> {
                         if (IsStairs()) {
                             x = 0;
                             y = 0;
@@ -774,13 +769,13 @@ public final class BlockInfo {
                         z = -1;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = -1;
                         z = 0;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         if (IsStairs()) {
                             this.Invert();
                         }
@@ -789,23 +784,22 @@ public final class BlockInfo {
                         z = 0;
                     }
                 }
-                break;
             }
-            case 270: {
+            case 270 -> {
                 switch (j) {
-                    case "-00": {
+                    case "-00" -> {
                         x = -1;
                         y = 0;
                         z = 0;
                         break block0;
                     }
-                    case "0-0": {
+                    case "0-0" -> {
                         x = 0;
                         y = 0;
                         z = 1;
                         break block0;
                     }
-                    case "00-": {
+                    case "00-" -> {
                         if (IsStairs()) {
                             x = 0;
                             y = 0;
@@ -818,7 +812,7 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "00+": {
+                    case "00+" -> {
                         if (IsStairs()) {
                             x = 0;
                             y = 0;
@@ -830,13 +824,13 @@ public final class BlockInfo {
                         z = 0;
                         break block0;
                     }
-                    case "0+0": {
+                    case "0+0" -> {
                         x = 0;
                         y = 0;
                         z = -1;
                         break block0;
                     }
-                    case "+00": {
+                    case "+00" -> {
                         x = 1;
                         y = 0;
                         z = 0;
@@ -916,7 +910,7 @@ public final class BlockInfo {
         dat = GetInt(dat.snd);
         block.BlockStorageIndex = dat.fst;
 
-        return new Pair<BlockInfo, char[]>(block, dat.snd);
+        return new Pair<>(block, dat.snd);
     }
 
     public static Pair<BlockInfo, byte[]> fromXferBytes(byte[] data) {
@@ -944,7 +938,7 @@ public final class BlockInfo {
         dat = GetInt(dat.Stream);
         block.BlockStorageIndex = dat.Value;
 
-        return new Pair<BlockInfo, byte[]>(block, dat.Stream);
+        return new Pair<>(block, dat.Stream);
 
     }
 
@@ -971,7 +965,7 @@ public final class BlockInfo {
 
         try {
 
-            ArrayList<byte[]> data = new ArrayList<byte[]>();
+            ArrayList<byte[]> data = new ArrayList<>();
 
             data.add(intToByteArray(X));
 
@@ -1038,12 +1032,12 @@ public final class BlockInfo {
     public void Invert() {
         BlockData data = this.getBlockData();
 
-        if (data instanceof Bisected) {
-            Bisected.Half h = ((Bisected) data).getHalf();
+        if (data instanceof Bisected bisected) {
+            Bisected.Half h = bisected.getHalf();
             if (h == Half.BOTTOM) {
-                ((Bisected) data).setHalf(Half.TOP);
+                bisected.setHalf(Half.TOP);
             } else {
-                ((Bisected) data).setHalf(Half.BOTTOM);
+                bisected.setHalf(Half.BOTTOM);
             }
         }
 

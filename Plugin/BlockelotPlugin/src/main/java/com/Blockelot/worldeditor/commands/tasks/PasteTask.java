@@ -74,30 +74,25 @@ public class PasteTask
 
         if (this.Degrees > 0.0) {
             switch (this.Axis) {
-                case X: {
+                case X ->  {
                     dy = (double) itm.getY() * Math.cos(radians) - (double) itm.getZ() * Math.sin(radians);
                     dz = (double) itm.getY() * Math.sin(radians) + (double) itm.getZ() * Math.cos(radians);
                     if (itm.getBlockFaceCode().equals("")) {
-                        break;
                     }
                     itm.GetRotX((int) this.Degrees);
-                    break;
                 }
-                case Y: {
+                case Y ->  {
                     dz = (double) itm.getZ() * Math.cos(radians) - (double) itm.getX() * Math.sin(radians);
                     dx = (double) itm.getZ() * Math.sin(radians) + (double) itm.getX() * Math.cos(radians);
                     if (itm.getBlockFaceCode().equals("")) {
-                        break;
                     }
                     itm.GetRotY((int) this.Degrees);
-                    break;
                 }
-                case Z: {
+                case Z -> {
 
                     dx = (double) itm.getX() * Math.cos(radians) - (double) itm.getY() * Math.sin(radians);
                     dy = (double) itm.getX() * Math.sin(radians) + (double) itm.getY() * Math.cos(radians);
                     if (itm.getBlockFaceCode().equals("")) {
-                        break;
                     }
                     itm.GetRotZ((int) this.Degrees);
                 }
@@ -216,21 +211,14 @@ public class PasteTask
 
             try {
                 switch (PlayerBlockFace) {
-                    case WEST:
-                    case NORTH_WEST:
+                    case WEST, NORTH_WEST -> {
                         foz = finalOffsetZ - (maxZ - minZ);
                         fox = finalOffsetX - (maxX - minX);
-                        break;
-                    case SOUTH:
-                    case SOUTH_WEST:
-                        fox = finalOffsetX - (maxX - minX);
-                        break;
-                    case NORTH:
-                    case NORTH_EAST:
-                        foz = finalOffsetZ - (maxZ - minZ);
-                        break;
-                    case SOUTH_EAST:
-                        break;
+                    }
+                    case SOUTH, SOUTH_WEST -> fox = finalOffsetX - (maxX - minX);
+                    case NORTH, NORTH_EAST -> foz = finalOffsetZ - (maxZ - minZ);
+                    case SOUTH_EAST -> {
+                    }
                 }
             } catch (Exception e) {
                 ServerUtil.consoleLog("Cannot determine facing.");
@@ -264,21 +252,14 @@ public class PasteTask
             int foy = finalOffsetY;
             try {
                 switch (PlayerBlockFace) {
-                    case WEST:
-                    case NORTH_WEST:
+                    case WEST, NORTH_WEST -> {
                         foz = finalOffsetZ - (maxZ - minZ);
                         fox = finalOffsetX - (maxX - minX);
-                        break;
-                    case SOUTH:
-                    case SOUTH_WEST:
-                        fox = finalOffsetX - (maxX - minX);
-                        break;
-                    case NORTH:
-                    case NORTH_EAST:
-                        foz = finalOffsetZ - (maxZ - minZ);
-                        break;
-                    case SOUTH_EAST:
-                        break;
+                    }
+                    case SOUTH, SOUTH_WEST -> fox = finalOffsetX - (maxX - minX);
+                    case NORTH, NORTH_EAST -> foz = finalOffsetZ - (maxZ - minZ);
+                    case SOUTH_EAST -> {
+                    }
                 }
             } catch (Exception e) {
                 ServerUtil.consoleLog("Cannot determine facing.");

@@ -2,7 +2,6 @@ package com.Blockelot.worldeditor.commands.filesystem;
 
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
-import com.Blockelot.worldeditor.commands.tasks.CopyTask;
 import com.Blockelot.worldeditor.commands.tasks.SaveClipboardTaskRequest;
 import com.Blockelot.worldeditor.container.PlayerInfo;
 import org.bukkit.ChatColor;
