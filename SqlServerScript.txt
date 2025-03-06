@@ -1,0 +1,133 @@
+USE [Blockelot]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[Id] [int] NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Classes]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Classes](
+	[pkClassId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Classes] PRIMARY KEY CLUSTERED 
+(
+	[pkClassId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClassLevel]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClassLevel](
+	[fkClassId] [int] NOT NULL,
+	[Lvl] [int] NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[ExpToLevel] [int] NOT NULL,
+ CONSTRAINT [PK_ClassLevel] PRIMARY KEY CLUSTERED 
+(
+	[fkClassId] ASC,
+	[Lvl] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClassStat]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClassStat](
+	[pkClassStatId] [int] IDENTITY(1,1) NOT NULL,
+	[fkClassId] [int] NOT NULL,
+	[STR] [int] NOT NULL,
+	[STA] [int] NOT NULL,
+	[DEX] [int] NOT NULL,
+	[WIS] [int] NOT NULL,
+	[CHA] [int] NOT NULL,
+	[AC] [int] NOT NULL,
+ CONSTRAINT [PK_ClassStat] PRIMARY KEY CLUSTERED 
+(
+	[pkClassStatId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MobExp]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MobExp](
+	[pkMonsterId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[Exp] [int] NOT NULL,
+ CONSTRAINT [PK_MonsterExperienceTable] PRIMARY KEY CLUSTERED 
+(
+	[pkMonsterId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Players]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Players](
+	[pkPlayerId] [int] IDENTITY(1,1) NOT NULL,
+	[fkClassId] [int] NOT NULL,
+	[Uuid] [nvarchar](100) NOT NULL,
+	[HpCur] [int] NOT NULL,
+	[Exp] [int] NOT NULL,
+	[Lvl] [int] NOT NULL,
+	[InventoryJson] [nvarchar](max) NOT NULL,
+	[ArmorJson] [nvarchar](max) NOT NULL,
+	[EnderJson] [nvarchar](max) NOT NULL,
+	[LastWorld] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Players] PRIMARY KEY CLUSTERED 
+(
+	[pkPlayerId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Tag]    Script Date: 3/6/2025 7:44:14 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tag](
+	[Id] [int] NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_Tag] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ClassLevel]  WITH CHECK ADD  CONSTRAINT [FK_ClassLevel_Classes] FOREIGN KEY([fkClassId])
+REFERENCES [dbo].[Classes] ([pkClassId])
+GO
+ALTER TABLE [dbo].[ClassLevel] CHECK CONSTRAINT [FK_ClassLevel_Classes]
+GO
+ALTER TABLE [dbo].[ClassStat]  WITH CHECK ADD  CONSTRAINT [FK_ClassStat_Classes] FOREIGN KEY([fkClassId])
+REFERENCES [dbo].[Classes] ([pkClassId])
+GO
+ALTER TABLE [dbo].[ClassStat] CHECK CONSTRAINT [FK_ClassStat_Classes]
+GO
+ALTER TABLE [dbo].[Players]  WITH CHECK ADD  CONSTRAINT [FK_Players_Classes] FOREIGN KEY([fkClassId])
+REFERENCES [dbo].[Classes] ([pkClassId])
+GO
+ALTER TABLE [dbo].[Players] CHECK CONSTRAINT [FK_Players_Classes]
+GO
