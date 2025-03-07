@@ -88,7 +88,7 @@ namespace ServerSite.WorldEdit.Data
 
         public static void BulkLoad(int schematicId, string data, string rootPath)
         {
-            int nextSeq = 0;
+            int nextSeq;
 
             object o = SqlHelper.ExecuteScalar(Constants.DbConnString,
                 "select max(Seq) from SchematicData where FkSchematicId = @SID", [
@@ -166,7 +166,7 @@ namespace ServerSite.WorldEdit.Data
             }
             catch (Exception)
             {
-
+                //
             }
 
 
@@ -255,7 +255,7 @@ namespace ServerSite.WorldEdit.Data
             }
             catch (Exception)
             {
-
+                //
             }
             return null;
         }
@@ -337,7 +337,7 @@ namespace ServerSite.WorldEdit.Data
             List<PaletteEntry> blockDataPalette = null;
             List<PaletteEntry> blockTypePalette = null;
             List<PaletteEntry> blockInvePalette = null;
-            string name;
+            //string name;
             int blockCount = 0;
 
 
@@ -363,7 +363,7 @@ namespace ServerSite.WorldEdit.Data
                 blockInvePalette = JsonConvert.DeserializeObject<List<PaletteEntry>>((string)result[0][4]  //rdr.GetString(4)
                     )
                     .Where(x => x != null).ToList();
-                name = (string)result[0][3];// rdr.GetString(3);
+               // name = (string)result[0][3];// rdr.GetString(3);
                 blockCount = (int)result[0][5];// rdr.GetInt32(5);
             }
 
@@ -585,7 +585,7 @@ namespace ServerSite.WorldEdit.Data
                     BulkLoad(schematicId, schematicDataRequest.Blocks, rootPath);
                 }
 
-                ThreadPool.QueueUserWorkItem(new WaitCallback(LoadEm));
+                ThreadPool.QueueUserWorkItem(LoadEm);
             }
             catch (Exception e)
             {
@@ -607,6 +607,7 @@ namespace ServerSite.WorldEdit.Data
             }
             catch (Exception e)
             {
+                //
             }
             if (wid != null)
             {
@@ -630,18 +631,17 @@ namespace ServerSite.WorldEdit.Data
                 ServerId = (rdr[0][0]).AsGuid();
             }
 
-            if (ServerId == Guid.Empty)
-            {
-                ServerId = Guid.NewGuid();
-                //New Registration
+            if (ServerId != Guid.Empty) 
+                return ServerId;
+            ServerId = Guid.NewGuid();
+            //New Registration
 
-                SqlHelper.ExecuteNonQuery(Constants.DbConnString, "insert into Worlds ( pkWorldId , IPAddress , LastVersion, ServerName, LastUpdated) select @w , @i, @l, @s, getdate()", [
-                    new KeyValuePair<string, object>("@w", ServerId.FixGuid()),
-                    new KeyValuePair<string, object>("@i", ipAddress.Trim()),
-                    new KeyValuePair<string, object>("@l", latestVersion),
-                    new KeyValuePair<string, object>("@s", serverName),
-                    ]);
-            }
+            SqlHelper.ExecuteNonQuery(Constants.DbConnString, "insert into Worlds ( pkWorldId , IPAddress , LastVersion, ServerName, LastUpdated) select @w , @i, @l, @s, getdate()", [
+                new KeyValuePair<string, object>("@w", ServerId.FixGuid()),
+                new KeyValuePair<string, object>("@i", ipAddress.Trim()),
+                new KeyValuePair<string, object>("@l", latestVersion),
+                new KeyValuePair<string, object>("@s", serverName),
+            ]);
 
             return ServerId;
         }

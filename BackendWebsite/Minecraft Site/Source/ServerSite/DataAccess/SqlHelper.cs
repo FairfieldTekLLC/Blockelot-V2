@@ -15,45 +15,45 @@ namespace ServerSite.DataAccess
             switch (DataSourceType)
             {
                 case DataSourceType.MSQL:
+                {
+                    using (var conn = new SqlConnection(connectionString))
                     {
-                        using (var conn = new SqlConnection(connectionString))
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
                         {
-                            conn.Open();
-                            using (var cmd = conn.CreateCommand())
+                            cmd.CommandText = sql;
+                            cmd.CommandType = CommandType.Text;
+                            foreach (var kvp in parameters)
                             {
-                                cmd.CommandText = sql;
-                                cmd.CommandType = CommandType.Text;
-                                foreach (var kvp in parameters)
-                                {
-                                    cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                                }
-
-                                cmd.ExecuteNonQuery();
+                                cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
-                        }
 
-                        break;
+                            cmd.ExecuteNonQuery();
+                        }
                     }
+
+                    break;
+                }
                 case DataSourceType.MySql:
+                {
+                    using (var conn = new MySqlConnection(connectionString))
                     {
-                        using (var conn = new MySqlConnection(connectionString))
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
                         {
-                            conn.Open();
-                            using (var cmd = conn.CreateCommand())
+                            cmd.CommandText = sql;
+                            cmd.CommandType = CommandType.Text;
+                            foreach (var kvp in parameters)
                             {
-                                cmd.CommandText = sql;
-                                cmd.CommandType = CommandType.Text;
-                                foreach (var kvp in parameters)
-                                {
-                                    cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                                }
-
-                                cmd.ExecuteNonQuery();
+                                cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
-                        }
 
-                        break;
+                            cmd.ExecuteNonQuery();
+                        }
                     }
+
+                    break;
+                }
             }
         }
 
@@ -62,45 +62,45 @@ namespace ServerSite.DataAccess
             switch (DataSourceType)
             {
                 case DataSourceType.MSQL:
+                {
+                    using (var conn = new SqlConnection(connectionString))
                     {
-                        using (var conn = new SqlConnection(connectionString))
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
                         {
-                            conn.Open();
-                            using (var cmd = conn.CreateCommand())
+                            cmd.CommandText = sql;
+                            cmd.CommandType = CommandType.Text;
+                            foreach (var kvp in parameters)
                             {
-                                cmd.CommandText = sql;
-                                cmd.CommandType = CommandType.Text;
-                                foreach (var kvp in parameters)
-                                {
-                                    cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                                }
-
-                                object r = cmd.ExecuteScalar();
-
-                                return r == DBNull.Value ? null : r;
+                                cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
+
+                            object r = cmd.ExecuteScalar();
+
+                            return r == DBNull.Value ? null : r;
                         }
                     }
+                }
                 case DataSourceType.MySql:
+                {
+                    using (var conn = new MySqlConnection(connectionString))
                     {
-                        using (var conn = new MySqlConnection(connectionString))
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
                         {
-                            conn.Open();
-                            using (var cmd = conn.CreateCommand())
+                            cmd.CommandText = sql;
+                            cmd.CommandType = CommandType.Text;
+                            foreach (var kvp in parameters)
                             {
-                                cmd.CommandText = sql;
-                                cmd.CommandType = CommandType.Text;
-                                foreach (var kvp in parameters)
-                                {
-                                    cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                                }
-
-                                object r = cmd.ExecuteScalar();
-
-                                return r == DBNull.Value ? null : r;
+                                cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
+
+                            object r = cmd.ExecuteScalar();
+
+                            return r == DBNull.Value ? null : r;
                         }
                     }
+                }
                 default:
                     return null;
             }
@@ -181,6 +181,9 @@ namespace ServerSite.DataAccess
                 }
 
             }
-        }
+
+            return result;
         }
     }
+}
+    
