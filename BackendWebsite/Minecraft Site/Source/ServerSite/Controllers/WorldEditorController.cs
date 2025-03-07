@@ -345,14 +345,14 @@ namespace ServerSite.Controllers
 
 
 
-            var (success, msg, blocks, blockDataPalette, blockTypePalette, blockInvePalette, blockCount) = Users.LoadSchematic(userId, request.CurrentDirectory, request.FileName);
+            (bool success, string msg, string blocks, var blockDataPalette, var blockTypePalette, var blockInvePalette, int blockCount) = Users.LoadSchematic(userId, request.CurrentDirectory, request.FileName);
 
 
 
 
             string[] parts = blocks.Split("|");
             List<int> pints = new List<int>();
-            foreach (var part in parts)
+            foreach (string part in parts)
             {
                 if (int.TryParse(part, out int i))
                 {

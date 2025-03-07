@@ -90,7 +90,7 @@ namespace ServerSite.WorldEdit.Data
         {
             int nextSeq = 0;
 
-            var o = SqlHelper.ExecuteScalar(Constants.DbConnString,
+            object o = SqlHelper.ExecuteScalar(Constants.DbConnString,
                 "select max(Seq) from SchematicData where FkSchematicId = @SID", [
                     new KeyValuePair<string, object>("@SID", schematicId)
                 ]);
@@ -314,7 +314,7 @@ namespace ServerSite.WorldEdit.Data
 
         public static int GetUserId(string uuid)
         {
-            var r = SqlHelper.ExecuteScalar(Constants.DbConnString,
+            object r = SqlHelper.ExecuteScalar(Constants.DbConnString,
                 "select PkUserId from Users where UniqueId = @UUID;", [
                     new KeyValuePair<string, object>("@UUID", uuid)
                 ]);
@@ -436,7 +436,7 @@ namespace ServerSite.WorldEdit.Data
             bool found = false;
             {
 
-                var o = SqlHelper.ExecuteScalar(Constants.DbConnString,
+                object o = SqlHelper.ExecuteScalar(Constants.DbConnString,
                     "select LastDt from WorldUsers where fkWorldId = @fkWorldId and fkUserId= @fkUserId", [
                         new KeyValuePair<string, object>("@fkWorldId", worldId.FixGuid()),
                         new KeyValuePair<string, object>("@fkUserId", id)
@@ -566,7 +566,7 @@ namespace ServerSite.WorldEdit.Data
                         ]);
 
 
-                var result = SqlHelper.ExecuteScalar(Constants.DbConnString,
+                object result = SqlHelper.ExecuteScalar(Constants.DbConnString,
                       "Select PkSchematicId from Schematic where Name = @Name and FkOwnerId=@FkOwnerId and FkDirectoryId = @FkDirectoryId and IsDeleted=0;",
                       [
                           new KeyValuePair<string, object>("@Name", schematicDataRequest.FileName),
@@ -610,7 +610,7 @@ namespace ServerSite.WorldEdit.Data
             }
             if (wid != null)
             {
-                var result = SqlHelper.ExecuteScalar(Constants.DbConnString,
+                object result = SqlHelper.ExecuteScalar(Constants.DbConnString,
                     "select pkWorldId from Worlds where w.pkWorldId = @worldId", [
                         new KeyValuePair<string, object>("@worldId", wid.Value.FixGuid())
                     ]);
@@ -656,7 +656,7 @@ namespace ServerSite.WorldEdit.Data
 
 
 
-            var result = SqlHelper.ExecuteScalar(Constants.DbConnString,
+            object result = SqlHelper.ExecuteScalar(Constants.DbConnString,
                 "select pkId from BlockBankContents where fkBlockBankId = @BBID and Material = @Material", [
                     new KeyValuePair<string, object>("@BBID", BlockBankId.FixGuid()),
                     new KeyValuePair<string, object>("Material", material),
@@ -723,7 +723,7 @@ namespace ServerSite.WorldEdit.Data
             Guid BlockBankId = Guid.Empty;
             using (SqlConnection con = new SqlConnection())
             {
-                var result = SqlHelper.ExecuteScalar(Constants.DbConnString, "select pkBlockBankId from BlockBank where fkUserId = @fkUserId and fkWorldId = @fkWorldId", [
+                object result = SqlHelper.ExecuteScalar(Constants.DbConnString, "select pkBlockBankId from BlockBank where fkUserId = @fkUserId and fkWorldId = @fkWorldId", [
                     new KeyValuePair<string, object>("@fkUserId", userId),
                     new KeyValuePair<string, object>("@fkWorldId", wid.FixGuid()),
                 ]);
