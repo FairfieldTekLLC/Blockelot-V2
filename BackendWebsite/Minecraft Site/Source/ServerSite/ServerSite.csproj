@@ -25,10 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="MySql.Data" Version="9.2.0" />
     <PackageReference Include="MySqlConnector" Version="2.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageReference Include="Z.BulkOperations" Version="5.1.13" />
   </ItemGroup>
   <ItemGroup>

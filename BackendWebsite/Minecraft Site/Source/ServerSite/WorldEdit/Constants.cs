@@ -23,15 +23,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using ServerSite.DataAccess;
+
 namespace ServerSite.WorldEdit
 {
     public static class Constants
     {
         //public static string DbConnString = "Server=192.168.211.9; database=MineCraft; UID=root; password=Redshoe1!;SslMode=none";
-        public static string DbConnString = "Server=fftsql02.winterleaf.local; database=MineCraft; UID=sa; password=Redshoe1!;";
+        public static string DbConnString = "Server=fftsql02.winterleaf.local; database=MineCraft; UID=sa; password=Redshoe1!;TrustServerCertificate=true";
         //public static string DbConnString = "Server=216.117.159.96;Database=blockelot;Uid=MineCraft;Pwd=MineCraftWins123!!;";
-        
-        
+
+        public static DataSourceType DataSourceType = DataSourceType.MSQL;
 
         public static class DirectoryEntry
         {
