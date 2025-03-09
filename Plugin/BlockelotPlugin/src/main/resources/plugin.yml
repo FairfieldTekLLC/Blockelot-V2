@@ -151,5 +151,10 @@ commands:
     description: Loads the Blueprint into your clipboard
     permission: Blockelot.FileSystem.User
     usage: /b.load [Blueprint Name]
+    
+  b.autopickup:
+    description: Allows the autopickup of mined materials
+    permission: Blockelot.Player.AutoPickup
+    usage: b.Autopickup
  
  

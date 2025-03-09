@@ -22,3 +22,4 @@ settings:
     stripmine: Blockelot.WorldEditor.Editor.StripMine
     undo: Blockelot.WorldEditor.Editor.Undo
     filesystem: Blockelot.FileSystem.User
+    autopickup: Blockelot.Player.AutoPickup

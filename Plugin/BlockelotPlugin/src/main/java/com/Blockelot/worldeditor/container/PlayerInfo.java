@@ -34,6 +34,8 @@ public class PlayerInfo {
     private String CurrentPath = "";
     public IPoint SelectStart = null;
     public IPoint SelectEnd = null;
+    
+    public boolean AutoPickup = false;
 
     public BlockCollection ClipSchematic = new BlockCollection();
 

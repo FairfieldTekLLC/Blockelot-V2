@@ -35,11 +35,12 @@ public class Configuration implements Serializable {
     public String Permission_StripMine = "Blockelot.WorldEditor.Editor.StripMine";
     public String Permission_Undo = "Blockelot.WorldEditor.Editor.Undo";
     public String Permission_FileSystem = "Blockelot.FileSystem.User";
+    public String Permission_AutoPickup = "Blockelot.Player.AutoPickup";
     public Boolean IncludeInventoryWhenPasting = true;
     public int MaxBlocksWritePerTick = 5000;
     public int MaxBlocksReadPerTick = 5000;
     public int MaxBlocksUploadPerCall = 20000;
-    public String NonPastableBlocks = "IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
+    public String NonPastableBlocks = "";//IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
     public ArrayList<Material> NonPastableBlockArray = new ArrayList<>();
 
     public boolean SaveData() {
@@ -73,6 +74,7 @@ public class Configuration implements Serializable {
         config.set("settings.perms.undo", Permission_Undo);
         config.set("settings.perms.filesystem", Permission_FileSystem);
         config.set("settings.perms.bank",Permission_BlockelotBank);
+        
         PluginManager.Plugin.saveConfig();
         return true;
     }

@@ -3,6 +3,7 @@ package com.Blockelot;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.Util.Verify;
 import com.Blockelot.worldeditor.commands.About;
+import com.Blockelot.worldeditor.commands.AutoPickupToggle;
 import com.Blockelot.worldeditor.commands.BlockBankDeposit;
 import com.Blockelot.worldeditor.commands.BlockBankInventory;
 import com.Blockelot.worldeditor.commands.BlockBankWithdrawl;
@@ -69,7 +70,7 @@ public class PluginManager {
 //    private static Chat chat = null;
     static {
         PlayerInfoList = new HashMap<>();
-        Version = "1.0.0.2";
+        Version = "1.0.0.3";
         Config = new Configuration();
         try {
             Config.LoadData();
@@ -116,6 +117,7 @@ public class PluginManager {
         plugin.getCommand("b.bbwd").setExecutor((CommandExecutor) new BlockBankWithdrawl());
         plugin.getCommand("b.help").setExecutor((CommandExecutor) new Help());
         plugin.getCommand("b.about").setExecutor((CommandExecutor) new About());
+        plugin.getCommand("b.autopickup").setExecutor((CommandExecutor) new AutoPickupToggle());
         ServerUtil.consoleLog("Calling home... no really, I am.");
         ServerUtil.consoleLog("No reason for concern, how do you think the cloud storage works?");
         try {
