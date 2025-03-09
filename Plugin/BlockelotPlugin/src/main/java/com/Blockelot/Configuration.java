@@ -74,6 +74,7 @@ public class Configuration implements Serializable {
         config.set("settings.perms.undo", Permission_Undo);
         config.set("settings.perms.filesystem", Permission_FileSystem);
         config.set("settings.perms.bank",Permission_BlockelotBank);
+        config.set("settings.perms.autopickup",Permission_AutoPickup);
         
         PluginManager.Plugin.saveConfig();
         return true;
@@ -90,9 +91,11 @@ public class Configuration implements Serializable {
         Permission_Size = config.getString("settings.perms.size");
         Permission_Print = config.getString("settings.perms.print");
         Permission_Select = config.getString("settings.perms.select");
+        Permission_AutoPickup = config.getString("settings.perms.autopickup");
 
         Permission_Editor = config.getString("settings.perms.editor");
         Permission_Copy = config.getString("settings.perms.copy");
+        Permission_Cut = config.getString("settings.perms.cut");
         Permission_Delete = config.getString("settings.perms.delete");
         Permission_Distr = config.getString("settings.perms.distr");
         Permission_Paste = config.getString("settings.perms.paste");
