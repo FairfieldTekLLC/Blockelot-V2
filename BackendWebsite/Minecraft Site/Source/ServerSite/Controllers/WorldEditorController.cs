@@ -172,7 +172,7 @@ namespace ServerSite.Controllers
             if (!dirLsRequest.CurrentDirectory.Trim().EndsWith("/"))
                 dirLsRequest.CurrentDirectory = dirLsRequest.CurrentDirectory.Trim() + "/";
 
-            var c = Users.GetFolderContents(userId, dirLsRequest.CurrentDirectory);
+            List<DirectoryElement> c = Users.GetFolderContents(userId, dirLsRequest.CurrentDirectory);
 
 
 
@@ -345,7 +345,7 @@ namespace ServerSite.Controllers
 
 
 
-            (bool success, string msg, string blocks, var blockDataPalette, var blockTypePalette, var blockInvePalette, int blockCount) = Users.LoadSchematic(userId, request.CurrentDirectory, request.FileName);
+            (bool success, string msg, string blocks, List<PaletteEntry> blockDataPalette, List<PaletteEntry> blockTypePalette, List<PaletteEntry> blockInvePalette, int blockCount) = Users.LoadSchematic(userId, request.CurrentDirectory, request.FileName);
 
 
 
@@ -598,7 +598,7 @@ namespace ServerSite.Controllers
                 return Json(response, Options);
             }
 
-            response.Items = Users.GetBlockBankInventory(userId, request.Wid).ToArray();
+            response.Items = Users.GetBlockBankInventory(userId, request.Wid,request.SearchCriteria).ToArray();
             response.Uuid = request.Uuid;
             response.Success = true;
             return Json(response, Options);

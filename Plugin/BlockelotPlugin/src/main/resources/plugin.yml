@@ -21,9 +21,10 @@ commands:
     usage: /b.help
     
   b.bbinv:
-    description: Displays your block bank inventory.
+    description: Displays your block bank inventory, and you can filter by including part of the name for the material your looking for.  The % symbol is a wildcard.
     permission: Blockelot.Bank
     usage: /b.bbinv
+    usage: /b.bbinv [any letter or word][% is wildcard.]
     
   b.bbwd:
     description: Withdrawls blocks from your bank to your inventory.

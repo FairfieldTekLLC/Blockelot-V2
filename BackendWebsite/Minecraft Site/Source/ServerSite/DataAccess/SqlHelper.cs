@@ -16,14 +16,14 @@ namespace ServerSite.DataAccess
             {
                 case DataSourceType.MSQL:
                 {
-                    using (var conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        using (SqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = sql;
                             cmd.CommandType = CommandType.Text;
-                            foreach (var kvp in parameters)
+                            foreach (KeyValuePair<string, object> kvp in parameters)
                             {
                                 cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
@@ -36,14 +36,14 @@ namespace ServerSite.DataAccess
                 }
                 case DataSourceType.MySql:
                 {
-                    using (var conn = new MySqlConnection(connectionString))
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        using (MySqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = sql;
                             cmd.CommandType = CommandType.Text;
-                            foreach (var kvp in parameters)
+                            foreach (KeyValuePair<string, object> kvp in parameters)
                             {
                                 cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
@@ -63,14 +63,14 @@ namespace ServerSite.DataAccess
             {
                 case DataSourceType.MSQL:
                 {
-                    using (var conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        using (SqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = sql;
                             cmd.CommandType = CommandType.Text;
-                            foreach (var kvp in parameters)
+                            foreach (KeyValuePair<string, object> kvp in parameters)
                             {
                                 cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
@@ -83,14 +83,14 @@ namespace ServerSite.DataAccess
                 }
                 case DataSourceType.MySql:
                 {
-                    using (var conn = new MySqlConnection(connectionString))
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        using (MySqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = sql;
                             cmd.CommandType = CommandType.Text;
-                            foreach (var kvp in parameters)
+                            foreach (KeyValuePair<string, object> kvp in parameters)
                             {
                                 cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
@@ -115,19 +115,19 @@ namespace ServerSite.DataAccess
             {
                 case DataSourceType.MSQL:
                 {
-                    using (var conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        using (SqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = sql;
                             cmd.CommandType = CommandType.Text;
-                            foreach (var kvp in parameters)
+                            foreach (KeyValuePair<string, object> kvp in parameters)
                             {
                                 cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
 
-                            var rdr = cmd.ExecuteReader();
+                            SqlDataReader rdr = cmd.ExecuteReader();
                             while (rdr.Read())
                             {
                                 List<object> row = [];
@@ -148,19 +148,19 @@ namespace ServerSite.DataAccess
 
                 case DataSourceType.MySql:
                 {
-                    using (var conn = new MySqlConnection(connectionString))
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        using (MySqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = sql;
                             cmd.CommandType = CommandType.Text;
-                            foreach (var kvp in parameters)
+                            foreach (KeyValuePair<string, object> kvp in parameters)
                             {
                                 cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                             }
 
-                            var rdr = cmd.ExecuteReader();
+                            MySqlDataReader rdr = cmd.ExecuteReader();
                             while (rdr.Read())
                             {
                                 List<object> row = new List<object>();

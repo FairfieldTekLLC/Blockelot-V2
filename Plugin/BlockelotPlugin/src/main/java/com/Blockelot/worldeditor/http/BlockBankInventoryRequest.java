@@ -9,6 +9,7 @@ public class BlockBankInventoryRequest {
     private String Wid;
     private String Uuid;
     private String Auth;
+    private String SearchCriteria;
 
     public String getUuid() {
         return this.Uuid;
@@ -33,4 +34,13 @@ public class BlockBankInventoryRequest {
     public void SetWid(String wid) {
         this.Wid = wid;
     }
+    
+    public String getSearchCriteria(){
+        return SearchCriteria;
+    }
+    
+    public void SetSearchCriteria(String criteria){
+        SearchCriteria = criteria;
+    }
+    
 }

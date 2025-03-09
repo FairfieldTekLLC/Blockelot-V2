@@ -69,7 +69,7 @@ public class PluginManager {
 //    private static Chat chat = null;
     static {
         PlayerInfoList = new HashMap<>();
-        Version = "1.0.0.1";
+        Version = "1.0.0.2";
         Config = new Configuration();
         try {
             Config.LoadData();

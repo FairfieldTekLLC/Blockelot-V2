@@ -6,5 +6,7 @@
         public string Uuid { get; set; }
 
         public string Auth { get; set; }
+        
+        public string SearchCriteria { get; set; }
     }
 }

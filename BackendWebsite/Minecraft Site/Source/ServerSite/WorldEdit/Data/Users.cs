@@ -265,7 +265,7 @@ namespace ServerSite.WorldEdit.Data
             int folderId = FindFolderFromPath(userId, path);
 
 
-            var result = SqlHelper.ExecuteReader(Constants.DbConnString,
+            List<List<object>> result = SqlHelper.ExecuteReader(Constants.DbConnString,
                 "Select DirectoryName from Directory where FkParentId = @FkParentId and FkUserId = @FkUserId and isDeleted =0",
                 [
                     new KeyValuePair<string, object>("@FkUserId", userId),
@@ -292,7 +292,7 @@ namespace ServerSite.WorldEdit.Data
         public static Tuple<int, string> GetHomeFolder(int userId)
         {
 
-            var result = SqlHelper.ExecuteReader(Constants.DbConnString,
+            List<List<object>> result = SqlHelper.ExecuteReader(Constants.DbConnString,
                 "select PkDirectoryId, DirectoryName from Directory where FkParentId is NULL and FkUserId = @FkUserId and isDeleted = 0;",
                 [
                     new KeyValuePair<string, object>("@FkUserId", userId)
@@ -343,7 +343,7 @@ namespace ServerSite.WorldEdit.Data
 
 
 
-            var result = SqlHelper.ExecuteReader(Constants.DbConnString,
+            List<List<object>> result = SqlHelper.ExecuteReader(Constants.DbConnString,
                 "Select PkSchematicId, BlockDataJson, BlockTypeJson,name,BlockInveJson,NumberOfBlocks  from Schematic where Name=@Name and FkDirectoryId = @FkDirectoryId and IsDeleted = 0 ",
                 [
                     new KeyValuePair<string, object>("@Name", filename),
@@ -363,7 +363,7 @@ namespace ServerSite.WorldEdit.Data
                 blockInvePalette = JsonConvert.DeserializeObject<List<PaletteEntry>>((string)result[0][4]  //rdr.GetString(4)
                     )
                     .Where(x => x != null).ToList();
-               // name = (string)result[0][3];// rdr.GetString(3);
+                // name = (string)result[0][3];// rdr.GetString(3);
                 blockCount = (int)result[0][5];// rdr.GetInt32(5);
             }
 
@@ -621,7 +621,7 @@ namespace ServerSite.WorldEdit.Data
             Guid ServerId = Guid.Empty;
 
 
-            var rdr = SqlHelper.ExecuteReader(Constants.DbConnString,
+            List<List<object>> rdr = SqlHelper.ExecuteReader(Constants.DbConnString,
                 "select pkWorldId from Worlds where IPAddress = @ipAddress and ServerName=@serverName", [
                     new KeyValuePair<string, object>("@ipAddress", ipAddress.Trim()),
                     new KeyValuePair<string, object>("@serverName", serverName),
@@ -631,7 +631,7 @@ namespace ServerSite.WorldEdit.Data
                 ServerId = (rdr[0][0]).AsGuid();
             }
 
-            if (ServerId != Guid.Empty) 
+            if (ServerId != Guid.Empty)
                 return ServerId;
             ServerId = Guid.NewGuid();
             //New Registration
@@ -699,17 +699,27 @@ namespace ServerSite.WorldEdit.Data
 
         }
 
-        public static List<BlockBankInventoryItem> GetBlockBankInventory(int userId, string wid)
+        public static List<BlockBankInventoryItem> GetBlockBankInventory(int userId, string wid, string criteria)
         {
             Guid vwid = Guid.Parse(wid);
 
             List<BlockBankInventoryItem> result = new List<BlockBankInventoryItem>();
             Guid blockBankId = GetBlockBank(userId, vwid);
 
+            List<List<object>> qresult;
 
-            var qresult = SqlHelper.ExecuteReader(Constants.DbConnString, "select  Material, Amount from BlockBankContents where fkBlockBankId = @BBID", [
-                new KeyValuePair<string, object>("@BBID", blockBankId.FixGuid())
-            ]);
+
+            if (criteria == String.Empty)
+                qresult = SqlHelper.ExecuteReader(Constants.DbConnString, "select  Material, Amount from BlockBankContents where fkBlockBankId = @BBID", [
+                   new KeyValuePair<string, object>("@BBID", blockBankId.FixGuid())
+               ]);
+            else
+            {
+                qresult = SqlHelper.ExecuteReader(Constants.DbConnString, "select  Material, Amount from BlockBankContents where fkBlockBankId = @BBID and Material like @Mat", [
+                    new KeyValuePair<string, object>("@BBID", blockBankId.FixGuid()),
+                    new KeyValuePair<string, object>("@Mat",criteria)
+                ]);
+            }
 
             if (qresult.Count <= 0)
                 return result;
@@ -761,7 +771,7 @@ namespace ServerSite.WorldEdit.Data
             int available = 0;
 
 
-            var rdr = SqlHelper.ExecuteReader(Constants.DbConnString, "select pkId,Amount from BlockBankContents where fkBlockBankId = @BBID and Material = @Material", [
+            List<List<object>> rdr = SqlHelper.ExecuteReader(Constants.DbConnString, "select pkId,Amount from BlockBankContents where fkBlockBankId = @BBID and Material = @Material", [
                 new KeyValuePair<string, object>("@BBID", BlockBankId.FixGuid()),
                 new KeyValuePair<string, object>("@Material", material),
             ]);

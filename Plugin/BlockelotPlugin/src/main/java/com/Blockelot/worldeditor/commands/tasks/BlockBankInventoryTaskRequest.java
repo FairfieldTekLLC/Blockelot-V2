@@ -16,9 +16,12 @@ public class BlockBankInventoryTaskRequest extends HttpRequestor {
 
     PlayerInfo PlayerInfo;
 
-    public BlockBankInventoryTaskRequest(PlayerInfo pi) {
+    public BlockBankInventoryTaskRequest(PlayerInfo pi,String SearchString) {
         this.PlayerInfo = pi;
+        this.SearchString = SearchString;
     }
+    
+    public String SearchString;
 
     @Override
     public void run() {
@@ -31,6 +34,7 @@ public class BlockBankInventoryTaskRequest extends HttpRequestor {
             request.setUuid(PlayerInfo.getUUID());
             request.SetWid(PluginManager.getWorldId());
             request.setAuth(PlayerInfo.getLastAuth());
+            request.SetSearchCriteria(SearchString);
 
             PlayerInfo.getPlayer().sendMessage(ChatColor.YELLOW + "Contacting Bank....");
 

@@ -35,8 +35,21 @@ public class BlockBankInventory implements CommandExecutor {
                     if (PluginManager.HasPlayer(player)) {
                         PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
 
-                        BlockBankInventoryTaskRequest task = new BlockBankInventoryTaskRequest(pi);
-                        task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
+                        String criteria = "";
+                        
+                        if (args.length==1)
+                        {
+                            criteria = args[0];
+                        }
+                        else
+                        {
+                            criteria = "";
+                        }
+                            BlockBankInventoryTaskRequest task = new BlockBankInventoryTaskRequest(pi,criteria);
+                            task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
+
+                        
+                        
                     }
 
                 } catch (Exception e) {
