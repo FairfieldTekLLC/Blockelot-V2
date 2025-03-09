@@ -26,23 +26,22 @@
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace ServerSite.WorldEdit.Utils
-{
-    public static class EmailMessages
-    {
-        public static async Task SendAuthCode(string emailAddress, string authCode)
-        {
-            SmtpClient client = new SmtpClient("192.168.211.50")
-            {
-                UseDefaultCredentials = true
-                //, Credentials = new NetworkCredential("MineCraft@fairfieldtek.com", "Redshoe1!")
-            };
+namespace ServerSite.WorldEdit.Utils;
 
-            MailMessage mailMessage = new MailMessage {From = new MailAddress("MineCraft@Fairfieldtek.com")};
-            mailMessage.To.Add(emailAddress);
-            mailMessage.Body = "Your authentication code is: " + authCode;
-            mailMessage.Subject = "MineCraft.Fairfieldtek.com Authentication";
-            await client.SendMailAsync(mailMessage);
-        }
+public static class EmailMessages
+{
+    public static async Task SendAuthCode(string emailAddress, string authCode)
+    {
+        var client = new SmtpClient("192.168.211.50")
+        {
+            UseDefaultCredentials = true
+            //, Credentials = new NetworkCredential("MineCraft@fairfieldtek.com", "Redshoe1!")
+        };
+
+        var mailMessage = new MailMessage {From = new MailAddress("MineCraft@Fairfieldtek.com")};
+        mailMessage.To.Add(emailAddress);
+        mailMessage.Body = "Your authentication code is: " + authCode;
+        mailMessage.Subject = "MineCraft.Fairfieldtek.com Authentication";
+        await client.SendMailAsync(mailMessage);
     }
 }

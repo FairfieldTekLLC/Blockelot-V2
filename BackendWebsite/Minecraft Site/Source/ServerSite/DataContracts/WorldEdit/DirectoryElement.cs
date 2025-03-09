@@ -23,13 +23,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace ServerSite.DataContracts.WorldEdit
-{
-    public class DirectoryElement
-    {
-        public long BlockCount { get; set; }
-        public int ElementType { get; set; }
+namespace ServerSite.DataContracts.WorldEdit;
 
-        public string Name { get; set; }
-    }
+public class DirectoryElement
+{
+    public long BlockCount { get; set; }
+    public int ElementType { get; set; }
+
+    public string Name { get; set; }
 }

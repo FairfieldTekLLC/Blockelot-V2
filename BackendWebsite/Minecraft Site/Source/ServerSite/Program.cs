@@ -23,34 +23,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ServerSite
+namespace ServerSite;
+
+public class Program
 {
-    public class Program
+    public static string Version = "1.0.0.3";
+
+    public static IWebHost BuildWebHost(string[] args)
     {
-        public static string Version = "1.0.0.3";
+        return WebHost.CreateDefaultBuilder(args) //.UseKestrel()
+            //.UseContentRoot(Directory.GetCurrentDirectory())
+            //.UseUrls("http://192.168.211.31:82")
+            .UseIIS()
+            //.UseKestrel(options =>
+            //{
+            //    options.Limits.MaxRequestBodySize = Int64.MaxValue;
+            //    options.Limits.MaxResponseBufferSize = null;
+            //})
+            .UseStartup<Startup>()
+            .Build();
+    }
 
-        public static IWebHost BuildWebHost(string[] args)
-        {
-            return WebHost.CreateDefaultBuilder(args) //.UseKestrel()
-                //.UseContentRoot(Directory.GetCurrentDirectory())
-                //.UseUrls("http://192.168.211.31:82")
-                .UseIIS()
-                //.UseKestrel(options =>
-                //{
-                //    options.Limits.MaxRequestBodySize = Int64.MaxValue;
-                //    options.Limits.MaxResponseBufferSize = null;
-                //})
-                .UseStartup<Startup>()
-                .Build();
-        }
-
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
+    public static void Main(string[] args)
+    {
+        BuildWebHost(args).Run();
     }
 }

@@ -25,22 +25,21 @@
 
 using System.Collections.Generic;
 
-namespace ServerSite.DataContracts.WorldEdit
+namespace ServerSite.DataContracts.WorldEdit;
+
+public class LsResponse
 {
-    public class LsResponse
-    {
-        public bool IsAuthorized { get; set; }
+    public bool IsAuthorized { get; set; }
 
-        public string Auth { get; set; }
+    public string Auth { get; set; }
 
-        public string Message { get; set; }
+    public string Message { get; set; }
 
-        public string Uuid { get; set; }
+    public string Uuid { get; set; }
 
-        public bool WasSuccessful { get; set; }
+    public bool WasSuccessful { get; set; }
 
-        public List<DirectoryElement> Contents { get; set; }
+    public List<DirectoryElement> Contents { get; set; }
 
-        public string DirectoryPath { get; set; }
-    }
+    public string DirectoryPath { get; set; }
 }

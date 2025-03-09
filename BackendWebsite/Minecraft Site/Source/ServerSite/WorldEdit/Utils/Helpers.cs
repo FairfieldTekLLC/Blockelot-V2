@@ -25,21 +25,20 @@
 
 using System.Net.Mail;
 
-namespace ServerSite.WorldEdit.Utils
+namespace ServerSite.WorldEdit.Utils;
+
+public static class Helpers
 {
-    public static class Helpers
+    public static bool IsValidEmail(this string email)
     {
-        public static bool IsValidEmail(this string email)
+        try
         {
-            try
-            {
-                MailAddress addr = new MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
+            var addr = new MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
         }
     }
 }

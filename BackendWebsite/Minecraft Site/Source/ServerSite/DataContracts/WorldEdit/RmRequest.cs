@@ -23,27 +23,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace ServerSite.DataContracts.WorldEdit
+namespace ServerSite.DataContracts.WorldEdit;
+
+public class RmRequest
 {
-    public class RmRequest
+    private string _currentDirectory;
+    public string TargetDirectory { get; set; }
+
+    public string CurrentDirectory
     {
-        private string _currentDirectory;
-        public string TargetDirectory { get; set; }
-
-        public string CurrentDirectory
+        get => _currentDirectory;
+        set
         {
-            get => _currentDirectory;
-            set
-            {
-                if (!value.Trim().EndsWith("/"))
-                    _currentDirectory = value.Trim() + "/";
-                else
-                    _currentDirectory = value.Trim();
-            }
+            if (!value.Trim().EndsWith("/"))
+                _currentDirectory = value.Trim() + "/";
+            else
+                _currentDirectory = value.Trim();
         }
-
-
-        public string Uuid { get; set; }
-        public string Auth { get; set; }
     }
+
+
+    public string Uuid { get; set; }
+    public string Auth { get; set; }
 }

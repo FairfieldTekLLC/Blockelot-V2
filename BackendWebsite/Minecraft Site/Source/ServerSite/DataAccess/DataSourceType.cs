@@ -1,8 +1,7 @@
-﻿namespace ServerSite.DataAccess
+﻿namespace ServerSite.DataAccess;
+
+public enum DataSourceType
 {
-    public enum DataSourceType
-    {
-        MySql,
-        MSQL
-    }
+    MySql,
+    MSQL
 }

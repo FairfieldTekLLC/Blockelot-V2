@@ -29,46 +29,45 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace ServerSite.TagHelpers
+namespace ServerSite.TagHelpers;
+
+[HtmlTargetElement(Attributes = "is-active-page")]
+public class ActivePageTagHelper : TagHelper
 {
-    [HtmlTargetElement(Attributes = "is-active-page")]
-    public class ActivePageTagHelper : TagHelper
+    [HtmlAttributeName("asp-page")] public string Page { get; set; }
+
+    [HtmlAttributeNotBound] [ViewContext] public ViewContext ViewContext { get; set; }
+
+    private static void MakeActive(TagHelperOutput output)
     {
-        [HtmlAttributeName("asp-page")] public string Page { get; set; }
-
-        [HtmlAttributeNotBound] [ViewContext] public ViewContext ViewContext { get; set; }
-
-        private static void MakeActive(TagHelperOutput output)
+        var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
+        if (classAttr == null)
         {
-            TagHelperAttribute? classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
-            if (classAttr == null)
-            {
-                classAttr = new TagHelperAttribute("class", "active");
-                output.Attributes.Add(classAttr);
-            }
-            else if (classAttr.Value == null || classAttr.Value?.ToString()?.IndexOf("active") < 0)
-            {
-                output.Attributes.SetAttribute("class",
-                    classAttr.Value == null ? "active" : classAttr.Value + " active");
-            }
+            classAttr = new TagHelperAttribute("class", "active");
+            output.Attributes.Add(classAttr);
         }
-
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        else if (classAttr.Value == null || classAttr.Value?.ToString()?.IndexOf("active") < 0)
         {
-            base.Process(context, output);
-
-            if (ShouldBeActive())
-                MakeActive(output);
-
-            output.Attributes.RemoveAll("is-active-page");
+            output.Attributes.SetAttribute("class",
+                classAttr.Value == null ? "active" : classAttr.Value + " active");
         }
+    }
 
-        private bool ShouldBeActive()
-        {
-            string? currentPage = ViewContext.RouteData.Values["Page"].ToString();
+    public override void Process(TagHelperContext context, TagHelperOutput output)
+    {
+        base.Process(context, output);
 
-            return string.IsNullOrWhiteSpace(Page) ||
-                   string.Equals(Page, currentPage, StringComparison.CurrentCultureIgnoreCase);
-        }
+        if (ShouldBeActive())
+            MakeActive(output);
+
+        output.Attributes.RemoveAll("is-active-page");
+    }
+
+    private bool ShouldBeActive()
+    {
+        string currentPage = ViewContext.RouteData.Values["Page"].ToString();
+
+        return string.IsNullOrWhiteSpace(Page) ||
+               string.Equals(Page, currentPage, StringComparison.CurrentCultureIgnoreCase);
     }
 }

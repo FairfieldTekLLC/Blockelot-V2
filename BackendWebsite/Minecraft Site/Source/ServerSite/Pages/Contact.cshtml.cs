@@ -29,43 +29,42 @@ using System.Net.Mail;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ServerSite.Pages
+namespace ServerSite.Pages;
+
+public class ContactModel : PageModel
 {
-    public class ContactModel : PageModel
+    [BindProperty] public string Email { get; set; }
+
+    [BindProperty] public string Message { get; set; }
+
+    [BindProperty] public string Name { get; set; }
+
+    public void OnGet()
     {
-        [BindProperty] public string Email { get; set; }
+    }
 
-        [BindProperty] public string Message { get; set; }
+    public void OnPost()
+    {
+        if (ModelState.IsValid)
+            try
+            {
+                using var smtpClient = new SmtpClient("mail.domain.com", 25);
+                smtpClient.Credentials = new NetworkCredential("email", "password");
+                smtpClient.UseDefaultCredentials = true;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
 
-        [BindProperty] public string Name { get; set; }
-
-        public void OnGet()
-        {
-        }
-
-        public void OnPost()
-        {
-            if (ModelState.IsValid)
-                try
-                {
-                    using SmtpClient smtpClient = new SmtpClient("mail.domain.com", 25);
-                    smtpClient.Credentials = new NetworkCredential("email", "password");
-                    smtpClient.UseDefaultCredentials = true;
-                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtpClient.EnableSsl = true;
-
-                    using MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress(Email, "MyWeb Site");
-                    mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
-                    mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
-                    smtpClient.Send(mail);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-            else
-                Message = "Posted no trespassing!";
-        }
+                using var mail = new MailMessage();
+                mail.From = new MailAddress(Email, "MyWeb Site");
+                mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
+                mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
+                smtpClient.Send(mail);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        else
+            Message = "Posted no trespassing!";
     }
 }

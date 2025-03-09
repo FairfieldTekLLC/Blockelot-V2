@@ -1,14 +1,13 @@
-﻿namespace ServerSite.DataContracts.BlockBank
+﻿namespace ServerSite.DataContracts.BlockBank;
+
+public class BlockBankWithdrawlRequest
 {
-    public class BlockBankWithdrawlRequest
-    {
-        public string Wid { get; set; }
-        public string Uuid { get; set; }
+    public string Wid { get; set; }
+    public string Uuid { get; set; }
 
-        public string Auth { get; set; }
+    public string Auth { get; set; }
 
-        public string Material { get; set; }
+    public string Material { get; set; }
 
-        public int Amount { get; set; }
-    }
+    public int Amount { get; set; }
 }

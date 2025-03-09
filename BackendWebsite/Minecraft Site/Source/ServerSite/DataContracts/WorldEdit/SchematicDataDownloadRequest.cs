@@ -1,25 +1,24 @@
-﻿namespace ServerSite.DataContracts.WorldEdit
+﻿namespace ServerSite.DataContracts.WorldEdit;
+
+public class SchematicDataDownloadRequest
+
 {
-    public class SchematicDataDownloadRequest
+    private string _currentDirectory;
+    public string Uuid { get; set; }
 
+    public string Auth { get; set; }
+
+    public string FileName { get; set; }
+
+    public string CurrentDirectory
     {
-        private string _currentDirectory;
-        public string Uuid { get; set; }
-
-        public string Auth { get; set; }
-
-        public string FileName { get; set; }
-
-        public string CurrentDirectory
+        get => _currentDirectory;
+        set
         {
-            get => _currentDirectory;
-            set
-            {
-                if (!value.Trim().EndsWith("/"))
-                    _currentDirectory = value.Trim() + "/";
-                else
-                    _currentDirectory = value.Trim();
-            }
+            if (!value.Trim().EndsWith("/"))
+                _currentDirectory = value.Trim() + "/";
+            else
+                _currentDirectory = value.Trim();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <meta name="description" content="Blockelot Minecraft Server">
     <meta name="author" content="www.blockelot.com">
@@ -10,22 +10,22 @@
     <!-- CSS
     ================================================== -->
     <!-- Custom Bootstrap-->
-    <link rel="stylesheet" type="text/css" href="custom/custom-bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="custom/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="custom/custom-bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="custom/font-awesome.css"/>
     <!-- Animate CSS-->
     <link href="css/animate.min.css" rel="stylesheet" media="screen">
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="css/site.css" />
+    <link rel="stylesheet" type="text/css" href="css/site.css"/>
     <link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body>
-    <div class="top-wrapper @(ViewData["IsIndexPage"] as bool? == true ? "main" : null)">
-        <!-- Header
-        ================================================== -->
-       @*  <div class="navbar-wrapper">
+<div class="top-wrapper @(ViewData["IsIndexPage"] as bool? == true ? "main" : null)">
+    <!-- Header
+    ================================================== -->
+    @*  <div class="navbar-wrapper">
             <header class="navbar navbar-default navbar-top" id="navbar">
                 <div class="container">
                     <div class="navbar-header">
@@ -55,121 +55,121 @@
                 </div>
             </header>
         </div> *@
-        @RenderSection("PageHeader", false)
-        @RenderSection("Slider", false)
+    @RenderSection("PageHeader", false)
+    @RenderSection("Slider", false)
+</div>
+<!-- Content
+================================================== -->
+<main class="main-content">
+    <div class="container">
+        @RenderBody()
     </div>
-    <!-- Content
-    ================================================== -->
-    <main class="main-content">
+</main>
+<!-- Footer
+================================================== -->
+<div class="footer-wrap">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            @RenderBody()
-        </div>
-    </main>
-    <!-- Footer
-    ================================================== -->
-    <div class="footer-wrap">
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <!-- Widgets -->
-                <!--<section class="footer-widgets">
-                <div class="row">
-                <div class="col-xs-6 col-sm-3 col-md-3">-->
-                <!-- Phone Widget -->
-                <!--<div class="widget widget__footer">
-                    <h4 class="widget-title">Server IP</h4>
-                    <div class="widget-body">
-                        <ul class="info-list">
-                            <li>creative.blockelot.com</li>
-                            <li>survival.blockelot.com</li>
-                        </ul>
-                    </div>
-                </div>-->
-                <!-- Phone Widget / End -->
-                <!--</div>
-                <div class="col-xs-6 col-sm-3 col-md-3">-->
-                <!-- Email Widget -->
-                <!--<div class="widget widget__footer">
-                    <h4 class="widget-title">Email</h4>
-                    <div class="widget-body">
-                        <ul class="info-list">
-                            <li>
-                                <a href="mailto:your_email_goes_here">support@servername.com</a>
-                            </li>
-                            <li>
-                                <a href="mailto:your_email_goes_here">donations@servername.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>-->
-                <!-- Email Widget / End -->
-                <!--</div>
-                <div class="clearfix visible-xs"></div>
-                <div class="col-xs-6 col-sm-3 col-md-3">
-
+            <!-- Widgets -->
+            <!--<section class="footer-widgets">
+            <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-3">-->
+            <!-- Phone Widget -->
+            <!--<div class="widget widget__footer">
+                <h4 class="widget-title">Server IP</h4>
+                <div class="widget-body">
+                    <ul class="info-list">
+                        <li>creative.blockelot.com</li>
+                        <li>survival.blockelot.com</li>
+                    </ul>
                 </div>
-                <div class="col-xs-6 col-sm-3 col-md-3">-->
-                <!-- Thanks Widget -->
-                <!--<div class="widget widget__footer">
-                    <h4 class="widget-title">Glad to Have You</h4>
-                    <div class="widget-body">
-                        <ul class="info-list">
-                            <li>Thanks for playing on Blockelot!</li>
-                        </ul>
-                    </div>
-                </div>-->
-                <!-- Thanks Widget / End -->
-                <!--</div>
+            </div>-->
+            <!-- Phone Widget / End -->
+            <!--</div>
+            <div class="col-xs-6 col-sm-3 col-md-3">-->
+            <!-- Email Widget -->
+            <!--<div class="widget widget__footer">
+                <h4 class="widget-title">Email</h4>
+                <div class="widget-body">
+                    <ul class="info-list">
+                        <li>
+                            <a href="mailto:your_email_goes_here">support@servername.com</a>
+                        </li>
+                        <li>
+                            <a href="mailto:your_email_goes_here">donations@servername.com</a>
+                        </li>
+                    </ul>
                 </div>
-                </section>-->
-                <!-- Widgets / End-->
-            </div>
-        </footer>
-        <!-- Footer / End -->
-        <!-- Copyright -->
-        <div class="copyright">
-            <div class="container">
-                &copy; Fairfield Tek, 2018. All rights reserved. |
-                <span class="copy-txt">
-                    <a asp-page="Index">Blockelot Minecraft</a>
-                </span><br />
-                <span class="copy-txt"><a href="//www.minecraft.net" target="_blank">Minecraft</a> is copyright <a href="//mojang.com/" target="_blank">Mojang AB</a> and is not affiliated with this server, website or its donation packages.</span>
-                <span class="copy-txt"><a href="//www.fairfieldtek.com" target="_blank">Fairfield Tek L.L.C. holds the </a>copyright to Blockelot. </span>
+            </div>-->
+            <!-- Email Widget / End -->
+            <!--</div>
+            <div class="clearfix visible-xs"></div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
 
             </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">-->
+            <!-- Thanks Widget -->
+            <!--<div class="widget widget__footer">
+                <h4 class="widget-title">Glad to Have You</h4>
+                <div class="widget-body">
+                    <ul class="info-list">
+                        <li>Thanks for playing on Blockelot!</li>
+                    </ul>
+                </div>
+            </div>-->
+            <!-- Thanks Widget / End -->
+            <!--</div>
+            </div>
+            </section>-->
+            <!-- Widgets / End-->
         </div>
-        <!-- Copyright / End -->
+    </footer>
+    <!-- Footer / End -->
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            &copy; Fairfield Tek, 2018. All rights reserved. |
+            <span class="copy-txt">
+                <a asp-page="Index">Blockelot Minecraft</a>
+            </span><br/>
+            <span class="copy-txt"><a href="//www.minecraft.net" target="_blank">Minecraft</a> is copyright <a href="//mojang.com/" target="_blank">Mojang AB</a> and is not affiliated with this server, website or its donation packages.</span>
+            <span class="copy-txt"><a href="//www.fairfieldtek.com" target="_blank">Fairfield Tek L.L.C. holds the </a>copyright to Blockelot. </span>
+
+        </div>
     </div>
-    <!-- Javascript Files
-    ================================================== -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- hoverIntent -->
-    <script src="js/jquery.hoverIntent.minified.js"></script>
-    <!-- FlexNavigation -->
-    <script src="js/jquery.flexnav.min.js"></script>
-    <!-- Isotope -->
-    <script src="js/jquery.isotope.min.js"></script>
-    <script src="js/jquery.imagesloaded.min.js"></script>
-    <!-- Twitter -->
-    <script src="js/jquery.twitter.js"></script>
-    <!-- Flickr Feed -->
-    <script src="js/jquery.flickrfeed.js"></script>
-    <!-- FitVid (responsive video) -->
-    <script src="js/jquery.fitvids.js"></script>
-    <!-- Owl Carousel -->
-    <script src="js/owl.carousel.js"></script>
-    <!-- Magnific Popup -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <!-- Magnific Popup -->
-    <script src="js/jquery.appear.js"></script>
-    <!-- Init File -->
-    <script src="js/custom.js"></script>
-    @RenderSection("Scripts", false)
-    <script>
+    <!-- Copyright / End -->
+</div>
+<!-- Javascript Files
+================================================== -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- hoverIntent -->
+<script src="js/jquery.hoverIntent.minified.js"></script>
+<!-- FlexNavigation -->
+<script src="js/jquery.flexnav.min.js"></script>
+<!-- Isotope -->
+<script src="js/jquery.isotope.min.js"></script>
+<script src="js/jquery.imagesloaded.min.js"></script>
+<!-- Twitter -->
+<script src="js/jquery.twitter.js"></script>
+<!-- Flickr Feed -->
+<script src="js/jquery.flickrfeed.js"></script>
+<!-- FitVid (responsive video) -->
+<script src="js/jquery.fitvids.js"></script>
+<!-- Owl Carousel -->
+<script src="js/owl.carousel.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.appear.js"></script>
+<!-- Init File -->
+<script src="js/custom.js"></script>
+@RenderSection("Scripts", false)
+<script>
         $(window).load(function () {
             $("body").fadeIn(2000);
         });

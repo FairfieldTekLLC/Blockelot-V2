@@ -23,13 +23,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace ServerSite.DataContracts.WorldEdit
+namespace ServerSite.DataContracts.WorldEdit;
+
+public class RegisterRequest
 {
-    public class RegisterRequest
-    {
-        public string WorldId { get; set; }
-        public string EmailAddress { get; set; }
-        public string Uuid { get; set; }
-        public string Auth { get; set; }
-    }
+    public string WorldId { get; set; }
+    public string EmailAddress { get; set; }
+    public string Uuid { get; set; }
+    public string Auth { get; set; }
 }

@@ -25,12 +25,11 @@
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ServerSite.Pages
+namespace ServerSite.Pages;
+
+public class MapModel : PageModel
 {
-    public class MapModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

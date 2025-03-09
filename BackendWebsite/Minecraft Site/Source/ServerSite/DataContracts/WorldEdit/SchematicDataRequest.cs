@@ -23,40 +23,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace ServerSite.DataContracts.WorldEdit
+namespace ServerSite.DataContracts.WorldEdit;
+
+public class SchematicDataRequest
 {
-    public class SchematicDataRequest
+    private string _currentDirectory;
+    public string Uuid { get; set; }
+    public string Auth { get; set; }
+
+    public int TotalNumberOfBlocks { get; set; }
+
+
+    public int SchematicId { get; set; }
+
+
+    public string Blocks { get; set; }
+    public string FileName { get; set; }
+
+    public PaletteEntry[] BlockDataPalette { get; set; }
+    public PaletteEntry[] BlockTypePalette { get; set; }
+    public PaletteEntry[] BlockInvePalette { get; set; }
+
+    public string CurrentDirectory
     {
-        public string Uuid { get; set; }
-        public string Auth { get; set; }
-
-        public int TotalNumberOfBlocks { get; set; }
-
-
-        public int SchematicId { get; set; }
-        private string _currentDirectory;
-
-
-        public string Blocks { get; set; }
-        public string FileName { get; set; }
-
-        public PaletteEntry[] BlockDataPalette { get; set; }
-        public PaletteEntry[] BlockTypePalette { get; set; }
-        public PaletteEntry[] BlockInvePalette { get; set; }
-
-        public string CurrentDirectory
+        get => _currentDirectory;
+        set
         {
-            get => _currentDirectory;
-            set
-            {
-                if (!value.Trim().EndsWith("/"))
-                    _currentDirectory = value.Trim() + "/";
-                else
-                    _currentDirectory = value.Trim();
-            }
+            if (!value.Trim().EndsWith("/"))
+                _currentDirectory = value.Trim() + "/";
+            else
+                _currentDirectory = value.Trim();
         }
-
-
-
     }
 }

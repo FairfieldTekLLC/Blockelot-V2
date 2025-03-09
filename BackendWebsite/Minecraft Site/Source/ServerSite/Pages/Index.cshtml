@@ -1,7 +1,5 @@
 ﻿@page
-@using System.Data.SqlClient
 @using Microsoft.Data.SqlClient
-@using MySql.Data.MySqlClient
 @using ServerSite.WorldEdit
 @model IndexModel
 @{
@@ -61,11 +59,11 @@
                             @{
                                 try
                                 {
-                                    using SqlConnection conn = new SqlConnection { ConnectionString = Constants.DbConnString };
+                                    using var conn = new SqlConnection {ConnectionString = Constants.DbConnString};
                                     conn.Open();
                                     WriteLiteral("OK");
                                 }
-                                catch (Exception e)
+                                catch (Exception )
                                 {
                                     WriteLiteral("NOT OK");
                                 }
@@ -75,7 +73,9 @@
                     <li>
                         <i class="fa fa-phone"></i>
                         <span class="name">Get Blockelot!</span>
-                        <span class="highlight"><a href="https://www.spigotmc.org/resources/blockelot.86738/">GET BLOCKELOT</a></span>
+                        <span class="highlight">
+                            <a href="https://www.spigotmc.org/resources/blockelot.86738/">GET BLOCKELOT</a>
+                        </span>
                     </li>
                     <li>
                         <i class="fa fa-phone"></i>
@@ -104,7 +104,6 @@
                     </li>
 
 
-                    
                 </ul>
             </div>
 
@@ -118,244 +117,244 @@
     <h2>Features</h2>
 </div>
 <div class="row">
-    <div class="col-md-12">
+<div class="col-md-12">
 
-        <div class="col-md-12">
-            <ul class="list-group list-group__color-secondary">
-                <li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
-                    <h5 class="bold">What is Blockelot?</h5>
-                    <p>Blockelot is a SpigotMc plugin that allows players to save there Minecraft creations to the cloud.</p>
-                    <p>
-                        Once a server owner loads the plugin, and the players register in Blockelot in game, they will be able to cut and paste any part of the world and save the selection in the cloud.
-                    </p>
-                    <p>The player can then go to any other Minecraft server with Blockelot loaded and restore their creations there. How many times have you built something in a world and then the server shuts down and you lose all your creations.</p>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lxU55TY_zsA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </li>
-                <li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
-                    <h5 class="bold">Features</h5>
-                    <ul>Customizable Permission support.</ul>
-                    <ul>Block Banning</ul>
-                    <ul>Simple Configuration, just put jar in plugins, rest is automagic!</ul>
-                    <ul>Got cpu issues?  All setting are in configuration.</ul>
-                    <ul>Tired of have a million chests?  Enable Block Bank!</ul>
-                    <ul>A really cool developer!</ul>
+<div class="col-md-12">
+<ul class="list-group list-group__color-secondary">
+<li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
+    <h5 class="bold">What is Blockelot?</h5>
+    <p>Blockelot is a SpigotMc plugin that allows players to save there Minecraft creations to the cloud.</p>
+    <p>
+        Once a server owner loads the plugin, and the players register in Blockelot in game, they will be able to cut and paste any part of the world and save the selection in the cloud.
+    </p>
+    <p>The player can then go to any other Minecraft server with Blockelot loaded and restore their creations there. How many times have you built something in a world and then the server shuts down and you lose all your creations.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/lxU55TY_zsA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</li>
+<li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
+    <h5 class="bold">Features</h5>
+    <ul>Customizable Permission support.</ul>
+    <ul>Block Banning</ul>
+    <ul>Simple Configuration, just put jar in plugins, rest is automagic!</ul>
+    <ul>Got cpu issues? All setting are in configuration.</ul>
+    <ul>Tired of have a million chests? Enable Block Bank!</ul>
+    <ul>A really cool developer!</ul>
 
-                </li>
-                <li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
-                    <h5 class="bold">What are the commands?</h5>
-                    <table width="100%">
-                        <tr>
-                            <td nowrap class="bold">
-                                <center>Help</center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <table width="800px">
-                                        <tr>
-                                            <td nowrap class="bold" width="500px">/b.help</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Shows the help screen.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.about</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Provides Author information.</td>
-                                        </tr>
-                                    </table>
-                                </center>
-                            </td>
+</li>
+<li class="list-group-item" data-animation="fadeInLeft" data-animation-delay="0">
+<h5 class="bold">What are the commands?</h5>
+<table width="100%">
+<tr>
+    <td nowrap class="bold">
+        <center>Help</center>
+    </td>
+</tr>
+<tr>
+    <td>
+        <center>
+            <table width="800px">
+                <tr>
+                    <td nowrap class="bold" width="500px">/b.help</td>
+                    <td style="width: 10px"></td>
+                    <td>Shows the help screen.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.about</td>
+                    <td style="width: 10px"></td>
+                    <td>Provides Author information.</td>
+                </tr>
+            </table>
+        </center>
+    </td>
 
-                        </tr>
-                        <tr>
-                            <td nowrap class="bold">
-                                <center>Banking</center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <table width="800px">
-                                        <tr>
-                                            <td nowrap class="bold" width="500px">/b.bbinv</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Request an inventory report from bank.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.bbdep [Material] [Amount]</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Deposit material in bank.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.bbdep true</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Deposit all blocks in inventory in bank.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.bbwd [Material] [Amount]</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Withdrawl material from bank.</td>
-                                        </tr>
-                                    </table>
-                                </center>
-                            </td>
+</tr>
+<tr>
+    <td nowrap class="bold">
+        <center>Banking</center>
+    </td>
+</tr>
+<tr>
+    <td>
+        <center>
+            <table width="800px">
+                <tr>
+                    <td nowrap class="bold" width="500px">/b.bbinv</td>
+                    <td style="width: 10px"></td>
+                    <td>Request an inventory report from bank.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.bbdep [Material] [Amount]</td>
+                    <td style="width: 10px"></td>
+                    <td>Deposit material in bank.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.bbdep true</td>
+                    <td style="width: 10px"></td>
+                    <td>Deposit all blocks in inventory in bank.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.bbwd [Material] [Amount]</td>
+                    <td style="width: 10px"></td>
+                    <td>Withdrawl material from bank.</td>
+                </tr>
+            </table>
+        </center>
+    </td>
 
-                        </tr>
-                        <tr>
-                            <td nowrap class="bold">
-                                <center>World Editing</center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <table width="800px">
-                                        <tr>
-                                            <td nowrap nowrap class="bold" width="500px">/b.we.clear</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Clears the Selections and the Clipboard.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.clearHistory</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Clears the undo history of you pastes.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.size</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Prints the dimensions of your selection</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.print</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Prints your selection start and selection end.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.select</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Sets a selection point</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.copy</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Copies your selection into your clipboard.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.del</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Set Selection into MINECRAFT:AIR</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.delete</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Set Selection into MINECRAFT:AIR</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.distr</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Gets the block distribution of the current clipboard.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.paste</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Pastes your clipboard to the world.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.paste X Y Z</td>
-                                            <td style="width: 10px"></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.paste [Rotational Axis X or Y or Z] [Degrees 90 180 270)]</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Pastes your clipboard with rotation on the specified axis and degrees</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.paste x y z</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Pastes your clipboard at the specified location</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.paste x y z [Rotational Axis X or Y or Z] [Degrees 90 180 270)]</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Pastes your clipboard at the specified location with rotation on axis and degrees</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.stripmine</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Clears the Chunk and puts all blocks in chests</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we/stripmine true</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Clears the chunk and deposits blocks in bank, leaves rest in chests</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.we.undo</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Undoes your last action</td>
-                                        </tr>
-                                    </table>
-                                </center>
-                            </td>
+</tr>
+<tr>
+    <td nowrap class="bold">
+        <center>World Editing</center>
+    </td>
+</tr>
+<tr>
+    <td>
+        <center>
+            <table width="800px">
+                <tr>
+                    <td nowrap nowrap class="bold" width="500px">/b.we.clear</td>
+                    <td style="width: 10px"></td>
+                    <td>Clears the Selections and the Clipboard.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.clearHistory</td>
+                    <td style="width: 10px"></td>
+                    <td>Clears the undo history of you pastes.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.size</td>
+                    <td style="width: 10px"></td>
+                    <td>Prints the dimensions of your selection</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.print</td>
+                    <td style="width: 10px"></td>
+                    <td>Prints your selection start and selection end.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.select</td>
+                    <td style="width: 10px"></td>
+                    <td>Sets a selection point</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.copy</td>
+                    <td style="width: 10px"></td>
+                    <td>Copies your selection into your clipboard.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.del</td>
+                    <td style="width: 10px"></td>
+                    <td>Set Selection into MINECRAFT:AIR</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.delete</td>
+                    <td style="width: 10px"></td>
+                    <td>Set Selection into MINECRAFT:AIR</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.distr</td>
+                    <td style="width: 10px"></td>
+                    <td>Gets the block distribution of the current clipboard.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.paste</td>
+                    <td style="width: 10px"></td>
+                    <td>Pastes your clipboard to the world.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.paste X Y Z</td>
+                    <td style="width: 10px"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.paste [Rotational Axis X or Y or Z] [Degrees 90 180 270)]</td>
+                    <td style="width: 10px"></td>
+                    <td>Pastes your clipboard with rotation on the specified axis and degrees</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.paste x y z</td>
+                    <td style="width: 10px"></td>
+                    <td>Pastes your clipboard at the specified location</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.paste x y z [Rotational Axis X or Y or Z] [Degrees 90 180 270)]</td>
+                    <td style="width: 10px"></td>
+                    <td>Pastes your clipboard at the specified location with rotation on axis and degrees</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.stripmine</td>
+                    <td style="width: 10px"></td>
+                    <td>Clears the Chunk and puts all blocks in chests</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we/stripmine true</td>
+                    <td style="width: 10px"></td>
+                    <td>Clears the chunk and deposits blocks in bank, leaves rest in chests</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.we.undo</td>
+                    <td style="width: 10px"></td>
+                    <td>Undoes your last action</td>
+                </tr>
+            </table>
+        </center>
+    </td>
 
-                        </tr>
+</tr>
 
-                        <tr>
-                            <td nowrap class="bold">
-                                <center>Registration</center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <table width="800px">
-                                        <tr><td nowrap class="bold">/b.reg [EmailAddress]</td><td style="width: 10px"></td>Registers your player to your email address.<td></td></tr>
-                                        <tr><td nowrap class="bold">/b.auth</td><td style="width: 10px"></td>Forces a reconnection to the cloud storage.<td></td></tr>
-                                    </table>
-                                </center>
-                            </td>
+<tr>
+    <td nowrap class="bold">
+        <center>Registration</center>
+    </td>
+</tr>
+<tr>
+    <td>
+        <center>
+            <table width="800px">
+                <tr><td nowrap class="bold">/b.reg [EmailAddress]</td><td style="width: 10px"></td>Registers your player to your email address.<td></td></tr>
+                <tr><td nowrap class="bold">/b.auth</td><td style="width: 10px"></td>Forces a reconnection to the cloud storage.<td></td></tr>
+            </table>
+        </center>
+    </td>
 
-                        </tr>
-                        <tr>
-                            <td nowrap class="bold">
-                                <center>File System</center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <table width="800px">
+</tr>
+<tr>
+    <td nowrap class="bold">
+        <center>File System</center>
+    </td>
+</tr>
+<tr>
+    <td>
+        <center>
+            <table width="800px">
 
-                                        <tr><td nowrap class="bold">/b.ls</td><td style="width: 10px"></td>List Files and Folders.<td></td></tr>
-                                        <tr><td nowrap class="bold">/b.cd [Directory]</td><td style="width: 10px"></td>Change Directory.<td></td></tr>
-                                        <tr><td nowrap class="bold">/b.rm [File]</td><td style="width: 10px"></td>Deletes the Schematic.<td></td></tr>
-                                        <tr><td nowrap class="bold">/b.rm [Folder]</td><td style="width: 10px"></td>Delets the folder.<td></td></tr>
-                                        <tr><td nowrap class="bold">/b.mk [Folder]</td><td style="width: 10px"></td>Creates a folder.<td></td></tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.save [File]</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Saves the current clipboard to the file.</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap class="bold">/b.load [File]</td>
-                                            <td style="width: 10px"></td>
-                                            <td>Loads the file into the clipboard.</td>
-                                        </tr>
-                                    </table>
-                                </center>
-                            </td>
+                <tr><td nowrap class="bold">/b.ls</td><td style="width: 10px"></td>List Files and Folders.<td></td></tr>
+                <tr><td nowrap class="bold">/b.cd [Directory]</td><td style="width: 10px"></td>Change Directory.<td></td></tr>
+                <tr><td nowrap class="bold">/b.rm [File]</td><td style="width: 10px"></td>Deletes the Schematic.<td></td></tr>
+                <tr><td nowrap class="bold">/b.rm [Folder]</td><td style="width: 10px"></td>Delets the folder.<td></td></tr>
+                <tr><td nowrap class="bold">/b.mk [Folder]</td><td style="width: 10px"></td>Creates a folder.<td></td></tr>
+                <tr>
+                    <td nowrap class="bold">/b.save [File]</td>
+                    <td style="width: 10px"></td>
+                    <td>Saves the current clipboard to the file.</td>
+                </tr>
+                <tr>
+                    <td nowrap class="bold">/b.load [File]</td>
+                    <td style="width: 10px"></td>
+                    <td>Loads the file into the clipboard.</td>
+                </tr>
+            </table>
+        </center>
+    </td>
 
-                        </tr>
-                    </table>
+</tr>
+</table>
 
 
-                </li>
-            </ul>
-        </div>
+</li>
+</ul>
+</div>
 
-    </div>
+</div>
 </div>
 <!-- Features / End -->
 

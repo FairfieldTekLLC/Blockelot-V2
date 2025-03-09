@@ -23,19 +23,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace ServerSite.DataContracts.WorldEdit
+namespace ServerSite.DataContracts.WorldEdit;
+
+public class LoginResponse
 {
-    public class LoginResponse
-    {
-        public bool IsAuthorized { get; set; }
+    public bool IsAuthorized { get; set; }
 
-        public string Auth { get; set; }
+    public string Auth { get; set; }
 
-        public string Message { get; set; }
+    public string Message { get; set; }
 
-        public string Uuid { get; set; }
+    public string Uuid { get; set; }
 
-        public bool WasSuccessful { get; set; }
-        public string CurrentPath { get; set; }
-    }
+    public bool WasSuccessful { get; set; }
+    public string CurrentPath { get; set; }
 }
