@@ -9,6 +9,8 @@ import org.bukkit.block.BlockFace;
 
 public class PlayerUtils {
 
+    //Finds what a player is looking at by doing a projection until the next
+    //block isn't air.
     public static final Block getTargetBlock(Player player, int range) {
         BlockIterator iter = new BlockIterator((LivingEntity) player, range);
         Block lastBlock = iter.next();

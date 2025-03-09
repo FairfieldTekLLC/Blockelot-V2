@@ -10,6 +10,7 @@ import org.bukkit.entity.EntityType;
  */
 public class EnumHelper {
 
+    //Returns the enum value for the string name of an entity passed in.
     public static EntityType getEntityType(String name) {
         for (EntityType e : EntityType.values()) {
             if (e.name().equals(name)) {
@@ -19,6 +20,7 @@ public class EnumHelper {
         return EntityType.CHICKEN;
     }
 
+    //Return the enum value for the color string passed in.
     public static DyeColor GetDyeColor(String color) {
         for (DyeColor c : DyeColor.values()) {
             if (c.name().equals(color)) {
@@ -28,6 +30,10 @@ public class EnumHelper {
         return DyeColor.RED;
     }
 
+    //Because my code can rotate the paste in any direction I needed
+    //an enumeration ability to specify block facing friendly.
+    //This is so a string like -0+ will translate to a facing, etc.
+    //This function takes the string and converts it to a block facing.
     public static BlockFace ToBlockFaceFromCode(String code) {
         if (code.length() != 3) {
             return BlockFace.SELF;
@@ -72,6 +78,8 @@ public class EnumHelper {
         return MaterialUtil.getFacingByMod(x, y, z);
     }
 
+    //This function takes a blockfacing and converts it to a string representation.
+    //Which can be read in by the code above.
     public static String ToCodeFromBlockFace(BlockFace bf) {
         int x = bf.getModX();
         int y = bf.getModY();

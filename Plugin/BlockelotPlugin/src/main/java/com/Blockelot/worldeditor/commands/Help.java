@@ -21,7 +21,7 @@ public class Help
             lines.add(ChatColor.BLUE + "-----------------BLOCKELOT-HELP----------------------");
             lines.add(ChatColor.YELLOW + "/b.about - Shows this about information.");
             lines.add(ChatColor.YELLOW + "/b.help - Shows this help information.");
-            lines.add(ChatColor.YELLOW + "/b.bbinv - Shows the players Blockelot Bank Balance.");
+            lines.add(ChatColor.YELLOW + "/b.bbinv [wild card] - Shows the players Blockelot Bank Balance.");
             lines.add(ChatColor.YELLOW + "/b.bbwd [Material] [Amount] - Withdrawl blocks from bank.");
             lines.add(ChatColor.YELLOW + "/b.bbdep [Material] [Amount] - Deposit blocks in bank.");
             lines.add(ChatColor.YELLOW + "/b.bbdep all - Deposit all blocks in bank.");
@@ -50,6 +50,7 @@ public class Help
             lines.add(ChatColor.YELLOW + "/b.mk [Foldername] - Creates a new folder.");
             lines.add(ChatColor.YELLOW + "/b.save [Filename] - Saves the clipboard into the cloud, names file.");
             lines.add(ChatColor.YELLOW + "/b.load [Filename] - Loads the contents into your clipboard.");
+            lines.add(ChatColor.YELLOW + "/b.autopickup - Turns autopickup on and off.");
             PluginManager.GetPlayerInfo(player.getUniqueId()).SendBankMessageHeader(lines, true, false);
         }
         return true;

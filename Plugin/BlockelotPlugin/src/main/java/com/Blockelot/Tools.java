@@ -9,8 +9,11 @@ public final class Tools extends JavaPlugin {
 
   @Override
     public void onEnable() {
+        //Initialize the player join listener
         this.getServer().getPluginManager().registerEvents((Listener) new PlayerJoinListener(), (org.bukkit.plugin.Plugin) this);
+        //Initialize the Block listener
         this.getServer().getPluginManager().registerEvents((Listener) new BlockListener(), (org.bukkit.plugin.Plugin) this);
+        
         if (!PluginManager.Initialize(this)) {
             getServer().getPluginManager().disablePlugin(this);
         }

@@ -10,6 +10,14 @@ public class Configuration implements Serializable {
     private static transient final long serialVersionUID = -1681012206529286330L;
     public String WorldId = "NEWSERVER";
     public int MaxClipboardSize = 1000000000;
+    /*
+    This is the URL the Java Plugin uses to talk to the backend with.
+    If you are running your own custom backend, you will need to change it to
+    the IP address or domain name the webserver is hosted on.
+    
+    The webserver does not need to be public unless you have minecraft servers
+    connecting over the internet.
+    */
     public String BaseUri = "http://Blockelot.com/api/worldeditor/v1/";
     //public String BaseUri = "http://192.168.211.52/api/worldeditor/v1/";
     //public String BaseUri = "http://localhost:31312/api/worldeditor/v1/";
@@ -23,9 +31,7 @@ public class Configuration implements Serializable {
     public String Permission_Size = "Blockelot.WorldEditor.User.Size";
     public String Permission_Print = "Blockelot.WorldEditor.User.Print";
     public String Permission_Select = "Blockelot.WorldEditor.User.Select";
-    
     public String Permission_BlockelotBank = "Blockelot.Bank";
-
     public String Permission_Editor = "Blockelot.WorldEditor.Editor";
     public String Permission_Copy = "Blockelot.WorldEditor.Editor.Copy";
     public String Permission_Cut = "Blockelot.WorldEditor.Editor.Cut";
@@ -37,9 +43,17 @@ public class Configuration implements Serializable {
     public String Permission_FileSystem = "Blockelot.FileSystem.User";
     public String Permission_AutoPickup = "Blockelot.Player.AutoPickup";
     public Boolean IncludeInventoryWhenPasting = true;
+    //Max number of blocks that will be modified per server tick.
+    //you can adjust it up or down depending on how much load it 
+    //puts on your server
     public int MaxBlocksWritePerTick = 5000;
+    //Max number of blocks that will be read per tick.  Once again
+    //adjust it up or down based on server power.
     public int MaxBlocksReadPerTick = 5000;
+    //Max number of blocks that will be included in the HTTP call to upload it
+    //to the web service.  I do not suggest editing it.
     public int MaxBlocksUploadPerCall = 20000;
+    //Blocks that are non pastable using the paste command
     public String NonPastableBlocks = "";//IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
     public ArrayList<Material> NonPastableBlockArray = new ArrayList<>();
 

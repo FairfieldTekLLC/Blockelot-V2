@@ -6,7 +6,10 @@ import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.http.AuthenticateResponse;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+/*
+This function handles the authentication response from the server.
 
+*/
 public class AuthenticateTaskResponse
         extends BukkitRunnable {
 

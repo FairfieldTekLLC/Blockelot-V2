@@ -110,9 +110,9 @@ public final class BlockInfo {
         String storageString = "";
 
         BlockState state = block.getState();
-        if (state instanceof Container) {
-            ItemStack[] ContentsElements = ((Container) state).getInventory().getContents();
-            ItemStack[] StorageElements = ((Container) state).getInventory().getStorageContents();
+        if (state instanceof Container container) {
+            ItemStack[] ContentsElements = container.getInventory().getContents();
+            ItemStack[] StorageElements = container.getInventory().getStorageContents();
             contentsString = itemStackArrayToBase64(ContentsElements);
             storageString = itemStackArrayToBase64(StorageElements);
         }
@@ -236,7 +236,7 @@ public final class BlockInfo {
             target.getState().update();
 
             if (PluginManager.Config.IncludeInventoryWhenPasting) {
-                if (target.getState() instanceof Container) {
+                if (target.getState() instanceof Container container) {
                     try {
                         if (!"".equals(this.getInventoryContentsString())) {
 
@@ -256,7 +256,7 @@ public final class BlockInfo {
                             ItemStack[] g = new ItemStack[list.size()];
                             list.toArray(g);                           
 
-                            ((Container) target.getState()).getInventory().setContents(g);
+                            container.getInventory().setContents(g);
                         }
 //                        if (!"".equals(this.getInventoryStorageString())) {
 //                            ((Container) target.getState()).getInventory().setStorageContents(com.Blockelot.Util.Inventory.itemStackArrayFromBase64(this.getInventoryStorageString()));

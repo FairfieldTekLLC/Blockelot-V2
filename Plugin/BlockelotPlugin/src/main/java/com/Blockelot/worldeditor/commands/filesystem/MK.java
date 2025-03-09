@@ -3,7 +3,6 @@ package com.Blockelot.worldeditor.commands.filesystem;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.commands.tasks.MkTaskRequest;
-import com.Blockelot.worldeditor.container.PlayerInfo;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

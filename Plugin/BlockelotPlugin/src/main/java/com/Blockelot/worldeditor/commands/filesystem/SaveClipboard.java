@@ -41,15 +41,8 @@ public class SaveClipboard
                 }
 
                 player.sendMessage(ChatColor.RED + "Requesting schematic save...");
-                
-                
-                //new SaveClipboardTaskRequest(pi, args[0]).runTaskAsynchronously((org.bukkit.plugin.Plugin) PluginManager.Plugin);
-                
-                
-                
-                    SaveClipboardTaskRequest ct = new SaveClipboardTaskRequest(pi,args[0]);
-
-                    ct.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
+                SaveClipboardTaskRequest ct = new SaveClipboardTaskRequest(pi,args[0]);
+                ct.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
 
                 
             } catch (Exception e) {

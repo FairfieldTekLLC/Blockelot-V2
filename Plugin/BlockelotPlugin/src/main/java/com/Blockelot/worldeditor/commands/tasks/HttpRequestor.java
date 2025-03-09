@@ -11,7 +11,7 @@ import org.apache.http.util.EntityUtils;
 import org.bukkit.scheduler.BukkitRunnable;
 
 /**
- *
+ * Utility class used to do HTTP Requests.
  * @author geev
  */
 public abstract class HttpRequestor extends BukkitRunnable {

@@ -28,97 +28,92 @@ public class MiscUtil {
         }
     }
 
+    //I am not sure why I originally didn't allow the objects to be deposited.
+    //There is no real reason for it except the command_block.
     public static boolean CanBeDeposited(Material mat) {
-        if (!mat.isBlock()) {
-            return false;
-        }
-        if (mat == Material.COMPARATOR) {
-            return false;
-        }
-        if (mat == Material.REPEATER) {
-            return false;
-        }
-        if (mat == Material.REDSTONE) {
-            return false;
-        }
-        if (mat == Material.REDSTONE_TORCH) {
-            return false;
-        }
-        if (mat == Material.CAVE_AIR) {
-            return false;
-        }
-        if (mat == Material.SPAWNER) {
-            return false;
-        }
-        if (mat == Material.CHEST) {
-            return false;
-        }
-        if (mat == Material.SUGAR_CANE) {
-            return false;
-        }
-        if (mat == Material.ARMOR_STAND) {
-            return false;
-        }
-        if (mat.name().endsWith("_SHULKER_BOX")) {
-            return false;
-        }
+        //if (!mat.isBlock()) {
+//            return false;
+//        }
+//        if (mat == Material.COMPARATOR) {
+//            return false;
+//        }
+//        if (mat == Material.REPEATER) {
+//            return false;
+//        }
+//        if (mat == Material.REDSTONE) {
+//            return false;
+//        }
+//        if (mat == Material.REDSTONE_TORCH) {
+//            return false;
+//        }
+//        if (mat == Material.CAVE_AIR) {
+//            return false;
+//        }
+//        if (mat == Material.SPAWNER) {
+//            return false;
+//        }
+//        if (mat == Material.CHEST) {
+//            return false;
+//        }
+//        if (mat == Material.SUGAR_CANE) {
+//            return false;
+//        }
+//        if (mat == Material.ARMOR_STAND) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_SHULKER_BOX")) {
+//            return false;
+//        }
+//
+//        if (mat.name().endsWith("BED")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_BANNER")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("RAIL")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_FENCE")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_FENCE_GATE")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_PLATE")) {
+//            return false;
+//        }
+///        if (mat.name().endsWith("_TRAPDOOR")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_DOOR")) {
+//            return false;
+//        }
+//        if (mat.name().endsWith("_WALL_SIGN")) {
+//            return false;
+//        }
+        //      if (mat.name().endsWith("_SIGN")) {
+//            return false;
+//        }
+//        if (mat == Material.ANVIL) {
+//            return false;
+//        }
+//        if (mat == Material.BEEHIVE) {
+//            return false;
+//        }
+        //      if (mat == Material.BEE_NEST) {
+//            return false;
+        //      }
+//        if (mat == Material.COBWEB) {
+//            return false;
+//        }
+        
 
-        if (mat.name().endsWith("BED")) {
-            return false;
-        }
-
-        if (mat.name().startsWith("COMMAND_BLOCK")) {
-            return false;
-        }
-
-        if (mat.name().endsWith("_BANNER")) {
-            return false;
-        }
-        if (mat.name().endsWith("RAIL")) {
-            return false;
-        }
-        if (mat.name().endsWith("_FENCE")) {
-            return false;
-        }
-        if (mat.name().endsWith("_FENCE_GATE")) {
-            return false;
-        }
-        if (mat.name().endsWith("_PLATE")) {
-            return false;
-        }
-        if (mat.name().endsWith("_TRAPDOOR")) {
-            return false;
-        }
-        if (mat.name().endsWith("_DOOR")) {
-            return false;
-        }
-        if (mat.name().endsWith("_WALL_SIGN")) {
-            return false;
-        }
-
-        if (mat.name().endsWith("_SIGN")) {
-            return false;
-        }
-
-        if (mat == Material.ANVIL) {
-            return false;
-        }
-
-        if (mat == Material.BEEHIVE) {
-            return false;
-        }
-
-        if (mat == Material.BEE_NEST) {
-            return false;
-        }
-        if (mat == Material.COBWEB) {
-            return false;
-        }
-
-        return true;
+        return !mat.name().startsWith("COMMAND_BLOCK");
 
     }
 
+    //Conver an int to a byte array.
     public static final byte[] intToByteArray(int value) {
         return new byte[]{
             (byte) (value >>> 24),
@@ -127,10 +122,12 @@ public class MiscUtil {
             (byte) value};
     }
 
+    //Convert a byteArray to an int.
     public static final int ByteArrayToInt(byte[] bytes) {
         return ByteBuffer.wrap(bytes).getInt();
     }
 
+    //Convert an arraylist to a byte array
     public static byte[] toByteArray(ArrayList<Byte> in) {
         final int n = in.size();
         byte ret[] = new byte[n];
@@ -140,6 +137,7 @@ public class MiscUtil {
         return ret;
     }
 
+    //Converts a string to an integer array.
     public static int[] StringArrToIntArr(String[] s) {
         int[] result = new int[s.length];
 

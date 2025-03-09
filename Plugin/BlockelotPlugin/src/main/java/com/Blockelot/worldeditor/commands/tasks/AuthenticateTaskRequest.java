@@ -7,7 +7,11 @@ import com.Blockelot.worldeditor.http.AuthenticateRequest;
 import com.Blockelot.worldeditor.http.AuthenticateResponse;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+/*
+This class handles user authentication requests.
 
+
+*/
 public class AuthenticateTaskRequest
         extends HttpRequestor {
 

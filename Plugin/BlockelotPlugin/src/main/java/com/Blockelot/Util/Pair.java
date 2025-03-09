@@ -1,6 +1,8 @@
 package com.blockelot.Util;
 import java.util.Objects;
 
+
+//A simple pair class.
 public class Pair<A, B> {
     public final A fst;
     public final B snd;

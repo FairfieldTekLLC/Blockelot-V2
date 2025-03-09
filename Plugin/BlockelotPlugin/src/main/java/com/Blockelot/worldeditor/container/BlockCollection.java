@@ -89,8 +89,8 @@ public class BlockCollection {
 //        If it is the top of a door, we don't want to collect it.
 //        Since it will be generated auto when we create the bottom of the
 //        door.
-        if (sourceBlock.getBlockData() instanceof Door) {
-            if (((Door) sourceBlock.getBlockData()).getHalf() == Half.TOP) {
+        if (sourceBlock.getBlockData() instanceof Door door) {
+            if (door.getHalf() == Half.TOP) {
                 return def;
             }
         }
@@ -115,8 +115,8 @@ public class BlockCollection {
             //If it is the top of a door, we don't want to collect it.
             //Since it will be generated auto when we create the bottom of the
             //door.
-            if (clone.getBlockData() instanceof Door) {
-                if (((Door) clone.getBlockData()).getHalf() == Half.TOP) {
+            if (clone.getBlockData() instanceof Door door) {
+                if (door.getHalf() == Half.TOP) {
                     return clone;
                 }
             }

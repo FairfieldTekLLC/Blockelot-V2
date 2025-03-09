@@ -18,6 +18,8 @@ import org.bukkit.entity.Player;
  */
 public class Inventory {
 
+    //This function converts the players inventory to a Base64 string so it
+    //can't be sent over the internet.  It retrieves all of there inventory.
     public static String[] playerInventoryToBase64(Player player) throws IllegalStateException {
         //get the main content part, this doesn't return the armor
         String content = itemStackArrayToBase64(player.getInventory().getContents());
@@ -27,6 +29,8 @@ public class Inventory {
         return new String[]{content, armor, ender};
     }
 
+    //This utility function takes a specific inventory and returns it as a 
+    //Base64 string.
     public static String toBase64(org.bukkit.inventory.Inventory inventory) throws IllegalStateException {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -43,6 +47,8 @@ public class Inventory {
         }
     }
 
+    //This utility takes a base64 string of inventory data and converts it back 
+    //to an inventory object which can be assigned to a player.
     public static org.bukkit.inventory.Inventory fromBase64(String data) throws IOException {
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
@@ -60,6 +66,8 @@ public class Inventory {
         }
     }
 
+    //This function takes a Base 64 itemstack string and converts it to an 
+    //ITemStack array for assignment.
     public static ItemStack[] itemStackfromBase64(String data) throws IOException {
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
@@ -79,6 +87,8 @@ public class Inventory {
         }
     }
 
+    //This function takes an item stack array in Base64 format and converts
+    //it to an ItemStack array object.
     public static ItemStack[] itemStackArrayFromBase64(String data) throws IOException {
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
@@ -96,6 +106,7 @@ public class Inventory {
         }
     }
 
+    //This function converts an itemStack array into base64
     public static String itemStackArrayToBase64(ItemStack[] items) throws IllegalStateException {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

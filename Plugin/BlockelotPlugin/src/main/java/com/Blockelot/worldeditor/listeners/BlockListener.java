@@ -6,11 +6,6 @@ package com.Blockelot.worldeditor.listeners;
 
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.container.PlayerInfo;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,11 +14,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.Listener;
 
 /**
- *
+ * This class is used for the autopickup
  * @author geev
  */
 public class BlockListener implements Listener {
-
     @EventHandler
    public void onBlockDrop(BlockDropItemEvent event) {
       Player player = event.getPlayer();

@@ -10,8 +10,10 @@ public class PlayerInfo {
         setUUID(player.getUniqueId().toString());
     }
 
+    //Minecraft ID of the player
     private String UUID;
 
+    //Player Object
     private Player Player;
 
     public Player getPlayer() {
@@ -30,25 +32,31 @@ public class PlayerInfo {
         UUID = uuid;
     }
 
+    //Last authorization key used.  Passed when you need to make a new call.
     private String LastAuth = "";
+    //Current path location in virtual file system.
     private String CurrentPath = "";
+    //World location start position
     public IPoint SelectStart = null;
+    //World location end position.
     public IPoint SelectEnd = null;
-    
+    //Whether autopickup is enabled or not.
     public boolean AutoPickup = false;
-
+    //Players current clip board
     public BlockCollection ClipSchematic = new BlockCollection();
-
+    //Current undo collection
     private BlockCollection UndoSchematic = new BlockCollection();
-
+    //Change stack for undo.
     private final Stack<BlockCollection> UndoHistory = new Stack<>();
 
+    //Creates a new undo stack
     public BlockCollection NewUndo() {
         UndoHistory.push(UndoSchematic);
         UndoSchematic = new BlockCollection();
         return UndoSchematic;
     }
 
+    //Gets the last undo collection from the stack
     public BlockCollection GetUndo() {
         BlockCollection current = UndoSchematic;
         if (!UndoHistory.empty()) {
@@ -59,14 +67,21 @@ public class PlayerInfo {
         return current;
     }
 
+    //Clears the undo stack.
     public void ClearHistory() {
         UndoSchematic = new BlockCollection();
         UndoHistory.empty();
     }
 
+    //This is used for the two-factor authorization which is currently turned off.
     public String Token;
+    
+    //Flag used to cancel an undo or paste.  Currently no command exists
+    //to trigger it.
+    //Todo  Add command to trigger it.
     public boolean CancelLastAction = false;
 
+    //Flag indicating the system is working on something.
     private boolean IsProcessing;
 
     public boolean getIsProcessing() {
@@ -78,6 +93,7 @@ public class PlayerInfo {
         //ServerUtil.consoleLog(caller + " is setting Busy: " + flag);
     }
 
+    //Gets the current path in the file system
     public String getCurrentPath() {
         return this.CurrentPath;
     }
@@ -94,6 +110,7 @@ public class PlayerInfo {
         this.LastAuth = lastAuth;
     }
 
+    //sends a message to the player with surrounding -----------
     private String GenLineCenter(String msg) {
         int lineLength = 52;
         int msgLength = msg.length();

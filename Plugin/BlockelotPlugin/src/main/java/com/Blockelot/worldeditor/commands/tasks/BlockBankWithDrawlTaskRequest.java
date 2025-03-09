@@ -10,7 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 /**
- *
+ * This class handles withdraws from the Block Bank.
  * @author geev
  */
 public class BlockBankWithDrawlTaskRequest extends HttpRequestor {

@@ -51,9 +51,7 @@ public class PluginManager {
     }
     
     public static boolean HasPlayer(Player player){
-        if (PlayerInfoList.containsKey(player.getUniqueId()))
-            return true;
-        return false;
+        return PlayerInfoList.containsKey(player.getUniqueId());
     }
     
     public static void RemovePlayer(Player player){
@@ -65,9 +63,6 @@ public class PluginManager {
     public static Configuration Config;
     private static final Logger log = Logger.getLogger("Minecraft");
 
-//    private static Economy econ = null;
-//    private static Permission perms = null;
-//    private static Chat chat = null;
     static {
         PlayerInfoList = new HashMap<>();
         Version = "1.0.0.3";

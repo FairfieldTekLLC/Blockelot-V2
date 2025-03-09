@@ -9,7 +9,8 @@ import org.bukkit.ChatColor;
 import com.Blockelot.Util.MiscUtil;
 
 /**
- *
+ * This class is used to request the current inventory of the players
+ * block bank.
  * @author geev
  */
 public class BlockBankInventoryTaskRequest extends HttpRequestor {
