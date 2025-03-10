@@ -20,6 +20,7 @@ import com.Blockelot.worldeditor.commands.Print;
 import com.Blockelot.worldeditor.commands.Select;
 import com.Blockelot.worldeditor.commands.StripMine;
 import com.Blockelot.worldeditor.commands.Undo;
+import com.Blockelot.worldeditor.commands.XpFly;
 import com.Blockelot.worldeditor.commands.filesystem.Authenticate;
 import com.Blockelot.worldeditor.commands.filesystem.CD;
 import com.Blockelot.worldeditor.commands.filesystem.LS;
@@ -40,7 +41,7 @@ public class PluginManager {
     public static Tools Plugin;
     public static String Version;
     
-    private static HashMap<UUID, PlayerInfo> PlayerInfoList;
+    public static HashMap<UUID, PlayerInfo> PlayerInfoList;
     
     public static PlayerInfo GetPlayerInfo(UUID key){
         return PlayerInfoList.get(key);
@@ -113,6 +114,7 @@ public class PluginManager {
         plugin.getCommand("b.help").setExecutor((CommandExecutor) new Help());
         plugin.getCommand("b.about").setExecutor((CommandExecutor) new About());
         plugin.getCommand("b.autopickup").setExecutor((CommandExecutor) new AutoPickupToggle());
+        plugin.getCommand("b.xpfly").setExecutor((CommandExecutor) new XpFly());
         ServerUtil.consoleLog("Calling home... no really, I am.");
         ServerUtil.consoleLog("No reason for concern, how do you think the cloud storage works?");
         try {

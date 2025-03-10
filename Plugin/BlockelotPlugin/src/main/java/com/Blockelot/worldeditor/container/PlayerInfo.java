@@ -48,6 +48,9 @@ public class PlayerInfo {
     private BlockCollection UndoSchematic = new BlockCollection();
     //Change stack for undo.
     private final Stack<BlockCollection> UndoHistory = new Stack<>();
+    
+    //Flying
+    public boolean IsFlying = false;
 
     //Creates a new undo stack
     public BlockCollection NewUndo() {

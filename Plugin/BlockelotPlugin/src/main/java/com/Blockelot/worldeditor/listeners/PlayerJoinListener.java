@@ -34,6 +34,9 @@ public class PlayerJoinListener
         if (PluginManager.HasPlayer(player)) {
 
             ServerUtil.consoleLog("Removing Player " + player.getUniqueId().toString() + " - left.  ");
+            
+            player.setAllowFlight(false);
+            player.setFlying(false);
 
             PluginManager.RemovePlayer(player);
 

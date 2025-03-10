@@ -157,4 +157,8 @@ commands:
     permission: Blockelot.Player.AutoPickup
     usage: b.Autopickup
  
+  b.xpfly:
+    description: Allows a player to fly spending experience.
+    permission: Blockelot.Player.XpFly
+    usage: b.xpfly
  

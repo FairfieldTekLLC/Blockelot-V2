@@ -18,43 +18,54 @@ public class Configuration implements Serializable {
     The webserver does not need to be public unless you have minecraft servers
     connecting over the internet.
     */
-    public String BaseUri = "http://Blockelot.com/api/worldeditor/v1/";
+    //public static String BaseUri = "http://Blockelot.com/api/worldeditor/v1/";
     //public String BaseUri = "http://192.168.211.52/api/worldeditor/v1/";
-    //public String BaseUri = "http://localhost:31312/api/worldeditor/v1/";
+    public String BaseUri = "http://localhost:31312/api/worldeditor/v1/";
 
     
     
     
-    public String Permission_User = "Blockelot.WorldEditor.User";
-    public String Permission_Clear = "Blockelot.WorldEditor.User.Clear";
-    public String Permission_ClearHistory = "Blockelot.WorldEditor.User.ClearHistory";
-    public String Permission_Size = "Blockelot.WorldEditor.User.Size";
-    public String Permission_Print = "Blockelot.WorldEditor.User.Print";
-    public String Permission_Select = "Blockelot.WorldEditor.User.Select";
-    public String Permission_BlockelotBank = "Blockelot.Bank";
-    public String Permission_Editor = "Blockelot.WorldEditor.Editor";
-    public String Permission_Copy = "Blockelot.WorldEditor.Editor.Copy";
-    public String Permission_Cut = "Blockelot.WorldEditor.Editor.Cut";
-    public String Permission_Delete = "Blockelot.WorldEditor.Editor.Delete";
-    public String Permission_Distr = "Blockelot.WorldEditor.Editor.Distr";
-    public String Permission_Paste = "Blockelot.WorldEditor.Editor.Paste";
-    public String Permission_StripMine = "Blockelot.WorldEditor.Editor.StripMine";
-    public String Permission_Undo = "Blockelot.WorldEditor.Editor.Undo";
-    public String Permission_FileSystem = "Blockelot.FileSystem.User";
-    public String Permission_AutoPickup = "Blockelot.Player.AutoPickup";
-    public Boolean IncludeInventoryWhenPasting = true;
+    public static String Permission_User = "Blockelot.WorldEditor.User";
+    public static String Permission_Clear = "Blockelot.WorldEditor.User.Clear";
+    public static String Permission_ClearHistory = "Blockelot.WorldEditor.User.ClearHistory";
+    public static String Permission_Size = "Blockelot.WorldEditor.User.Size";
+    public static String Permission_Print = "Blockelot.WorldEditor.User.Print";
+    public static String Permission_Select = "Blockelot.WorldEditor.User.Select";
+    public static String Permission_BlockelotBank = "Blockelot.Bank";
+    public static String Permission_Editor = "Blockelot.WorldEditor.Editor";
+    public static String Permission_Copy = "Blockelot.WorldEditor.Editor.Copy";
+    public static String Permission_Cut = "Blockelot.WorldEditor.Editor.Cut";
+    public static String Permission_Delete = "Blockelot.WorldEditor.Editor.Delete";
+    public static String Permission_Distr = "Blockelot.WorldEditor.Editor.Distr";
+    public static String Permission_Paste = "Blockelot.WorldEditor.Editor.Paste";
+    public static String Permission_StripMine = "Blockelot.WorldEditor.Editor.StripMine";
+    public static String Permission_Undo = "Blockelot.WorldEditor.Editor.Undo";
+    public static String Permission_FileSystem = "Blockelot.FileSystem.User";
+    public static String Permission_AutoPickup = "Blockelot.Player.AutoPickup";
+    public static String Permission_XpFly = "Blockelot.Player.XpFly";
+    
+    
+    public static Boolean IncludeInventoryWhenPasting = true;
     //Max number of blocks that will be modified per server tick.
     //you can adjust it up or down depending on how much load it 
     //puts on your server
-    public int MaxBlocksWritePerTick = 5000;
+    public static int MaxBlocksWritePerTick = 5000;
     //Max number of blocks that will be read per tick.  Once again
     //adjust it up or down based on server power.
-    public int MaxBlocksReadPerTick = 5000;
+    public static int MaxBlocksReadPerTick = 5000;
     //Max number of blocks that will be included in the HTTP call to upload it
     //to the web service.  I do not suggest editing it.
-    public int MaxBlocksUploadPerCall = 20000;
+    public static int MaxBlocksUploadPerCall = 20000;
     //Blocks that are non pastable using the paste command
-    public String NonPastableBlocks = "";//IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
+    public static String NonPastableBlocks = "";//IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
+    
+    public static int FlyMinXp = 2;
+    public static double FlyXpPrice = 0.02f;
+    public static int FlyDeductTime = 10;
+    
+            
+    
+    
     public ArrayList<Material> NonPastableBlockArray = new ArrayList<>();
 
     public boolean SaveData() {
@@ -89,6 +100,10 @@ public class Configuration implements Serializable {
         config.set("settings.perms.filesystem", Permission_FileSystem);
         config.set("settings.perms.bank",Permission_BlockelotBank);
         config.set("settings.perms.autopickup",Permission_AutoPickup);
+        config.set("settings.perms.xpfly",Permission_XpFly);
+        config.set("settings.xpfly.minxp", FlyMinXp);
+        config.set("settings.xpfly.xpprice",FlyXpPrice);
+        config.set("settings.xpfly.deducttime",FlyDeductTime);
         
         PluginManager.Plugin.saveConfig();
         return true;
@@ -96,6 +111,9 @@ public class Configuration implements Serializable {
 
     public boolean LoadData() {
         FileConfiguration config = PluginManager.Plugin.getConfig();
+        FlyMinXp = config.getInt("settings.xpfly.minxp");
+        FlyXpPrice = config.getDouble("settings.xpfly.xpprice");
+        FlyDeductTime = config.getInt("settings.xpfly.deducttime");
         WorldId = config.getString("settings.WorldId");
         MaxClipboardSize = config.getInt("settings.config.maxclipboardsize");
         BaseUri = config.getString("settings.config.baseuri");
@@ -124,6 +142,7 @@ public class Configuration implements Serializable {
         MaxBlocksWritePerTick = config.getInt("settings.config.MaxBlocksUploadPerCall");
         IncludeInventoryWhenPasting = config.getBoolean("IncludeInventoryWhenPasting");
         NonPastableBlocks = config.getString("settings.Non-Pastable.Blocks");
+        Permission_XpFly = config.getString("settings.perms.xpfly");
 
         String[] split = NonPastableBlocks.split(",");
         for (String s : split) {

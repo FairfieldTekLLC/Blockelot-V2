@@ -46,7 +46,7 @@ public static class Users
         string emailAddress = await GetEmail(uuid);
         if (emailAddress == null)
             return "";
-        int id = GetUserId(uuid);
+        int id = await GetUserId(uuid);
         if (id == -1)
             return "";
         await SqlHelper.ExecuteNonQuery(Constants.DbConnString,
@@ -287,9 +287,9 @@ public static class Users
     }
 
 
-    public static int GetUserId(string uuid)
+    public static async Task<int> GetUserId(string uuid)
     {
-        object r = SqlHelper.ExecuteScalar(Constants.DbConnString,
+        object r =await SqlHelper.ExecuteScalar(Constants.DbConnString,
             "select PkUserId from Users where UniqueId = @UUID;", [
                 new KeyValuePair<string, object>("@UUID", uuid)
             ]);
@@ -441,7 +441,7 @@ public static class Users
             ]);
 
 
-        int id = GetUserId(uuid);
+        int id = await GetUserId(uuid);
         if (id == -1)
             return "";
 

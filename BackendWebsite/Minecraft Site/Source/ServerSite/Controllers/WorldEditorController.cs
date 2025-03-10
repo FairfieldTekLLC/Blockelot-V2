@@ -62,7 +62,7 @@ public class WorldEditorController : Controller
     public async Task<IActionResult> DirCd([FromBody] CdRequest cdRequest)
     {
         string lastAuth = await Users.Login(cdRequest.Uuid, cdRequest.Auth);
-        int userId = Users.GetUserId(cdRequest.Uuid);
+        int userId = await Users.GetUserId(cdRequest.Uuid);
         if (string.IsNullOrEmpty(lastAuth))
             return Json(new LsResponse
             {
@@ -132,7 +132,7 @@ public class WorldEditorController : Controller
     public async Task<IActionResult> DirLs([FromBody] LsRequest dirLsRequest)
     {
         string lastAuth = await Users.Login(dirLsRequest.Uuid, dirLsRequest.Auth);
-        int userId = Users.GetUserId(dirLsRequest.Uuid);
+        int userId = await Users.GetUserId(dirLsRequest.Uuid);
 
         if (string.IsNullOrEmpty(lastAuth))
             return Json(new LsResponse
@@ -172,7 +172,7 @@ public class WorldEditorController : Controller
         try
         {
             string lastAuth = await Users.Login(mkRequest.Uuid, mkRequest.Auth);
-            int userId = Users.GetUserId(mkRequest.Uuid);
+            int userId = await Users.GetUserId(mkRequest.Uuid);
             if (string.IsNullOrEmpty(lastAuth))
                 return Json(new LsResponse
                 {
@@ -227,7 +227,7 @@ public class WorldEditorController : Controller
     public async Task<IActionResult> DirRm([FromBody] RmRequest rmRequest)
     {
         string lastAuth = await Users.Login(rmRequest.Uuid, rmRequest.Auth);
-        int userId = Users.GetUserId(rmRequest.Uuid);
+        int userId =await Users.GetUserId(rmRequest.Uuid);
         if (string.IsNullOrEmpty(lastAuth))
             return Json(new LsResponse
             {
@@ -297,7 +297,7 @@ public class WorldEditorController : Controller
     {
         string lastAuth = await Users.Login(request.Uuid, request.Auth);
 
-        int userId = Users.GetUserId(request.Uuid);
+        int userId = await Users.GetUserId(request.Uuid);
 
         if (string.IsNullOrEmpty(lastAuth))
             return Json(new SchematicDataDownloadResponse
@@ -433,7 +433,7 @@ public class WorldEditorController : Controller
     {
         string lastAuth = await Users.Login(schematicDataRequest.Uuid, schematicDataRequest.Auth);
 
-        int userId = Users.GetUserId(schematicDataRequest.Uuid);
+        int userId = await Users.GetUserId(schematicDataRequest.Uuid);
 
         if (string.IsNullOrEmpty(lastAuth))
             return Json(new SchematicDataResponse
@@ -515,7 +515,7 @@ public class WorldEditorController : Controller
         {
             Auth = await Users.Login(request.Uuid, request.Auth, request.Wid)
         };
-        int userId = Users.GetUserId(request.Uuid);
+        int userId = await Users.GetUserId(request.Uuid);
 
         if (string.IsNullOrEmpty(response.Auth))
         {
@@ -551,7 +551,7 @@ public class WorldEditorController : Controller
     {
         var response = new BlockBankInventoryResponse();
         response.Auth = await Users.Login(request.Uuid, request.Auth, request.Wid);
-        int userId = Users.GetUserId(request.Uuid);
+        int userId = await Users.GetUserId(request.Uuid);
 
         if (string.IsNullOrEmpty(response.Auth))
         {
@@ -574,7 +574,7 @@ public class WorldEditorController : Controller
     {
         var response = new BlockBankWithdrawlResponse();
         response.Auth = await Users.Login(request.Uuid, request.Auth, request.Wid);
-        int userId = Users.GetUserId(request.Uuid);
+        int userId = await Users.GetUserId(request.Uuid);
 
         if (string.IsNullOrEmpty(response.Auth))
         {

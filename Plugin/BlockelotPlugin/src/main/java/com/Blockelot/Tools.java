@@ -1,5 +1,7 @@
 package com.Blockelot;
+import com.Blockelot.worldeditor.commands.tasks.XpFlyRunnable;
 import com.Blockelot.worldeditor.listeners.BlockListener;
+import com.Blockelot.worldeditor.listeners.EntityDamageByOtherEvent;
 import com.Blockelot.worldeditor.listeners.PlayerJoinListener;
 import org.bukkit.event.Listener;
 
@@ -14,9 +16,16 @@ public final class Tools extends JavaPlugin {
         //Initialize the Block listener
         this.getServer().getPluginManager().registerEvents((Listener) new BlockListener(), (org.bukkit.plugin.Plugin) this);
         
+        this.getServer().getPluginManager().registerEvents((Listener) new EntityDamageByOtherEvent(), (org.bukkit.plugin.Plugin) this);
+        
         if (!PluginManager.Initialize(this)) {
             getServer().getPluginManager().disablePlugin(this);
         }
+        
+        
+        
+       new XpFlyRunnable().runTaskTimer(this, 0,  Configuration.FlyDeductTime);
+        
     }
 
     @Override
