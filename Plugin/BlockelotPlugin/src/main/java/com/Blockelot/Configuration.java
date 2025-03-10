@@ -18,9 +18,9 @@ public class Configuration implements Serializable {
     The webserver does not need to be public unless you have minecraft servers
     connecting over the internet.
     */
-    //public static String BaseUri = "http://Blockelot.com/api/worldeditor/v1/";
+    public static String BaseUri = "http://Blockelot.com/api/worldeditor/v1/";
     //public String BaseUri = "http://192.168.211.52/api/worldeditor/v1/";
-    public String BaseUri = "http://localhost:31312/api/worldeditor/v1/";
+    //public String BaseUri = "http://localhost:31312/api/worldeditor/v1/";
 
     
     

@@ -30,7 +30,7 @@ namespace ServerSite;
 
 public class Program
 {
-    public static string Version = "1.0.0.3";
+    public static string Version = "1.0.0.4";
 
     public static IWebHost BuildWebHost(string[] args)
     {

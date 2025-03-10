@@ -66,7 +66,7 @@ public class PluginManager {
 
     static {
         PlayerInfoList = new HashMap<>();
-        Version = "1.0.0.3";
+        Version = "1.0.0.4";
         Config = new Configuration();
         try {
             Config.LoadData();
