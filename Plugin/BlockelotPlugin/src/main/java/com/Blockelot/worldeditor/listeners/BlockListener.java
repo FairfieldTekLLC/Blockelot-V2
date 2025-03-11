@@ -67,19 +67,21 @@ public class BlockListener implements Listener {
               e.getBlock().getType().equals(Material.STRIPPED_DARK_OAK_WOOD)) {
          Player p = e.getPlayer();
          ItemStack droppedItem = new ItemStack(e.getBlock().getType());
-         if (p.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.STONE_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.IRON_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.DIAMOND_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_AXE)) {
-            Location broke = e.getBlock().getLocation();
+         if (p.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.STONE_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.IRON_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.DIAMOND_AXE) || p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_AXE)) 
+         {
 
-            for(int j = 0; j < height; ++j) {
-               int Yt = (int)broke.getY() + j;
+             Location broke = e.getBlock().getLocation();
+             for(int j = 0; j < height; ++j) 
+             {
 
-               for(int i = -radius; i < radius + 1; ++i) {
-                  int Xt = (int)broke.getX() + i;
-
-                  for(int k = -radius; k < radius + 1; ++k) {
-                     int Zt = (int)broke.getZ() + k;
-                     Location l = new Location(p.getWorld(), (double)Xt, (double)Yt, (double)Zt);
-                     if (l != broke && l.getBlock().getType() == droppedItem.getType()) {
+                int Yt = (int)broke.getY() + j;
+                for(int i = -radius; i < radius + 1; ++i) 
+                {
+                    int Xt = (int)broke.getX() + i;
+                    for(int k = -radius; k < radius + 1; ++k) {
+                    int Zt = (int)broke.getZ() + k;
+                    Location l = new Location(p.getWorld(), (double)Xt, (double)Yt, (double)Zt);
+                    if (l != broke && l.getBlock().getType() == droppedItem.getType()) {
                         l.getBlock().setType(Material.AIR);
                         l.getWorld().dropItem(l, droppedItem);
                      }
