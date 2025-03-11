@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.container;
 
+import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class BlockCollection {
 
     public BlockInfo AddBlock(Block sourceBlock, int offsetX, int offsetY, int offsetZ, BlockCollection undo) throws Exception {
 
-        if (Blocks.size() > PluginManager.Config.MaxClipboardSize) {
+        if (Blocks.size() > Configuration.MaxClipboardSize) {
             throw new Exception("Schematic size exceeds server max.");
         }
 
@@ -101,7 +102,7 @@ public class BlockCollection {
 
     public BlockInfo AddBlock(BlockInfo blockDef, BlockCollection undo) throws Exception {
 
-        if (Blocks.size() > PluginManager.Config.MaxClipboardSize) {
+        if (Blocks.size() > Configuration.MaxClipboardSize) {
             throw new Exception("Schematic size exceeds server max.");
         }
         if (undo != null) {

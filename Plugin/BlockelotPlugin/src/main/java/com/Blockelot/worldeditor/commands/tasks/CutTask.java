@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import java.util.UUID;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -26,7 +27,7 @@ public class CutTask
     int cz = 0;
     UUID PlayerId;
     BlockCollection SchematicToPaste = new BlockCollection();
-    private BlockCollection Undo;
+    private final BlockCollection Undo;
 
     public CutTask(int bx, int ex, int by, int ey, int bz, int ez, UUID playerId) {
         this.sbx = bx;
@@ -50,7 +51,7 @@ public class CutTask
             PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
 
             if (player == null) {
-                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
                 this.cancel();
             }
 
@@ -68,7 +69,7 @@ public class CutTask
                             block.setType(Material.AIR);
                         }
                         ++this.cz;
-                        if (++counter > PluginManager.Config.MaxBlocksReadPerTick) {
+                        if (++counter > Configuration.MaxBlocksReadPerTick) {
                             try {
                                 player.sendMessage("Copied " + this.SchematicToPaste.Size() + " blocks so far.. waiting..");
                             } catch (Exception e) {
@@ -109,33 +110,24 @@ public class CutTask
                 info.setY(info.getY() + (-1 * MinY));
                 info.setZ(info.getZ() + (-1 * MinZ));
             }
-
             pi.ClipSchematic = this.SchematicToPaste;
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             player.sendMessage("Blocks Copied (" + pi.ClipSchematic.Size() + " blocks copied.)");
-            PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+            PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
             this.cancel();
         } catch (Exception e) {
+            try
+            {
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
+            }
+            catch (Exception loss){
+                
+            }
+            this.cancel();
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());
 
         }
-        PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+        PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
         this.cancel();
     }
 }

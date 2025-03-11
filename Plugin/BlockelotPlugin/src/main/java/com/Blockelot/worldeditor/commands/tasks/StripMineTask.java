@@ -29,12 +29,12 @@ import org.bukkit.inventory.ItemStack;
  */
 public class StripMineTask extends BukkitRunnable {
 
-    private PlayerInfo PlayerInfo;
+    private final PlayerInfo PlayerInfo;
     private HashMap<Material, Integer> MaterialCount = new HashMap<>();
     private ChestManager ChestManager = null;
     private boolean PlacingChest = false;
-    private BlockCollection Current;
-    private BlockCollection Undo;
+
+    private final BlockCollection Undo;
     private boolean Deposit = false;
     int floorHeight = -63;
 
@@ -43,7 +43,6 @@ public class StripMineTask extends BukkitRunnable {
         PlayerInfo = pi;
         PlacingChest = false;
         Undo = pi.NewUndo();
-        Current = new BlockCollection();
         ChestManager = new ChestManager(pi.getPlayer());
     }
 
@@ -253,15 +252,11 @@ public class StripMineTask extends BukkitRunnable {
         int CurrentSlot = 0;
         Chest Chest = null;
         Chunk Chunk = null;
-        Player Player = null;
-        World World = null;
 
         public ArrayList<BlockBankInventoryItem> toDeposit = new ArrayList<>();
 
         public ChestManager(Player player) {
             CurrentSlot = 0;
-            Player = player;
-            World = player.getWorld();
             Location loc = player.getLocation();
             Chunk = loc.getChunk();
             AddChest();

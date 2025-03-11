@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import java.util.UUID;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -84,7 +85,7 @@ public class DeleteTask
             while (this.Y >= this.ey) {
                 while (this.X >= this.ex) {
                     while (this.Z >= this.ez) {
-                        if (++counter > PluginManager.Config.MaxBlocksWritePerTick) {
+                        if (++counter > Configuration.MaxBlocksWritePerTick) {
                             try {
                                 player.sendMessage("Buffering... " + this.X + " " + this.Y + " " + this.Z);
                             } catch (Exception e) {

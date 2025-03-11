@@ -1,5 +1,6 @@
 package com.Blockelot.Util;
 
+import java.util.logging.Logger;
 import org.bukkit.DyeColor;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
@@ -122,4 +123,5 @@ public class EnumHelper {
         }
         return xc + yc + zc;
     }
+    private static final Logger LOG = Logger.getLogger(EnumHelper.class.getName());
 }

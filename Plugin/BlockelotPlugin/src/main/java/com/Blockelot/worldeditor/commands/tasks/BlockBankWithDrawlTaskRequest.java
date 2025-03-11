@@ -1,9 +1,11 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.container.PlayerInfo;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -38,7 +40,7 @@ public class BlockBankWithDrawlTaskRequest extends HttpRequestor {
             request.setMaterial(Material.name());
             request.setAuth(PlayerInfo.getLastAuth());
 
-            String hr = RequestHttp(PluginManager.Config.BaseUri + "BBWR", gson.toJson(request));
+            String hr = RequestHttp(Configuration.BaseUri + "BBWR", gson.toJson(request));
             com.Blockelot.worldeditor.http.BlockBankWithdrawlResponse response = gson.fromJson(hr, com.Blockelot.worldeditor.http.BlockBankWithdrawlResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
 
@@ -61,7 +63,7 @@ public class BlockBankWithDrawlTaskRequest extends HttpRequestor {
             PlayerInfo.setIsProcessing(false, "Block Bank Deposit");
             this.cancel();
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             PlayerInfo.setIsProcessing(false, "Block Bank Deposit");
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());

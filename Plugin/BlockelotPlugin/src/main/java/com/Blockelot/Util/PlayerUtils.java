@@ -1,5 +1,6 @@
 package com.Blockelot.Util;
 
+import java.util.logging.Logger;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
@@ -63,4 +64,5 @@ public class PlayerUtils {
             return null;
         }
     }
+    private static final Logger LOG = Logger.getLogger(PlayerUtils.class.getName());
 }

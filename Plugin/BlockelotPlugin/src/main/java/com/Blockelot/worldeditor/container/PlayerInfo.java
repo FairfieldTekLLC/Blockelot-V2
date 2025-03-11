@@ -129,8 +129,7 @@ public class PlayerInfo {
     }
 
     private String GenLineLeft(String msg) {
-        int lineLength = 52;
-        String OutLine = ChatColor.GOLD + "#" + ChatColor.BLACK + "-" + ChatColor.YELLOW + msg + ChatColor.BLACK + "--------------------------------------------------------------";
+         String OutLine = ChatColor.GOLD + "#" + ChatColor.BLACK + "-" + ChatColor.YELLOW + msg + ChatColor.BLACK + "--------------------------------------------------------------";
         OutLine = OutLine.substring(0, 57) + ChatColor.GOLD + " #";
         return OutLine;
 

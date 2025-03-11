@@ -1,17 +1,19 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.http.MkRequest;
 import com.Blockelot.worldeditor.http.MkResponse;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
 
 public class MkTaskRequest
         extends HttpRequestor {
 
     private final String Target;
-    private PlayerInfo PlayerInfo;
+    private final PlayerInfo PlayerInfo;
 
     public MkTaskRequest(PlayerInfo pi, String target) {
         PlayerInfo = pi;
@@ -29,12 +31,12 @@ public class MkTaskRequest
             mkRequest.setUuid(PlayerInfo.getUUID());
             mkRequest.setTargetDirectory(this.Target);
             String body = gson.toJson(mkRequest);
-            MkResponse response = gson.fromJson(RequestHttp(PluginManager.Config.BaseUri + "DirMk", body), MkResponse.class);
+            MkResponse response = gson.fromJson(RequestHttp(Configuration.BaseUri + "DirMk", body), MkResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
             response.setUuid(PlayerInfo.getUUID());
             new MkTaskResponse(response).runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             RegisterResponse registerResponse = new RegisterResponse();
             registerResponse.setMessage("An Error has occurred.");
             registerResponse.setWasSuccessful(false);

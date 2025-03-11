@@ -1,5 +1,6 @@
 package com.Blockelot.Util;
 
+import static com.Blockelot.Util.Base64Coder.decodeLines;
 import org.bukkit.inventory.ItemStack;
 import java.io.*;
 import org.bukkit.util.io.BukkitObjectOutputStream;
@@ -51,7 +52,7 @@ public class Inventory {
     //to an inventory object which can be assigned to a player.
     public static org.bukkit.inventory.Inventory fromBase64(String data) throws IOException {
         try {
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(decodeLines(data));
             org.bukkit.inventory.Inventory inventory;
             try (BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream)) {
                 InventoryType type = (InventoryType) dataInput.readObject();

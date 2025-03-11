@@ -51,6 +51,7 @@ public class Help
             lines.add(ChatColor.YELLOW + "/b.save [Filename] - Saves the clipboard into the cloud, names file.");
             lines.add(ChatColor.YELLOW + "/b.load [Filename] - Loads the contents into your clipboard.");
             lines.add(ChatColor.YELLOW + "/b.autopickup - Turns autopickup on and off.");
+            lines.add(ChatColor.YELLOW + "/b.xpfly - Turns xp flying on and off.");
             PluginManager.GetPlayerInfo(player.getUniqueId()).SendBankMessageHeader(lines, true, false);
         }
         return true;

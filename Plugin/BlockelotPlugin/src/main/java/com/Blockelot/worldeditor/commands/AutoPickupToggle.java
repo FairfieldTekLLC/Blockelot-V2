@@ -4,8 +4,10 @@
  */
 package com.Blockelot.worldeditor.commands;
 
-import com.Blockelot.PluginManager;
+
+import static com.Blockelot.PluginManager.GetPlayerInfo;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import java.util.logging.Logger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,10 +19,10 @@ public class AutoPickupToggle implements CommandExecutor {
    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
       if (commandSender instanceof Player player) {
          if (player.hasPermission("Blockelot.Player.AutoPickup")) {
-              PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
+              PlayerInfo pi = GetPlayerInfo(player.getUniqueId());
               if (pi.AutoPickup)
               {
-                   player.sendMessage("Autopickup is off.");
+                  player.sendMessage("Autopickup is off.");
                   pi.AutoPickup=false;
               }
               else
@@ -32,4 +34,5 @@ public class AutoPickupToggle implements CommandExecutor {
       }
       return true;
    }
+    private static final Logger LOG = Logger.getLogger(AutoPickupToggle.class.getName());
 }

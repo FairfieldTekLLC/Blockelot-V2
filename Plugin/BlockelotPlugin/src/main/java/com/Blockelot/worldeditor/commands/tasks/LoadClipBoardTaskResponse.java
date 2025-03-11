@@ -22,12 +22,8 @@ public class LoadClipBoardTaskResponse
 
     Thread Sender = null;
     private boolean MadeRequest = false;
-
     PlayerInfo pi;
     Player player;
-    int[] numbers = null;
-
-    int blocksLoaded = 0;
     ArrayList<BlockInfo> blocks;
 
     public LoadClipBoardTaskResponse(SchematicDataDownloadResponse response) {
@@ -89,7 +85,7 @@ public class LoadClipBoardTaskResponse
             player.sendMessage(ChatColor.GREEN + this.Response.getMessage());
 
             PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Load Clipboard");
-        } catch (Exception ex) {
+        } catch (IllegalStateException ex) {
             Logger.getLogger(BlockInfo.class.getName()).log(Level.WARNING, null, ex);
         }
         PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Load Clipboard");

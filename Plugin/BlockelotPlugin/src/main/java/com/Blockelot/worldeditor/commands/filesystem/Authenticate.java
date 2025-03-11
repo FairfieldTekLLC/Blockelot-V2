@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.filesystem;
 
+import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.commands.tasks.AuthenticateTaskRequest;
@@ -8,15 +9,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class Authenticate
         implements CommandExecutor {
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         Player player;
 
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(PluginManager.Config.Permission_FileSystem) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_FileSystem) || player.isOp())) {
 
             try {
                 if (PluginManager.GetPlayerInfo(player.getUniqueId()).getIsProcessing()) {
@@ -43,7 +45,7 @@ public class Authenticate
                 player.sendMessage("Requesting Authenticating against Library...");
 
                 //player.sendMessage("After email use: " + ChatColor.YELLOW + "'/fft.auth <Auth Token>'" + ChatColor.WHITE + " to login.");
-            } catch (Exception e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Authenticate");
 
                 ServerUtil.consoleLog(e.getLocalizedMessage());

@@ -1,5 +1,6 @@
 package com.Blockelot.Util;
 
+import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -23,5 +24,6 @@ public class ServerUtil {
     private static String colorize(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
+    private static final Logger LOG = Logger.getLogger(ServerUtil.class.getName());
 
 }

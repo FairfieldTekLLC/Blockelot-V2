@@ -1,10 +1,12 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.http.RegisterRequest;
 import com.Blockelot.worldeditor.http.RegisterResponse;
+import com.google.gson.JsonSyntaxException;
 import org.bukkit.entity.Player;
 
 public class RegisterTaskRequest
@@ -29,12 +31,12 @@ public class RegisterTaskRequest
             registerRequest.setEmailAddress(this.EmailAddress);
             registerRequest.setUuid(this.Uuid);
             String body = gson.toJson(registerRequest);
-            RegisterResponse registerResponse = gson.fromJson(RequestHttp(PluginManager.Config.BaseUri + "Register", body),
+            RegisterResponse registerResponse = gson.fromJson(RequestHttp(Configuration.BaseUri + "Register", body),
                     RegisterResponse.class);
             PluginManager.GetPlayerInfo(Player.getUniqueId()).setLastAuth(registerResponse.getAuth());
 
             new RegisterTaskResponse(registerResponse, Player.getPlayer()).runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());
             ServerUtil.consoleLog(e);

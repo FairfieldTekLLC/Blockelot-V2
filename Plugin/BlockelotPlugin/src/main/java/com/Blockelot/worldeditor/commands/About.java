@@ -1,6 +1,6 @@
 package com.Blockelot.worldeditor.commands;
 
-import com.Blockelot.PluginManager;
+import static com.Blockelot.PluginManager.GetPlayerInfo;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -30,7 +30,7 @@ public class About    implements CommandExecutor {
             lines.add(ChatColor.YELLOW + "Blockelot and it's Cloud Storage is provided \"as is\", without warranties of any kind.");
             lines.add(ChatColor.YELLOW + "");
             
-            PluginManager.GetPlayerInfo(player.getUniqueId()).SendBankMessageHeader(lines, true, false);
+            GetPlayerInfo(player.getUniqueId()).SendBankMessageHeader(lines, true, false);
         }
         return true;
     }

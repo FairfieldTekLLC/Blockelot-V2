@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.container.PlayerInfo;
@@ -7,6 +8,7 @@ import com.Blockelot.worldeditor.http.BlockBankInventoryItem;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import com.Blockelot.Util.MiscUtil;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * This class is used to request the current inventory of the players
@@ -39,7 +41,7 @@ public class BlockBankInventoryTaskRequest extends HttpRequestor {
 
             PlayerInfo.getPlayer().sendMessage(ChatColor.YELLOW + "Contacting Bank....");
 
-            String hr = RequestHttp(PluginManager.Config.BaseUri + "BBIRQ", gson.toJson(request));
+            String hr = RequestHttp(Configuration.BaseUri + "BBIRQ", gson.toJson(request));
 
             com.Blockelot.worldeditor.http.BlockBankInventoryResponse response = gson.fromJson(hr, com.Blockelot.worldeditor.http.BlockBankInventoryResponse.class);
 
@@ -72,7 +74,7 @@ public class BlockBankInventoryTaskRequest extends HttpRequestor {
             PlayerInfo.setIsProcessing(false, "Block Bank Inventory");
             this.cancel();
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalStateException e) {
             PlayerInfo.setIsProcessing(false, "Block Bank Inventory");
             this.cancel();
         }

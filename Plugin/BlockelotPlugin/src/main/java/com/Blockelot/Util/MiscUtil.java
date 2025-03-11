@@ -1,5 +1,6 @@
 package com.Blockelot.Util;
 
+import static java.lang.Integer.parseInt;
 import org.bukkit.Material;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -145,7 +146,7 @@ public class MiscUtil {
         while (counter < s.length) {
             try {
                 System.out.println(s[counter]);
-                result[counter] = Integer.parseInt(s[counter]);
+                result[counter] = parseInt(s[counter]);
                 counter++;
             } catch (Exception ex) {
                 ServerUtil.consoleLog(ex.getLocalizedMessage());

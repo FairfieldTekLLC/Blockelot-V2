@@ -1,5 +1,7 @@
 package com.Blockelot.worldeditor.commands;
 
+
+import static com.Blockelot.Configuration.Permission_BlockelotBank;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.commands.tasks.BlockBankInventoryTaskRequest;
@@ -19,7 +21,7 @@ public class BlockBankInventory implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(PluginManager.Config.Permission_BlockelotBank) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Permission_BlockelotBank) || player.isOp())) {
             {
                 if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                     player.sendMessage("Please use /b.reg [email] first.");
@@ -52,7 +54,7 @@ public class BlockBankInventory implements CommandExecutor {
                         
                     }
 
-                } catch (Exception e) {
+                } catch (IllegalArgumentException | IllegalStateException e) {
                     PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "bbinv");
                     ServerUtil.consoleLog(e.getLocalizedMessage());
                     ServerUtil.consoleLog(e.getMessage());

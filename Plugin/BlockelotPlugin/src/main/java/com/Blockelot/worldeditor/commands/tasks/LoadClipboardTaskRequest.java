@@ -5,6 +5,7 @@ import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.http.SchematicDataDownloadResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
 
 /**
  *
@@ -13,7 +14,7 @@ import com.Blockelot.worldeditor.container.PlayerInfo;
 public class LoadClipboardTaskRequest
         extends HttpRequestor {
 
-    private PlayerInfo PlayerInfo;
+    private final PlayerInfo PlayerInfo;
 
     private final String Filename;
 
@@ -51,7 +52,7 @@ public class LoadClipboardTaskRequest
             LoadClipBoardTaskResponse ct = new LoadClipBoardTaskResponse(response);
             ct.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             PlayerInfo.setIsProcessing(false, "LoadClipboard");
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());

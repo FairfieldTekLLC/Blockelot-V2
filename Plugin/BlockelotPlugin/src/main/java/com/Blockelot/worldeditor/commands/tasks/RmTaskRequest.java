@@ -1,11 +1,13 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.http.RmRequest;
 import com.Blockelot.worldeditor.http.RmResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
 
 public class RmTaskRequest
         extends HttpRequestor {
@@ -29,12 +31,12 @@ public class RmTaskRequest
             rmRequest.setUuid(PlayerInfo.getUUID());
             rmRequest.setTargetDirectory(this.Target);
             String body = gson.toJson(rmRequest);
-            RmResponse response = gson.fromJson(RequestHttp(PluginManager.Config.BaseUri + "DirRm", body),
+            RmResponse response = gson.fromJson(RequestHttp(Configuration.BaseUri + "DirRm", body),
                     RmResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
             response.setUuid(PlayerInfo.getUUID());
             new RmTaskResponse(response).runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             RegisterResponse registerResponse = new RegisterResponse();
             registerResponse.setMessage("An Error has occurred.");
             registerResponse.setWasSuccessful(false);

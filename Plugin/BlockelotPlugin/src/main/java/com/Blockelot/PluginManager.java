@@ -61,22 +61,22 @@ public class PluginManager {
         }
     }
     
-    public static Configuration Config;
+    //public static final Configuration Config;
     private static final Logger log = Logger.getLogger("Minecraft");
 
     static {
         PlayerInfoList = new HashMap<>();
         Version = "1.0.0.4";
-        Config = new Configuration();
+        //Config = new Configuration();
         try {
-            Config.LoadData();
+            Configuration.LoadData();
         } catch (Exception e) {
 
         }
     }
 
     public static String getWorldId() {
-        return Config.WorldId;
+        return Configuration.WorldId;
     }
 
     public static boolean Initialize(Tools plugin) {
@@ -131,7 +131,7 @@ public class PluginManager {
 
     public static void ShutDown() {
         log.info(String.format("[%s] Disabled Version %s", PluginManager.Plugin.getDescription().getName(), PluginManager.Plugin.getDescription().getVersion()));
-        Config.SaveData();
+        Configuration.SaveData();
         PlayerInfoList.clear();
     }
 

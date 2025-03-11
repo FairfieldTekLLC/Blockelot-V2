@@ -1,11 +1,13 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.MiscUtil;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.container.PlayerInfo;
 import com.Blockelot.worldeditor.http.BlockBankInventoryItem;
+import com.google.gson.JsonSyntaxException;
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -51,7 +53,7 @@ public class BlockBankDepositTaskRequest extends HttpRequestor {
     private int GetItemStackTotal(Material mat, int AmountLeftToFetch) {
 
         final Inventory inventory = PlayerInfo.getPlayer().getInventory();
-        int PartialAmountToSet = 0;
+        
         for (ItemStack itm : inventory.getContents()) {
             if (itm != null) {
                 if (itm.getType() == mat) {
@@ -113,7 +115,7 @@ public class BlockBankDepositTaskRequest extends HttpRequestor {
                 request.setToDeposit(itms);
             }
 
-            String hr = RequestHttp(PluginManager.Config.BaseUri + "BBDR", gson.toJson(request));
+            String hr = RequestHttp(Configuration.BaseUri + "BBDR", gson.toJson(request));
             com.Blockelot.worldeditor.http.BlockBankDepositResponse response = gson.fromJson(hr, com.Blockelot.worldeditor.http.BlockBankDepositResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
 
@@ -145,7 +147,7 @@ public class BlockBankDepositTaskRequest extends HttpRequestor {
 
             this.cancel();
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalStateException e) {
             PlayerInfo.setIsProcessing(false, "Block Bank Deposit");
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());

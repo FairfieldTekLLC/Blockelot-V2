@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -7,6 +8,9 @@ import com.Blockelot.worldeditor.http.AuthenticateRequest;
 import com.Blockelot.worldeditor.http.AuthenticateResponse;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
+import org.jetbrains.annotations.NotNull;
+
 /*
 This class handles user authentication requests.
 
@@ -17,7 +21,7 @@ public class AuthenticateTaskRequest
 
     PlayerInfo PlayerInfo;
 
-    public AuthenticateTaskRequest(PlayerInfo pi) {
+    public AuthenticateTaskRequest(@NotNull PlayerInfo pi) {
         this.PlayerInfo = pi;
     }
 
@@ -30,7 +34,7 @@ public class AuthenticateTaskRequest
             authenticateRequest.setUuid(PlayerInfo.getUUID());
             authenticateRequest.SetWid(PluginManager.getWorldId());
 
-            String hr = RequestHttp(PluginManager.Config.BaseUri + "Authenticate", gson.toJson(authenticateRequest));
+            String hr = RequestHttp(Configuration.BaseUri + "Authenticate", gson.toJson(authenticateRequest));
             AuthenticateResponse response = gson.fromJson(hr, AuthenticateResponse.class);
             //This shouldn't be here, cause really it shouldn't be.
             PlayerInfo.setLastAuth(response.getAuth());
@@ -38,7 +42,7 @@ public class AuthenticateTaskRequest
             response.setUuid(PlayerInfo.getUUID());
 
             new AuthenticateTaskResponse(response).runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             ServerUtil.consoleLog(e);
             PlayerInfo.setIsProcessing(false, "Authenticate");
             RegisterResponse registerResponse = new RegisterResponse();

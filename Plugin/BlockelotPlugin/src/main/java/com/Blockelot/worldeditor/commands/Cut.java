@@ -1,4 +1,5 @@
 package com.Blockelot.worldeditor.commands;
+import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.commands.tasks.CutTask;
@@ -19,7 +20,8 @@ public class Cut
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(PluginManager.Config.Permission_Cut) || (player = (Player) sender).hasPermission(PluginManager.Config.Permission_Editor) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Cut) || 
+                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
  if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
@@ -75,7 +77,7 @@ public class Cut
 
                 }
 
-            } catch (Exception e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
                 ServerUtil.consoleLog(e.getLocalizedMessage());
                 ServerUtil.consoleLog(e.getMessage());

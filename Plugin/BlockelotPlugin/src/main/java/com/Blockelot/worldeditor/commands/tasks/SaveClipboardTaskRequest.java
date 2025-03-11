@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import java.util.ListIterator;
 import com.Blockelot.PluginManager;
@@ -10,6 +11,7 @@ import com.Blockelot.worldeditor.http.SchematicDataRequest;
 import com.Blockelot.worldeditor.http.SchematicDataResponse;
 import com.Blockelot.worldeditor.container.BlockCollection;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
 import org.bukkit.ChatColor;
 
 public class SaveClipboardTaskRequest
@@ -43,7 +45,7 @@ public class SaveClipboardTaskRequest
                     BlockInfo itm = iter.next();
                     blocks = blocks.concat(itm.toXferString());
                     iter.remove();
-                    if (++blockCounter < PluginManager.Config.MaxBlocksUploadPerCall) {
+                    if (++blockCounter < Configuration.MaxBlocksUploadPerCall) {
                         continue;
                     }
                     break;
@@ -77,7 +79,7 @@ public class SaveClipboardTaskRequest
                 schematicDataRequest.setSchematicId(schematicId);
                 schematicDataRequest.setTotalNumberOfBlocks(TotalNumberOfBlocks);
                 String body = gson.toJson(schematicDataRequest);
-                response = gson.fromJson(RequestHttp(PluginManager.Config.BaseUri + "Save", body), SchematicDataResponse.class);
+                response = gson.fromJson(RequestHttp(Configuration.BaseUri + "Save", body), SchematicDataResponse.class);
                 PlayerInfo.setLastAuth(response.getAuth());
                 schematicId = response.getSchematicId();
                 if (WorkArea.Size() > 1) {
@@ -93,7 +95,7 @@ public class SaveClipboardTaskRequest
             response.setFinal(true);          
             this.cancel();
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalStateException e) {
             ServerUtil.consoleLog("ERROR");
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());

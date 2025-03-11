@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands;
 
+import static com.Blockelot.Configuration.Permission_BlockelotBank;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.MiscUtil;
 import com.Blockelot.Util.ServerUtil;
@@ -18,9 +19,10 @@ public class BlockBankDeposit
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        Material Mat = null;
+        Material Mat;
+        Mat = null;
         String MatName = "";
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(PluginManager.Config.Permission_BlockelotBank) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Permission_BlockelotBank) || player.isOp())) {
             {
                 if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                     player.sendMessage("Please use /b.reg [email] first.");
@@ -82,7 +84,7 @@ public class BlockBankDeposit
                         task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
                     }
 
-                } catch (Exception e) {
+                } catch (IllegalArgumentException | IllegalStateException e) {
                     PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
                     ServerUtil.consoleLog(e.getLocalizedMessage());
                     ServerUtil.consoleLog(e.getMessage());

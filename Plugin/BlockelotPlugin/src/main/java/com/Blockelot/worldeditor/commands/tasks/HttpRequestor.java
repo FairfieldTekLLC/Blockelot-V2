@@ -1,6 +1,8 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
 import com.Blockelot.Util.ServerUtil;
+import java.io.IOException;
+import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -26,7 +28,7 @@ public abstract class HttpRequestor extends BukkitRunnable {
             request.setConfig(requestConfig);
             CloseableHttpResponse result = httpClient.execute(request);
             return EntityUtils.toString(result.getEntity(), "UTF-8");
-        } catch (Exception e) {
+        } catch (IOException | ParseException e) {
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());
         }

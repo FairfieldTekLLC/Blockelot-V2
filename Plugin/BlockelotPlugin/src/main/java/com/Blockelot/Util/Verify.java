@@ -1,7 +1,10 @@
 package com.Blockelot.Util;
 
+import com.Blockelot.Configuration;
 import com.Blockelot.Tools;
 import com.Blockelot.PluginManager;
+import java.io.IOException;
+import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -14,8 +17,8 @@ public class Verify {
 
     public static void Register( Tools Plugin) {
 
-        String uri = PluginManager.Config.BaseUri + "Version?version='" + PluginManager.Version + "'"
-                + "&worldId=" + PluginManager.Config.WorldId
+        String uri = Configuration.BaseUri + "Version?version='" + PluginManager.Version + "'"
+                + "&worldId=" + Configuration.WorldId
                 + "&serverName='" + Plugin.getServer().getName() + "'";
 
         ServerUtil.consoleLog("Calling... '" + uri + "'");
@@ -29,9 +32,9 @@ public class Verify {
         ServerUtil.consoleLog("Minimum Local Version: " + MinimumVersion);
         ServerUtil.consoleLog("Current Local Version: " + PluginManager.Version);
         ServerUtil.consoleLog("WorldId: " + WorldId);
-        if (!WorldId.equalsIgnoreCase(PluginManager.Config.WorldId)) {
-            PluginManager.Config.WorldId = WorldId;
-            PluginManager.Config.SaveData();
+        if (!WorldId.equalsIgnoreCase(Configuration.WorldId)) {
+            Configuration.WorldId = WorldId;
+            Configuration.SaveData();
         }
 
         if (!MinimumVersion.equalsIgnoreCase(PluginManager.Version)) {
@@ -61,7 +64,7 @@ public class Verify {
             request.setConfig(requestConfig);
             CloseableHttpResponse result = httpClient.execute(request);
             return EntityUtils.toString(result.getEntity(), "UTF-8");
-        } catch (Exception e) {
+        } catch (IOException | ParseException e) {
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());
         }

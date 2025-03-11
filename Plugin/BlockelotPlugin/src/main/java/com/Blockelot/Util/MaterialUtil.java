@@ -1,5 +1,6 @@
 package com.Blockelot.Util;
 
+import java.util.logging.Logger;
 import org.bukkit.block.BlockFace;
 
 public class MaterialUtil {
@@ -25,5 +26,6 @@ public class MaterialUtil {
         }
         return null;
     }
+    private static final Logger LOG = Logger.getLogger(MaterialUtil.class.getName());
 
 }

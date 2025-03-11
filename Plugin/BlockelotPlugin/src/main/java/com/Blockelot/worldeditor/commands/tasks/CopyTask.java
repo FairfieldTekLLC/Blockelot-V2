@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import java.util.UUID;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -64,7 +65,7 @@ public class CopyTask
                             this.SchematicToPaste.AddBlock(block, this.sbx, this.sby, this.sbz, null);
                         }
                         ++this.cz;
-                        if (++counter > PluginManager.Config.MaxBlocksReadPerTick) {
+                        if (++counter > Configuration.MaxBlocksReadPerTick) {
                             try {
                                 player.sendMessage("Copied " + this.SchematicToPaste.Size() + " blocks so far.. waiting..");
                             } catch (Exception e) {
@@ -115,7 +116,14 @@ public class CopyTask
             ServerUtil.consoleLog(e.getMessage());
 
         }
+        try
+        {
         PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+        }
+        catch(Exception loss)
+        {}
+        
+        
         this.cancel();
     }
 }

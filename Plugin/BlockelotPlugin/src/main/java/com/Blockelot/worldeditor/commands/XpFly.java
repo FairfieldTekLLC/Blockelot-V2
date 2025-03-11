@@ -25,7 +25,7 @@ public class XpFly  implements CommandExecutor {
         
         if (sender instanceof Player player1) {
             
-            if (player1.hasPermission(com.Blockelot.Configuration.Permission_XpFly))
+            if (player1.hasPermission(Configuration.Permission_XpFly))
             {
                 PlayerInfo pi = PluginManager.GetPlayerInfo(player1.getUniqueId());
                 if (pi.IsFlying)

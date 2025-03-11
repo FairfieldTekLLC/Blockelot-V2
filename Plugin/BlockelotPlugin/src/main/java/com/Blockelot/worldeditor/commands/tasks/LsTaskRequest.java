@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -7,6 +8,7 @@ import com.Blockelot.worldeditor.http.LsRequest;
 import com.Blockelot.worldeditor.http.LsResponse;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
 
 public class LsTaskRequest
         extends HttpRequestor {
@@ -27,12 +29,12 @@ public class LsTaskRequest
             lsRequest.setCurrentDirectory(PlayerInfo.getCurrentPath());
             lsRequest.setUuid(PlayerInfo.getUUID());
             String body = gson.toJson(lsRequest);
-            LsResponse response = gson.fromJson(RequestHttp(PluginManager.Config.BaseUri + "DirLs", body),
+            LsResponse response = gson.fromJson(RequestHttp(Configuration.BaseUri + "DirLs", body),
                     LsResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
             response.setUuid(PlayerInfo.getUUID());
             new LsTaskResponse(response).runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             PlayerInfo.setIsProcessing(false, "LS");
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());

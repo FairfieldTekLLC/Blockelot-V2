@@ -1,10 +1,13 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.container.PlayerInfo;
 import com.Blockelot.worldeditor.http.SchematicDataDownloadRequest;
 import com.google.gson.Gson;
+import java.io.IOException;
+import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -39,7 +42,7 @@ public class ThreadAlive implements Runnable {
             System.out.println("------------------------------------> Making Web Request! ");
             CloseableHttpResponse result = httpClient.execute(request);
             return EntityUtils.toString(result.getEntity(), "UTF-8");
-        } catch (Exception e) {
+        } catch (IOException | ParseException e) {
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());
         }
@@ -55,7 +58,7 @@ public class ThreadAlive implements Runnable {
         Gson gson = new Gson();
         String body = gson.toJson(req);
         System.out.println("------------------------------------> Result: " + body);
-        StringObject.setString(RequestHttp(PluginManager.Config.BaseUri + "Load", body));
+        StringObject.setString(RequestHttp(Configuration.BaseUri + "Load", body));
     }
 
     private PlayerInfo PlayerInfo = null;
@@ -66,6 +69,6 @@ public class ThreadAlive implements Runnable {
         Fetch();
     }
 
-    private final Thread worker = null;
+    
   
 }

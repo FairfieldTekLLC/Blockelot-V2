@@ -1,5 +1,6 @@
 package com.blockelot.Util;
 import java.util.Objects;
+import static java.util.Objects.hash;
 
 
 //A simple pair class.
@@ -35,6 +36,6 @@ public class Pair<A, B> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(fst, snd);
+        return hash(fst, snd);
     }
 }

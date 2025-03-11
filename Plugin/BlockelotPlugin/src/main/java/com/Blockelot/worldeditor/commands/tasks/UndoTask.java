@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import java.util.ListIterator;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -32,7 +33,7 @@ public class UndoTask
             int counter = 0;
             ListIterator<BlockInfo> iter = this.SchematicClip.getBlocks().listIterator(this.SchematicClip.getBlocks().size());
             while (iter.hasPrevious()) {
-                if (++counter > PluginManager.Config.MaxBlocksWritePerTick) {
+                if (++counter > Configuration.MaxBlocksWritePerTick) {
                     try {
                         pi.getPlayer().sendMessage("Buffering... " + this.SchematicClip.Size() + " left.");
                     } catch (Exception e) {

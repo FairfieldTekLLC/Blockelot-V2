@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -7,6 +8,7 @@ import com.Blockelot.worldeditor.container.PlayerInfo;
 import com.Blockelot.worldeditor.http.CdRequest;
 import com.Blockelot.worldeditor.http.CdResponse;
 import com.Blockelot.worldeditor.http.RegisterResponse;
+import com.google.gson.JsonSyntaxException;
 import org.bukkit.entity.Player;
 
 public class CdTaskRequest
@@ -34,13 +36,13 @@ public class CdTaskRequest
             cdRequest.setTargetDirectory(this.Target);
             String body = gson.toJson(cdRequest);
 
-            CdResponse response = gson.fromJson(RequestHttp(PluginManager.Config.BaseUri + "DirCd", body), CdResponse.class);
+            CdResponse response = gson.fromJson(RequestHttp(Configuration.BaseUri + "DirCd", body), CdResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
             response.setUuid(PlayerInfo.getUUID());
 
             new CdTaskResponse(response)
                     .runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
 
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());

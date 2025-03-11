@@ -1,5 +1,6 @@
 package com.Blockelot;
 
+import static com.Blockelot.PluginManager.Plugin;
 import java.io.Serializable;
 import java.util.ArrayList;
 import org.bukkit.Material;
@@ -8,8 +9,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Configuration implements Serializable {
 
     private static transient final long serialVersionUID = -1681012206529286330L;
-    public String WorldId = "NEWSERVER";
-    public int MaxClipboardSize = 1000000000;
+    public static String WorldId = "NEWSERVER";
+    public static int MaxClipboardSize = 1000000000;
     /*
     This is the URL the Java Plugin uses to talk to the backend with.
     If you are running your own custom backend, you will need to change it to
@@ -43,6 +44,7 @@ public class Configuration implements Serializable {
     public static String Permission_FileSystem = "Blockelot.FileSystem.User";
     public static String Permission_AutoPickup = "Blockelot.Player.AutoPickup";
     public static String Permission_XpFly = "Blockelot.Player.XpFly";
+    public static String Permission_TreeKiller = "Blockelot.Player.TreeKiller";
     
     
     public static Boolean IncludeInventoryWhenPasting = true;
@@ -63,13 +65,13 @@ public class Configuration implements Serializable {
     public static double FlyXpPrice = 0.02f;
     public static int FlyDeductTime = 10;
     
-            
-    
-    
-    public ArrayList<Material> NonPastableBlockArray = new ArrayList<>();
+    /**
+     * Array of Non Pastable items.
+     */
+    public static ArrayList<Material> NonPastableBlockArray = new ArrayList<>();
 
-    public boolean SaveData() {
-        FileConfiguration config = PluginManager.Plugin.getConfig();
+    public static boolean SaveData() {
+        FileConfiguration config = Plugin.getConfig();
         config.set("settings", "Blockelot.Com");
         config.set("settings.Non-Pastable.Blocks", NonPastableBlocks);
 
@@ -81,6 +83,7 @@ public class Configuration implements Serializable {
         config.set("settings.config.MaxBlocksReadPerTick", MaxBlocksReadPerTick);
         config.set("settings.config.MaxBlocksUploadPerCall", MaxBlocksUploadPerCall);
         config.set("settings.config.IncludeInventoryWhenPasting", IncludeInventoryWhenPasting);
+        config.set("settings.config.TreeKiller",Permission_TreeKiller);
 
         config.set("settings.config.maxclipboardsize", MaxClipboardSize);
         config.set("settings.config.BaseUri", BaseUri);
@@ -104,12 +107,14 @@ public class Configuration implements Serializable {
         config.set("settings.xpfly.minxp", FlyMinXp);
         config.set("settings.xpfly.xpprice",FlyXpPrice);
         config.set("settings.xpfly.deducttime",FlyDeductTime);
+        config.set("settings.config.baseuri", BaseUri);
+        
         
         PluginManager.Plugin.saveConfig();
         return true;
     }
 
-    public boolean LoadData() {
+    public static boolean LoadData() {
         FileConfiguration config = PluginManager.Plugin.getConfig();
         FlyMinXp = config.getInt("settings.xpfly.minxp");
         FlyXpPrice = config.getDouble("settings.xpfly.xpprice");
@@ -143,6 +148,7 @@ public class Configuration implements Serializable {
         IncludeInventoryWhenPasting = config.getBoolean("IncludeInventoryWhenPasting");
         NonPastableBlocks = config.getString("settings.Non-Pastable.Blocks");
         Permission_XpFly = config.getString("settings.perms.xpfly");
+        Permission_TreeKiller = config.getString("settings.config.TreeKiller");
 
         String[] split = NonPastableBlocks.split(",");
         for (String s : split) {

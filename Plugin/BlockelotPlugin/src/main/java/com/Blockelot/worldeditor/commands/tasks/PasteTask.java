@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import java.util.ListIterator;
 import java.util.UUID;
 import com.Blockelot.PluginManager;
@@ -163,7 +164,7 @@ public class PasteTask
 
         ListIterator<BlockInfo> iter = this.SchematicClipboard.getBlocks().listIterator();
         while (iter.hasNext()) {
-            if (++counter > PluginManager.Config.MaxBlocksWritePerTick) {
+            if (++counter > Configuration.MaxBlocksWritePerTick) {
                 try {
                     player.sendMessage("Buffering... " + this.SchematicClipboard.getBlocks().size() + " left.");
                 } catch (Exception e) {

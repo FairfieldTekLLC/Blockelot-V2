@@ -1,6 +1,10 @@
 package com.Blockelot.Util;
 // Copyright 2003-2010 Christian d'Heureuse, Inventec Informatik AG, Zurich, Switzerland
 // www.source-code.biz, www.inventec.ch/chdh
+
+import static java.lang.System.getProperty;
+// Copyright 2003-2010 Christian d'Heureuse, Inventec Informatik AG, Zurich, Switzerland
+// www.source-code.biz, www.inventec.ch/chdh
 //
 // This module is multi-licensed and may be used under the terms
 // of any of the following licenses:
@@ -31,7 +35,7 @@ package com.Blockelot.Util;
 public class Base64Coder {
 
 // The line separator string of the operating system.
-    private static final String systemLineSeparator = System.getProperty("line.separator");
+    private static final String systemLineSeparator = getProperty("line.separator");
 
 // Mapping table from 6-bit nibbles to Base64 characters.
     private static final char[] map1 = new char[64];

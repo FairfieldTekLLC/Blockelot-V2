@@ -1,18 +1,20 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
+import com.Blockelot.Configuration;
 import com.google.gson.Gson;
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.http.LoginRequest;
 import com.Blockelot.worldeditor.http.LoginResponse;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import com.google.gson.JsonSyntaxException;
 
 
 public class LoginTaskRequest
         extends HttpRequestor {
 
-    private PlayerInfo PlayerInfo;
-    private String Pass;
+    private final PlayerInfo PlayerInfo;
+    private final String Pass;
 
     public LoginTaskRequest(PlayerInfo pi, String pass) {
         PlayerInfo = pi;
@@ -29,14 +31,14 @@ public class LoginTaskRequest
             loginRequest.setAuth(Pass);
             loginRequest.setWid(PluginManager.getWorldId());
             String body = gson.toJson(loginRequest);
-            String page = RequestHttp(PluginManager.Config.BaseUri + "Login", body);
+            String page = RequestHttp(Configuration.BaseUri + "Login", body);
             LoginResponse response = gson.fromJson(page, LoginResponse.class);
             PlayerInfo.setLastAuth(response.getAuth());
             response.setUuid(PlayerInfo.getUUID());
 
             new LoginTaskResponse(response).runTask((org.bukkit.plugin.Plugin) PluginManager.Plugin);
 
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalArgumentException | IllegalStateException e) {
             PlayerInfo.setIsProcessing(false, "Login");
             RegisterResponse registerResponse = new RegisterResponse();
             registerResponse.setMessage("An Error has occurred.");

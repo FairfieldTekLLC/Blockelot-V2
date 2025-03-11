@@ -1,6 +1,6 @@
 package com.Blockelot.worldeditor.container;
 
-import com.Blockelot.PluginManager;
+import com.Blockelot.Configuration;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -226,7 +226,7 @@ public final class BlockInfo {
             top.setBlockData(door, false);
 
         } else {
-            if (PluginManager.Config.NonPastableBlockArray.contains(getBlockMaterial())) {
+            if (Configuration.NonPastableBlockArray.contains(getBlockMaterial())) {
                 pi.getPlayer().sendMessage("The schematic you are pasting contains materials blocked by your server administrator.  The Material was '" + getBlockMaterial().name() + "' and was replaced with 'STONE'.");
                 target.setType(Material.STONE, applyPhysics);
             } else {
@@ -235,7 +235,7 @@ public final class BlockInfo {
             }
             target.getState().update();
 
-            if (PluginManager.Config.IncludeInventoryWhenPasting) {
+            if (Configuration.IncludeInventoryWhenPasting) {
                 if (target.getState() instanceof Container container) {
                     try {
                         if (!"".equals(this.getInventoryContentsString())) {

@@ -1,5 +1,6 @@
 package com.Blockelot.worldeditor.commands;
 
+import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.commands.tasks.StripMineTask;
 import org.bukkit.ChatColor;
@@ -19,7 +20,8 @@ public class StripMine implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
         boolean deposit = false;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(PluginManager.Config.Permission_Editor) || (player = (Player) sender).hasPermission(PluginManager.Config.Permission_StripMine) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Editor) || 
+                (player = (Player) sender).hasPermission(Configuration.Permission_StripMine) || player.isOp())) {
             if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
