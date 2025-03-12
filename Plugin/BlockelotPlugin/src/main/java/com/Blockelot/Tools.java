@@ -9,6 +9,7 @@ import com.Blockelot.worldeditor.commands.tasks.XpFlyRunnable;
 import com.Blockelot.worldeditor.listeners.BlockListener;
 import com.Blockelot.worldeditor.listeners.EntityDamageByOtherEvent;
 import com.Blockelot.worldeditor.listeners.PlayerJoinListener;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,7 +18,7 @@ public final class Tools extends JavaPlugin {
 
   @Override
     public void onEnable() {
-        
+        saveDefaultConfig();
         this.getConfig().addDefault("settings.config.MaxBlocksWritePerTick", MaxBlocksWritePerTick);
         this.getConfig().addDefault("settings.config.MaxBlocksReadPerTick", MaxBlocksReadPerTick);
         this.getConfig().addDefault("settings.config.MaxBlocksUploadPerCall", MaxBlocksUploadPerCall);
@@ -25,6 +26,7 @@ public final class Tools extends JavaPlugin {
         this.getConfig().addDefault("settings.config.baseuri", BaseUri);
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
+        
         //Initialize the player join listener
         this.getServer().getPluginManager().registerEvents((Listener) new PlayerJoinListener(), (org.bukkit.plugin.Plugin) this);
         //Initialize the Block listener
@@ -40,5 +42,12 @@ public final class Tools extends JavaPlugin {
     @Override
     public void onDisable() {
         PluginManager.ShutDown();
+        saveConfig();
     }
+     public void setAndSave(String path, Object value) {
+        FileConfiguration config = getConfig();
+        config.set(path, value);
+        saveConfig();
+    }
+    
 }

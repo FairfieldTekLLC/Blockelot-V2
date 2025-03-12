@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import com.Blockelot.Configuration;
 import com.Blockelot.worldeditor.container.PlayerInfo;
+import org.bukkit.GameMode;
 import org.bukkit.util.Vector;
 
 /**
@@ -24,6 +25,9 @@ public class XpFly  implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         
         if (sender instanceof Player player1) {
+            
+            if (player1.getGameMode() == GameMode.CREATIVE)
+                return true;
             
             if (player1.hasPermission(Configuration.Permission_XpFly))
             {
