@@ -69,7 +69,7 @@ public class LoadClipBoardTaskResponse
                 Sender.start();
                 return;
             }
-            
+
             if (counter > 1) {
                 pi.getPlayer().sendMessage(ChatColor.YELLOW + "Loading Schematic...");
                 counter = -3;

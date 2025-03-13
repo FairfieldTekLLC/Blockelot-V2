@@ -1,6 +1,5 @@
 package com.Blockelot.worldeditor.http;
 
-
 public class RegisterResponse {
 
     private boolean IsAuthorized = false;

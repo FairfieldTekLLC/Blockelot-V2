@@ -16,9 +16,9 @@ public class Delete
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Delete) || 
-                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
-             if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Delete)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
+            if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
             }
@@ -41,7 +41,7 @@ public class Delete
                 ut.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 1, 15);
 
             } catch (IllegalArgumentException | IllegalStateException e) {
-               PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Delete");
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Delete");
                 ServerUtil.consoleLog(e.getLocalizedMessage());
                 ServerUtil.consoleLog(e.getMessage());
             }

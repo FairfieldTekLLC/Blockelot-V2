@@ -92,7 +92,7 @@ public class SaveClipboardTaskRequest
                 PlayerInfo.getPlayer().sendMessage(ChatColor.YELLOW + "File saved.");
                 this.cancel();
             }
-            response.setFinal(true);          
+            response.setFinal(true);
             this.cancel();
 
         } catch (JsonSyntaxException | IllegalStateException e) {

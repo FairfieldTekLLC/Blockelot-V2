@@ -1,4 +1,5 @@
 package com.Blockelot.worldeditor.listeners;
+
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.commands.tasks.AuthenticateTaskRequest;
@@ -34,7 +35,7 @@ public class PlayerJoinListener
         if (PluginManager.HasPlayer(player)) {
 
             ServerUtil.consoleLog("Removing Player " + player.getUniqueId().toString() + " - left.  ");
-            
+
             player.setAllowFlight(false);
             player.setFlying(false);
 

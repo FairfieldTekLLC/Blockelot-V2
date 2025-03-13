@@ -20,31 +20,29 @@ import org.bukkit.util.Vector;
  *
  * @author geev
  */
-public class XpFly  implements CommandExecutor {
+public class XpFly implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        
+
         if (sender instanceof Player player1) {
-            
-            if (player1.getGameMode() == GameMode.CREATIVE)
+
+            if (player1.getGameMode() == GameMode.CREATIVE) {
                 return true;
-            
-            if (player1.hasPermission(Configuration.Permission_XpFly))
-            {
+            }
+
+            if (player1.hasPermission(Configuration.Permission_XpFly)) {
                 PlayerInfo pi = PluginManager.GetPlayerInfo(player1.getUniqueId());
-                if (pi.IsFlying)
-                {
-                    pi.IsFlying=false;
+                if (pi.IsFlying) {
+                    pi.IsFlying = false;
                     player1.setAllowFlight(false);
                     player1.setFlying(false);
                     player1.sendMessage(ChatColor.BLUE + "-----------------Flying Disabled---------------------");
-                }
-                else
-                {
-                    pi.IsFlying=true;
+                } else {
+                    pi.IsFlying = true;
                     player1.setAllowFlight(true);
                     player1.setFlying(true);
-                    Vector vec = new Vector(0,1,0);
+                    Vector vec = new Vector(0, 1, 0);
                     player1.setVelocity(vec);
                     player1.sendMessage(ChatColor.BLUE + "-----------------Flying Enabled---------------------");
                 }

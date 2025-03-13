@@ -1,6 +1,5 @@
 package com.Blockelot.worldeditor.commands.tasks;
 
-
 import com.Blockelot.PluginManager;
 import com.Blockelot.worldeditor.http.RegisterResponse;
 import org.bukkit.entity.Player;

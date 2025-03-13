@@ -16,7 +16,6 @@ public class MaterialUtil {
         return null;
     }
 
-    
     public static BlockFace getFacingByMod(int x, int y, int z) {
         for (BlockFace face : BlockFace.values()) {
             if (face.getModX() != x || face.getModY() != y || face.getModZ() != z) {

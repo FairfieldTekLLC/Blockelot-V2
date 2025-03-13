@@ -1,6 +1,5 @@
 package com.Blockelot.worldeditor.commands;
 
-
 import static com.Blockelot.Configuration.Permission_BlockelotBank;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -38,20 +37,15 @@ public class BlockBankInventory implements CommandExecutor {
                         PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
 
                         String criteria = "";
-                        
-                        if (args.length==1)
-                        {
+
+                        if (args.length == 1) {
                             criteria = args[0];
-                        }
-                        else
-                        {
+                        } else {
                             criteria = "";
                         }
-                            BlockBankInventoryTaskRequest task = new BlockBankInventoryTaskRequest(pi,criteria);
-                            task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
+                        BlockBankInventoryTaskRequest task = new BlockBankInventoryTaskRequest(pi, criteria);
+                        task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
 
-                        
-                        
                     }
 
                 } catch (IllegalArgumentException | IllegalStateException e) {

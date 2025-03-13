@@ -17,9 +17,9 @@ public class Demographics implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Distr) ||
-                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
-             if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Distr)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
+            if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
             }
@@ -27,7 +27,7 @@ public class Demographics implements CommandExecutor {
                 player.sendMessage("Please wait for last command to finish.");
                 return true;
             }
-           PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Demographics");
+            PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Demographics");
             PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
             if (pi.ClipSchematic.Size() > 0) {
                 player.sendMessage("Materials in your clipboard are:");

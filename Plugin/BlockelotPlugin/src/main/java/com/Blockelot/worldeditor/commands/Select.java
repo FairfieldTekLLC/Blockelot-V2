@@ -17,8 +17,8 @@ public class Select
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Select) || 
-                (player = (Player) sender).hasPermission(Configuration.Permission_User) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Select)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_User) || player.isOp())) {
             if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;

@@ -1,10 +1,11 @@
 package com.blockelot.Util;
+
 import java.util.Objects;
 import static java.util.Objects.hash;
 
-
 //A simple pair class.
 public class Pair<A, B> {
+
     public final A fst;
     public final B snd;
 
@@ -14,11 +15,11 @@ public class Pair<A, B> {
     }
 
     public A getFst() {
-      return fst;
+        return fst;
     }
 
     public B getSnd() {
-      return snd;
+        return snd;
     }
 
     @Override
@@ -28,8 +29,12 @@ public class Pair<A, B> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Pair<?, ?> other = (Pair<?, ?>) obj;
         return Objects.equals(fst, other.fst) && Objects.equals(snd, other.snd);
     }

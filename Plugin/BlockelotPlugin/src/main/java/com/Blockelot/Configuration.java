@@ -18,14 +18,11 @@ public class Configuration implements Serializable {
     
     The webserver does not need to be public unless you have minecraft servers
     connecting over the internet.
-    */
+     */
     public static String BaseUri = "http://www.Blockelot.com/api/worldeditor/v1/";
     //public String BaseUri = "http://192.168.211.52/api/worldeditor/v1/";
     //public String BaseUri = "http://localhost:31312/api/worldeditor/v1/";
 
-    
-    
-    
     public static String Permission_User = "Blockelot.WorldEditor.User";
     public static String Permission_Clear = "Blockelot.WorldEditor.User.Clear";
     public static String Permission_ClearHistory = "Blockelot.WorldEditor.User.ClearHistory";
@@ -45,8 +42,7 @@ public class Configuration implements Serializable {
     public static String Permission_AutoPickup = "Blockelot.Player.AutoPickup";
     public static String Permission_XpFly = "Blockelot.Player.XpFly";
     public static String Permission_TreeKiller = "Blockelot.Player.TreeKiller";
-    
-    
+
     public static Boolean IncludeInventoryWhenPasting = true;
     //Max number of blocks that will be modified per server tick.
     //you can adjust it up or down depending on how much load it 
@@ -60,11 +56,11 @@ public class Configuration implements Serializable {
     public static int MaxBlocksUploadPerCall = 20000;
     //Blocks that are non pastable using the paste command
     public static String NonPastableBlocks = "";//IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
-    
+
     public static int FlyMinXp = 2;
     public static double FlyXpPrice = 0.02f;
     public static int FlyDeductTime = 10;
-    
+
     /**
      * Array of Non Pastable items.
      */
@@ -83,7 +79,7 @@ public class Configuration implements Serializable {
         config.set("settings.config.MaxBlocksReadPerTick", MaxBlocksReadPerTick);
         config.set("settings.config.MaxBlocksUploadPerCall", MaxBlocksUploadPerCall);
         config.set("settings.config.IncludeInventoryWhenPasting", IncludeInventoryWhenPasting);
-        config.set("settings.config.TreeKiller",Permission_TreeKiller);
+        config.set("settings.perms.TreeKiller", Permission_TreeKiller);
 
         config.set("settings.config.maxclipboardsize", MaxClipboardSize);
         config.set("settings.config.BaseUri", BaseUri);
@@ -101,15 +97,14 @@ public class Configuration implements Serializable {
         config.set("settings.perms.stripmine", Permission_StripMine);
         config.set("settings.perms.undo", Permission_Undo);
         config.set("settings.perms.filesystem", Permission_FileSystem);
-        config.set("settings.perms.bank",Permission_BlockelotBank);
-        config.set("settings.perms.autopickup",Permission_AutoPickup);
-        config.set("settings.perms.xpfly",Permission_XpFly);
+        config.set("settings.perms.bank", Permission_BlockelotBank);
+        config.set("settings.perms.autopickup", Permission_AutoPickup);
+        config.set("settings.perms.xpfly", Permission_XpFly);
         config.set("settings.xpfly.minxp", FlyMinXp);
-        config.set("settings.xpfly.xpprice",FlyXpPrice);
-        config.set("settings.xpfly.deducttime",FlyDeductTime);
+        config.set("settings.xpfly.xpprice", FlyXpPrice);
+        config.set("settings.xpfly.deducttime", FlyDeductTime);
         config.set("settings.config.baseuri", BaseUri);
-        
-        
+
         PluginManager.Plugin.saveConfig();
         return true;
     }
@@ -139,8 +134,8 @@ public class Configuration implements Serializable {
         Permission_StripMine = config.getString("settings.perms.stripmine");
         Permission_Undo = config.getString("settings.perms.undo");
         Permission_FileSystem = config.getString("settings.perms.filesystem");
-        
-        Permission_BlockelotBank=config.getString("settings.perms.bank");
+
+        Permission_BlockelotBank = config.getString("settings.perms.bank");
 
         MaxBlocksReadPerTick = config.getInt("settings.config.MaxBlocksReadPerTick");
         MaxBlocksWritePerTick = config.getInt("settings.config.MaxBlocksWritePerTick");
@@ -148,7 +143,7 @@ public class Configuration implements Serializable {
         IncludeInventoryWhenPasting = config.getBoolean("IncludeInventoryWhenPasting");
         NonPastableBlocks = config.getString("settings.Non-Pastable.Blocks");
         Permission_XpFly = config.getString("settings.perms.xpfly");
-        Permission_TreeKiller = config.getString("settings.config.TreeKiller");
+        Permission_TreeKiller = config.getString("settings.perms.TreeKiller");
 
         String[] split = NonPastableBlocks.split(",");
         for (String s : split) {

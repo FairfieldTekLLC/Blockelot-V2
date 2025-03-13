@@ -44,10 +44,10 @@ public class EnumHelper {
         int y = 0;
         int z = 0;
         switch (let[0]) {
-            case '-' ->  {
+            case '-' -> {
                 x = -1;
             }
-            case '+' ->  {
+            case '+' -> {
                 x = 1;
             }
             case '0' -> {
@@ -55,10 +55,10 @@ public class EnumHelper {
             }
         }
         switch (let[1]) {
-            case '-' ->  {
+            case '-' -> {
                 y = -1;
             }
-            case '+' ->  {
+            case '+' -> {
                 y = 1;
             }
             case '0' -> {
@@ -66,10 +66,10 @@ public class EnumHelper {
             }
         }
         switch (let[2]) {
-            case '-' ->  {
+            case '-' -> {
                 z = -1;
             }
-            case '+' ->  {
+            case '+' -> {
                 z = 1;
             }
             case '0' -> {
@@ -89,35 +89,35 @@ public class EnumHelper {
         String yc = "*";
         String zc = "*";
         switch (x) {
-            case 0 ->  {
+            case 0 -> {
                 xc = "0";
             }
-            case 1 ->  {
+            case 1 -> {
                 xc = "+";
             }
-            case -1 ->  {
+            case -1 -> {
                 xc = "-";
             }
         }
         switch (y) {
-            case 0 ->  {
+            case 0 -> {
                 yc = "0";
             }
-            case 1 ->  {
+            case 1 -> {
                 yc = "+";
             }
-            case -1 ->  {
+            case -1 -> {
                 yc = "-";
             }
         }
         switch (z) {
-            case 0 ->  {
+            case 0 -> {
                 zc = "0";
             }
-            case 1 ->  {
+            case 1 -> {
                 zc = "+";
             }
-            case -1 ->  {
+            case -1 -> {
                 zc = "-";
             }
         }

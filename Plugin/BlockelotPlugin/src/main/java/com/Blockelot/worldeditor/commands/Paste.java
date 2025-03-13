@@ -57,7 +57,7 @@ public class Paste
     }
 
     private boolean CheckClipBoard(Player player) {
-        PlayerInfo pi =PluginManager.GetPlayerInfo(player.getUniqueId());
+        PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
         if (pi.ClipSchematic.IsEmpty()) {
             player.sendMessage("Clipboard is empty.");
             return false;
@@ -99,9 +99,9 @@ public class Paste
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Paste) ||
-                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
-          if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Paste)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
+            if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
             }

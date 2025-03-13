@@ -100,7 +100,7 @@ public class CopyTask
                     MinZ = info.getZ();
                 }
             }
-            
+
             for (BlockInfo info : SchematicToPaste.getBlocks()) {
                 info.setX(info.getX() + (-1 * MinX));
                 info.setY(info.getY() + (-1 * MinY));
@@ -116,14 +116,11 @@ public class CopyTask
             ServerUtil.consoleLog(e.getMessage());
 
         }
-        try
-        {
-        PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+        try {
+            PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+        } catch (Exception loss) {
         }
-        catch(Exception loss)
-        {}
-        
-        
+
         this.cancel();
     }
 }

@@ -14,9 +14,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Utility class used to do HTTP Requests.
+ *
  * @author geev
  */
 public abstract class HttpRequestor extends BukkitRunnable {
+
     public String RequestHttp(String uri, String postBody) {
         try {
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();

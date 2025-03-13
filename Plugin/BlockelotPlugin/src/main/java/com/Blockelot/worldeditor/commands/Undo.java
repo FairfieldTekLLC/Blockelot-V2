@@ -15,8 +15,8 @@ public class Undo
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Undo) ||
-                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Undo)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
             if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;

@@ -1,4 +1,5 @@
 package com.Blockelot;
+
 import static com.Blockelot.Configuration.BaseUri;
 import static com.Blockelot.Configuration.FlyDeductTime;
 import static com.Blockelot.Configuration.IncludeInventoryWhenPasting;
@@ -16,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tools extends JavaPlugin {
 
-  @Override
+    @Override
     public void onEnable() {
         saveDefaultConfig();
         this.getConfig().addDefault("settings.config.MaxBlocksWritePerTick", MaxBlocksWritePerTick);
@@ -26,7 +27,7 @@ public final class Tools extends JavaPlugin {
         this.getConfig().addDefault("settings.config.baseuri", BaseUri);
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
-        
+
         //Initialize the player join listener
         this.getServer().getPluginManager().registerEvents((Listener) new PlayerJoinListener(), (org.bukkit.plugin.Plugin) this);
         //Initialize the Block listener
@@ -36,7 +37,7 @@ public final class Tools extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
         }
         new XpFlyRunnable().runTaskTimer(this, 0, FlyDeductTime);
-        
+
     }
 
     @Override
@@ -44,10 +45,11 @@ public final class Tools extends JavaPlugin {
         PluginManager.ShutDown();
         saveConfig();
     }
-     public void setAndSave(String path, Object value) {
+
+    public void setAndSave(String path, Object value) {
         FileConfiguration config = getConfig();
         config.set(path, value);
         saveConfig();
     }
-    
+
 }

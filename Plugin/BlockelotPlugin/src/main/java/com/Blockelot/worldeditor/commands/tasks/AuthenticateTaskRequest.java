@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 This class handles user authentication requests.
 
 
-*/
+ */
 public class AuthenticateTaskRequest
         extends HttpRequestor {
 

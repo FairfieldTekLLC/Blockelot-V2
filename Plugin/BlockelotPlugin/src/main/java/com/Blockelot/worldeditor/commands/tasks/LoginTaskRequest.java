@@ -9,7 +9,6 @@ import com.Blockelot.worldeditor.http.RegisterResponse;
 import com.Blockelot.worldeditor.container.PlayerInfo;
 import com.google.gson.JsonSyntaxException;
 
-
 public class LoginTaskRequest
         extends HttpRequestor {
 

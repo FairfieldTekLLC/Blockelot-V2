@@ -11,19 +11,20 @@ import com.Blockelot.Util.MiscUtil;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * This class is used to request the current inventory of the players
- * block bank.
+ * This class is used to request the current inventory of the players block
+ * bank.
+ *
  * @author geev
  */
 public class BlockBankInventoryTaskRequest extends HttpRequestor {
 
     PlayerInfo PlayerInfo;
 
-    public BlockBankInventoryTaskRequest(PlayerInfo pi,String SearchString) {
+    public BlockBankInventoryTaskRequest(PlayerInfo pi, String SearchString) {
         this.PlayerInfo = pi;
         this.SearchString = SearchString;
     }
-    
+
     public String SearchString;
 
     @Override

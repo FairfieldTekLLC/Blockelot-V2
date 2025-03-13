@@ -6,11 +6,11 @@ package com.Blockelot.worldeditor.container;
  */
 public class PassParam {
 
-        public int Value;
-        public byte[] Stream;
+    public int Value;
+    public byte[] Stream;
 
-        public PassParam(int i, byte[] d) {
-            Value = i;
-            Stream = d;
-        }
+    public PassParam(int i, byte[] d) {
+        Value = i;
+        Stream = d;
     }
+}

@@ -75,14 +75,14 @@ public class PasteTask
 
         if (this.Degrees > 0.0) {
             switch (this.Axis) {
-                case X ->  {
+                case X -> {
                     dy = (double) itm.getY() * Math.cos(radians) - (double) itm.getZ() * Math.sin(radians);
                     dz = (double) itm.getY() * Math.sin(radians) + (double) itm.getZ() * Math.cos(radians);
                     if (itm.getBlockFaceCode().equals("")) {
                     }
                     itm.GetRotX((int) this.Degrees);
                 }
-                case Y ->  {
+                case Y -> {
                     dz = (double) itm.getZ() * Math.cos(radians) - (double) itm.getX() * Math.sin(radians);
                     dx = (double) itm.getZ() * Math.sin(radians) + (double) itm.getX() * Math.cos(radians);
                     if (itm.getBlockFaceCode().equals("")) {
@@ -216,8 +216,10 @@ public class PasteTask
                         foz = finalOffsetZ - (maxZ - minZ);
                         fox = finalOffsetX - (maxX - minX);
                     }
-                    case SOUTH, SOUTH_WEST -> fox = finalOffsetX - (maxX - minX);
-                    case NORTH, NORTH_EAST -> foz = finalOffsetZ - (maxZ - minZ);
+                    case SOUTH, SOUTH_WEST ->
+                        fox = finalOffsetX - (maxX - minX);
+                    case NORTH, NORTH_EAST ->
+                        foz = finalOffsetZ - (maxZ - minZ);
                     case SOUTH_EAST -> {
                     }
                 }
@@ -257,8 +259,10 @@ public class PasteTask
                         foz = finalOffsetZ - (maxZ - minZ);
                         fox = finalOffsetX - (maxX - minX);
                     }
-                    case SOUTH, SOUTH_WEST -> fox = finalOffsetX - (maxX - minX);
-                    case NORTH, NORTH_EAST -> foz = finalOffsetZ - (maxZ - minZ);
+                    case SOUTH, SOUTH_WEST ->
+                        fox = finalOffsetX - (maxX - minX);
+                    case NORTH, NORTH_EAST ->
+                        foz = finalOffsetZ - (maxZ - minZ);
                     case SOUTH_EAST -> {
                     }
                 }

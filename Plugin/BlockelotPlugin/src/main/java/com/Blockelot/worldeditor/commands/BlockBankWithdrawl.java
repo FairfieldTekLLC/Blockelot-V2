@@ -62,7 +62,7 @@ public class BlockBankWithdrawl implements CommandExecutor {
                 task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
 
             } catch (IllegalArgumentException | IllegalStateException e) {
-               PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
                 ServerUtil.consoleLog(e.getLocalizedMessage());
                 ServerUtil.consoleLog(e.getMessage());
             }

@@ -1,4 +1,5 @@
 package com.Blockelot.worldeditor.commands;
+
 import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
 import com.Blockelot.Util.ServerUtil;
@@ -9,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 /**
  *
  * @author geev
@@ -20,9 +22,9 @@ public class Cut
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Cut) || 
-                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
- if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Cut)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
+            if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
             }
@@ -35,7 +37,7 @@ public class Cut
 
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Cut");
 
-                if ( PluginManager.HasPlayer(player)) {
+                if (PluginManager.HasPlayer(player)) {
                     int sbx;
                     int sez;
                     int sby;
@@ -78,7 +80,7 @@ public class Cut
                 }
 
             } catch (IllegalArgumentException | IllegalStateException e) {
-               PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
                 ServerUtil.consoleLog(e.getLocalizedMessage());
                 ServerUtil.consoleLog(e.getMessage());
             }

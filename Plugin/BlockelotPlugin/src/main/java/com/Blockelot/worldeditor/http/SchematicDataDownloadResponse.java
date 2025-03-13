@@ -1,4 +1,5 @@
 package com.Blockelot.worldeditor.http;
+
 import com.Blockelot.worldeditor.container.PaletteEntry;
 
 /**
@@ -19,12 +20,12 @@ public class SchematicDataDownloadResponse {
     private PaletteEntry[] BlockInvePalette = null;
     private int[] Blocks = null;
     private int TotalNumberOfBlocks;
-    
-    public int getTotalNumberOfBlocks(){
+
+    public int getTotalNumberOfBlocks() {
         return TotalNumberOfBlocks;
     }
-    
-    public void setTotalNumberOfBlocks(int i){
+
+    public void setTotalNumberOfBlocks(int i) {
         TotalNumberOfBlocks = i;
     }
 

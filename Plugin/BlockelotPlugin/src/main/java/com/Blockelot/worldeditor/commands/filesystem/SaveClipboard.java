@@ -16,7 +16,7 @@ public class SaveClipboard
         implements CommandExecutor {
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender,@NotNull  Command command,@NotNull  String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         Player player;
 
         if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_FileSystem) || player.isOp())) {
@@ -43,10 +43,9 @@ public class SaveClipboard
                 }
 
                 player.sendMessage(ChatColor.RED + "Requesting schematic save...");
-                SaveClipboardTaskRequest ct = new SaveClipboardTaskRequest(pi,args[0]);
+                SaveClipboardTaskRequest ct = new SaveClipboardTaskRequest(pi, args[0]);
                 ct.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
 
-                
             } catch (IllegalArgumentException | IllegalStateException e) {
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "SaveClipboard");
                 ServerUtil.consoleLog(e.getLocalizedMessage());

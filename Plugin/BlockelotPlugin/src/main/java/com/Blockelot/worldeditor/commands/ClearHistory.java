@@ -19,9 +19,9 @@ public class ClearHistory
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_ClearHistory) ||
-                (player = (Player) sender).hasPermission(Configuration.Permission_User) || player.isOp())) {
-             if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_ClearHistory)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_User) || player.isOp())) {
+            if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
             }

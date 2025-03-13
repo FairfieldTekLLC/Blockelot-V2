@@ -3,43 +3,50 @@ package com.Blockelot.worldeditor.http;
 import com.Blockelot.worldeditor.container.PaletteEntry;
 
 public class SchematicDataRequest {
+
     private String Uuid;
     private String Auth;
-    
+
     private int SchematicId;
     private String CurrentDirectory;
     private String Blocks;
-    
+
     private String FileName;
-    
+
     private int TotalNumberOfBlocks;
-    
-    public int getTotalNumberOfBlocks(){
+
+    public int getTotalNumberOfBlocks() {
         return TotalNumberOfBlocks;
     }
-    
-    public void setTotalNumberOfBlocks(int i){
+
+    public void setTotalNumberOfBlocks(int i) {
         TotalNumberOfBlocks = i;
     }
-    
+
     private PaletteEntry[] BlockDataPalette;
     private PaletteEntry[] BlockTypePalette;
     public PaletteEntry[] BlockInvePalette;
+
     public String getUuid() {
         return this.Uuid;
     }
+
     public void setUuid(String uuid) {
         this.Uuid = uuid;
     }
+
     public String getAuth() {
         return Auth;
     }
+
     public void setAuth(String auth) {
         Auth = auth;
     }
+
     public String getCurrentDirectory() {
         return this.CurrentDirectory;
     }
+
     public void setCurrentDirectory(String path) {
         this.CurrentDirectory = path;
     }

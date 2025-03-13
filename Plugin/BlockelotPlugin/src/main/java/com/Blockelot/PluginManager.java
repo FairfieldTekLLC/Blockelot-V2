@@ -40,27 +40,27 @@ public class PluginManager {
 
     public static Tools Plugin;
     public static String Version;
-    
+
     public static HashMap<UUID, PlayerInfo> PlayerInfoList;
-    
-    public static PlayerInfo GetPlayerInfo(UUID key){
+
+    public static PlayerInfo GetPlayerInfo(UUID key) {
         return PlayerInfoList.get(key);
     }
-    
-    public static void AddPlayerInfo(PlayerInfo pi){
+
+    public static void AddPlayerInfo(PlayerInfo pi) {
         PlayerInfoList.put(pi.getPlayer().getUniqueId(), pi);
     }
-    
-    public static boolean HasPlayer(Player player){
+
+    public static boolean HasPlayer(Player player) {
         return PlayerInfoList.containsKey(player.getUniqueId());
     }
-    
-    public static void RemovePlayer(Player player){
-        if (PlayerInfoList.containsKey(player.getUniqueId())){
+
+    public static void RemovePlayer(Player player) {
+        if (PlayerInfoList.containsKey(player.getUniqueId())) {
             PlayerInfoList.remove(player.getUniqueId());
         }
     }
-    
+
     //public static final Configuration Config;
     private static final Logger log = Logger.getLogger("Minecraft");
 
@@ -124,7 +124,7 @@ public class PluginManager {
             ServerUtil.consoleLog("!!   Warning, cannot reach www.Blockelot.com    !!");
             ServerUtil.consoleLog("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             ServerUtil.consoleLog(e);
-           return false;
+            return false;
         }
         return true;
     }

@@ -270,9 +270,7 @@ public class BlockCollection {
         for (PaletteEntry pe : response.getBlockInvePalette()) {
             BlockInventoryPalette.add(pe.Clone());
         }
-        
-        
-       
+
     }
 
     public int Size() {

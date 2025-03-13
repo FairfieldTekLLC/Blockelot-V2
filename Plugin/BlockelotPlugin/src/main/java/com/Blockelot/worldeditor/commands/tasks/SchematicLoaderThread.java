@@ -1,11 +1,11 @@
 package com.Blockelot.worldeditor.commands.tasks;
+
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.container.BlockCollection;
 import com.Blockelot.worldeditor.container.BlockInfo;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
@@ -43,7 +43,7 @@ public class SchematicLoaderThread implements Runnable {
                     counter++;
 
                     Seven = new int[7];
-                    
+
                     NumCounter = 0;
 
                 }

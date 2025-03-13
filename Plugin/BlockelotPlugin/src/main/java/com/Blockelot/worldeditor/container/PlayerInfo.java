@@ -1,4 +1,5 @@
 package com.Blockelot.worldeditor.container;
+
 import java.util.*;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -48,7 +49,7 @@ public class PlayerInfo {
     private BlockCollection UndoSchematic = new BlockCollection();
     //Change stack for undo.
     private final Stack<BlockCollection> UndoHistory = new Stack<>();
-    
+
     //Flying
     public boolean IsFlying = false;
 
@@ -78,7 +79,7 @@ public class PlayerInfo {
 
     //This is used for the two-factor authorization which is currently turned off.
     public String Token;
-    
+
     //Flag used to cancel an undo or paste.  Currently no command exists
     //to trigger it.
     //Todo  Add command to trigger it.
@@ -129,7 +130,7 @@ public class PlayerInfo {
     }
 
     private String GenLineLeft(String msg) {
-         String OutLine = ChatColor.GOLD + "#" + ChatColor.BLACK + "-" + ChatColor.YELLOW + msg + ChatColor.BLACK + "--------------------------------------------------------------";
+        String OutLine = ChatColor.GOLD + "#" + ChatColor.BLACK + "-" + ChatColor.YELLOW + msg + ChatColor.BLACK + "--------------------------------------------------------------";
         OutLine = OutLine.substring(0, 57) + ChatColor.GOLD + " #";
         return OutLine;
 
@@ -155,8 +156,7 @@ public class PlayerInfo {
                 getPlayer().sendMessage(line);
             }
         }
-    
 
-    getPlayer().sendMessage(ChatColor.GOLD + "###################################################");
+        getPlayer().sendMessage(ChatColor.GOLD + "###################################################");
     }
 }

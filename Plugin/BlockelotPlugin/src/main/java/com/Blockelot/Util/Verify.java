@@ -15,7 +15,7 @@ import org.bukkit.ChatColor;
 
 public class Verify {
 
-    public static void Register( Tools Plugin) {
+    public static void Register(Tools Plugin) {
 
         String uri = Configuration.BaseUri + "Version?version='" + PluginManager.Version + "'"
                 + "&worldId=" + Configuration.WorldId
@@ -24,7 +24,7 @@ public class Verify {
         ServerUtil.consoleLog("Calling... '" + uri + "'");
         String body = RequestHttp(uri);
 
-        ServerUtil.consoleLog("Response: " + body );
+        ServerUtil.consoleLog("Response: " + body);
         ServerUtil.consoleLog("#########################################################");
         String[] parts = body.split("\\|");
         String WorldId = parts[0];

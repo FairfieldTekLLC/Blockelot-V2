@@ -84,7 +84,7 @@ public class MiscUtil {
 //        if (mat.name().endsWith("_PLATE")) {
 //            return false;
 //        }
-///        if (mat.name().endsWith("_TRAPDOOR")) {
+        ///        if (mat.name().endsWith("_TRAPDOOR")) {
 //            return false;
 //        }
 //        if (mat.name().endsWith("_DOOR")) {

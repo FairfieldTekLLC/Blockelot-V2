@@ -17,10 +17,10 @@ import org.bukkit.inventory.ItemStack;
 /**
  *
  * @author geev
- * 
- * This class handles serializing all of the inventory and sending it to
- * the backend for storage.
- * 
+ *
+ * This class handles serializing all of the inventory and sending it to the
+ * backend for storage.
+ *
  */
 public class BlockBankDepositTaskRequest extends HttpRequestor {
 
@@ -53,7 +53,7 @@ public class BlockBankDepositTaskRequest extends HttpRequestor {
     private int GetItemStackTotal(Material mat, int AmountLeftToFetch) {
 
         final Inventory inventory = PlayerInfo.getPlayer().getInventory();
-        
+
         for (ItemStack itm : inventory.getContents()) {
             if (itm != null) {
                 if (itm.getType() == mat) {

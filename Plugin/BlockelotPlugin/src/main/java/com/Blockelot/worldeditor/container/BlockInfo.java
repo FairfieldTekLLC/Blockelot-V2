@@ -26,7 +26,6 @@ import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
-
 /**
  *
  * @author geev
@@ -254,7 +253,7 @@ public final class BlockInfo {
                             }
 
                             ItemStack[] g = new ItemStack[list.size()];
-                            list.toArray(g);                           
+                            list.toArray(g);
 
                             container.getInventory().setContents(g);
                         }
@@ -393,7 +392,7 @@ public final class BlockInfo {
         int z = bf.getModZ();
         block0:
         switch (degrees) {
-            case 90 ->  {
+            case 90 -> {
                 switch (j) {
                     case "00+" -> {
                         x = 0;
@@ -441,7 +440,7 @@ public final class BlockInfo {
                     }
                 }
             }
-            case 180 ->  {
+            case 180 -> {
                 switch (j) {
                     case "00+" -> {
                         if (this.IsStairs()) {
@@ -547,7 +546,7 @@ public final class BlockInfo {
         int z = bf.getModZ();
         block0:
         switch (degrees) {
-            case 90 ->  {
+            case 90 -> {
                 switch (j) {
                     case "00+" -> {
                         x = 1;
@@ -586,7 +585,7 @@ public final class BlockInfo {
                     }
                 }
             }
-            case 180 ->  {
+            case 180 -> {
                 switch (j) {
                     case "00+" -> {
                         x = 0;
@@ -677,7 +676,7 @@ public final class BlockInfo {
         int z = bf.getModZ();
         block0:
         switch (degrees) {
-            case 90 ->  {
+            case 90 -> {
                 switch (j) {
                     case "-00" -> {
                         x = -1;
@@ -730,7 +729,7 @@ public final class BlockInfo {
                     }
                 }
             }
-            case 180 ->  {
+            case 180 -> {
                 switch (j) {
                     case "-00" -> {
                         if (this.IsStairs()) {
@@ -956,7 +955,6 @@ public final class BlockInfo {
 //        if (data.length >= 14) {
 //            remainder = Arrays.copyOfRange(data, 7, data.length - 7 + 1);
 //        }
-
         return block;
 
     }

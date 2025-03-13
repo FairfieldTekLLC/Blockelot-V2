@@ -104,7 +104,7 @@ public class CutTask
                     MinZ = info.getZ();
                 }
             }
-            
+
             for (BlockInfo info : SchematicToPaste.getBlocks()) {
                 info.setX(info.getX() + (-1 * MinX));
                 info.setY(info.getY() + (-1 * MinY));
@@ -115,12 +115,10 @@ public class CutTask
             PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
             this.cancel();
         } catch (Exception e) {
-            try
-            {
+            try {
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
-            }
-            catch (Exception loss){
-                
+            } catch (Exception loss) {
+
             }
             this.cancel();
             ServerUtil.consoleLog(e.getLocalizedMessage());

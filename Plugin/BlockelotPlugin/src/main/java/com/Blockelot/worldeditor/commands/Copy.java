@@ -17,9 +17,9 @@ public class Copy
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
-        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Copy) ||
-                (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
- if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
+        if (sender instanceof Player && ((player = (Player) sender).hasPermission(Configuration.Permission_Copy)
+                || (player = (Player) sender).hasPermission(Configuration.Permission_Editor) || player.isOp())) {
+            if ("".equals(PluginManager.GetPlayerInfo(player.getUniqueId()).getLastAuth())) {
                 player.sendMessage("Please use /b.reg [email] first.");
                 return true;
             }
@@ -32,7 +32,7 @@ public class Copy
 
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Copy");
 
-                if ( PluginManager.HasPlayer(player)) {
+                if (PluginManager.HasPlayer(player)) {
                     int sbx;
                     int sez;
                     int sby;
@@ -75,7 +75,7 @@ public class Copy
                 }
 
             } catch (IllegalArgumentException | IllegalStateException e) {
-               PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Copy");
                 ServerUtil.consoleLog(e.getLocalizedMessage());
                 ServerUtil.consoleLog(e.getMessage());
             }

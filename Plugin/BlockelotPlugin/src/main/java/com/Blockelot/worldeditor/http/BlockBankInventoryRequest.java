@@ -34,13 +34,13 @@ public class BlockBankInventoryRequest {
     public void SetWid(String wid) {
         this.Wid = wid;
     }
-    
-    public String getSearchCriteria(){
+
+    public String getSearchCriteria() {
         return SearchCriteria;
     }
-    
-    public void SetSearchCriteria(String criteria){
+
+    public void SetSearchCriteria(String criteria) {
         SearchCriteria = criteria;
     }
-    
+
 }
