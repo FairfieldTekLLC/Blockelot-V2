@@ -2,11 +2,14 @@ package com.Blockelot.worldeditor.commands;
 
 import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
+import com.Blockelot.Util.GriefPreventionUtil;
 import com.Blockelot.worldeditor.commands.tasks.StripMineTask;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 
 import org.bukkit.command.CommandExecutor;
 
@@ -42,7 +45,18 @@ public class StripMine implements CommandExecutor {
                     }
                 }
             }
-
+            
+            Location lock = player.getLocation();
+            
+            
+           if(!GriefPreventionUtil.CheckChunkForClaimOwner(player,lock.getBlockX(),lock.getBlockY(),lock.getBlockZ()))
+           {
+                player.sendMessage("Sorry you do not own this chunk.");
+                return false;
+           }
+        
+            
+            
             PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "StripMine");
 
             StripMineTask ut = new StripMineTask(PluginManager.GetPlayerInfo(player.getUniqueId()), deposit);

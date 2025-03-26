@@ -2,6 +2,7 @@ package com.Blockelot.worldeditor.commands;
 
 import com.Blockelot.Configuration;
 import com.Blockelot.PluginManager;
+import com.Blockelot.Util.GriefPreventionUtil;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.commands.tasks.CutTask;
 import com.Blockelot.worldeditor.container.PlayerInfo;
@@ -71,6 +72,13 @@ public class Cut
                         sez = pi.SelectEnd.Z;
                         sbz = pi.SelectStart.Z;
                     }
+                    
+                    if (!GriefPreventionUtil.IsPlayerOwner(player, sbx, sex, sby, sey, sbz, sez))
+                    {
+                        player.sendMessage(ChatColor.RED + "Cut aborted, you do not have a claim.");   
+                        return false;
+                    }
+                    
                     player.sendMessage(ChatColor.RED + "Starting Cut Procedure...");
 
                     CutTask ct = new CutTask(sbx, sex, sby, sey, sbz, sez, player.getUniqueId());

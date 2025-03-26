@@ -54,10 +54,10 @@ public class BlockBankWithdrawl implements CommandExecutor {
                 }
 
                 PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-                if (!Mat.isBlock()) {
-                    player.sendMessage(ChatColor.RED + "Only placeable materials can be deposited.");
-                    return true;
-                }
+//                //if (!Mat.isBlock()) {
+//                    player.sendMessage(ChatColor.RED + "Only placeable materials can be deposited.");
+//                    return true;
+//                }
                 BlockBankWithDrawlTaskRequest task = new BlockBankWithDrawlTaskRequest(pi, Mat, Amount);
                 task.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);
 

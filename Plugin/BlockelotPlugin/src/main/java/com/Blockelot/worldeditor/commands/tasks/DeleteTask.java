@@ -3,6 +3,7 @@ package com.Blockelot.worldeditor.commands.tasks;
 import com.Blockelot.Configuration;
 import java.util.UUID;
 import com.Blockelot.PluginManager;
+import com.Blockelot.Util.GriefPreventionUtil;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.container.BlockCollection;
 import com.Blockelot.worldeditor.container.BlockInfo;
@@ -16,104 +17,91 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class DeleteTask
         extends BukkitRunnable {
 
-    int X = 0;
-    int Y = 0;
-    int Z = 0;
-    int sx;
-    int ex;
-    int sy;
-    int ey;
-    int sz;
-    int ez;
-    boolean Cancel = false;
-    UUID PlayerId;
-    BlockInfo EmptyDef;
-    BlockCollection EmptySchematic = new BlockCollection();
+    int sbx;
+    int sex;
+    int sby;
+    int sey;
+    int sbz;
+    int sez;
+    int cx = 0;
+    int cy = 0;
+    int cz = 0;
+    
+    private final BlockCollection Undo;
     Player player;
-    PlayerInfo pi;
 
-    public DeleteTask(Player player) {
-        this.PlayerId = player.getUniqueId();
-        pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-        if (pi.SelectEnd == null || pi.SelectStart == null) {
-            this.Cancel = true;
-        }
-        if (pi.SelectStart.X > pi.SelectEnd.X) {
-            this.sx = pi.SelectStart.X;
-            this.ex = pi.SelectEnd.X;
-        } else {
-            this.ex = pi.SelectStart.X;
-            this.sx = pi.SelectEnd.X;
-        }
-        if (pi.SelectStart.Y > pi.SelectEnd.Y) {
-            this.sy = pi.SelectStart.Y;
-            this.ey = pi.SelectEnd.Y;
-        } else {
-            this.ey = pi.SelectStart.Y;
-            this.sy = pi.SelectEnd.Y;
-        }
-        if (pi.SelectStart.Z > pi.SelectEnd.Z) {
-            this.sz = pi.SelectStart.Z;
-            this.ez = pi.SelectEnd.Z;
-        } else {
-            this.ez = pi.SelectStart.Z;
-            this.sz = pi.SelectEnd.Z;
-        }
-        this.X = this.sx;
-        this.Y = this.sy;
-        this.Z = this.sz;
-
-        Block block = player.getWorld().getBlockAt(X, Y, Z);
-        this.EmptyDef = new BlockInfo(block, EmptySchematic);
-        this.EmptyDef.SetBlockFaceCode("");
-        this.EmptyDef.setBlockMaterial(Material.AIR);
-        EmptySchematic.getBlocks().add(EmptyDef);
+    public DeleteTask(int bx, int ex, int by, int ey, int bz, int ez, Player player) {
+        this.sbx = bx;
+        this.sex = ex;
+        this.sby = by;
+        this.sey = ey;
+        this.sbz = bz;
+        this.sez = ez;
+        this.cx = this.sbx;
+        this.cy = this.sby;
+        this.cz = this.sbz;
+        Undo = PluginManager.GetPlayerInfo(player.getUniqueId()).NewUndo();
+        this.player = player;
     }
 
     @Override
     public void run() {
+        
         try {
-            player = PluginManager.Plugin.getServer().getPlayer(this.PlayerId);
-            if (player == null || this.Cancel) {
+
+            
+
+            if (player == null) {
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
                 this.cancel();
             }
-            PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-            BlockCollection undo = pi.NewUndo();
-            player.sendMessage("starting...");
-            World world = player.getWorld();
+
             int counter = 0;
-            while (this.Y >= this.ey) {
-                while (this.X >= this.ex) {
-                    while (this.Z >= this.ez) {
-                        if (++counter > Configuration.MaxBlocksWritePerTick) {
+            World world = player.getWorld();
+
+            while (this.cy <= this.sey) {
+                while (this.cx <= this.sex) {
+                    while (this.cz <= this.sez) {
+
+                        Block block = world.getBlockAt(this.cx, this.cy, this.cz);
+                        if (block.getType() != Material.BEDROCK) {
+                            Undo.AddBlock(new BlockInfo(block, Undo), Undo);
+                            block.setType(Material.AIR);
+                        }
+                        ++this.cz;
+                        if (++counter > Configuration.MaxBlocksReadPerTick) {
                             try {
-                                player.sendMessage("Buffering... " + this.X + " " + this.Y + " " + this.Z);
+                                player.sendMessage("Deleting. waiting..");
                             } catch (Exception e) {
-                                this.cancel();
+                                ServerUtil.consoleLog(e.getLocalizedMessage());
+                                ServerUtil.consoleLog(e.getMessage());
                             }
                             return;
                         }
-                        this.EmptyDef.setX(this.X);
-                        this.EmptyDef.setY(this.Y);
-                        this.EmptyDef.setZ(this.Z);
-                        Block changeBlock = world.getBlockAt(this.X, this.Y, this.Z);
-                        if (changeBlock.getType() != Material.BEDROCK) {
-                            EmptyDef.ApplyBlockInfoToBlock(changeBlock, true, undo, pi);
-                        }
-                        --this.Z;
+
                     }
-                    this.Z = this.sz;
-                    --this.X;
+                    ++this.cx;
+                    this.cz = this.sbz;
                 }
-                this.X = this.sx;
-                --this.Y;
+                ++this.cy;
+                this.cx = this.sbx;
             }
 
-            player.sendMessage("Finished Deleting Blocks.");
+            player.sendMessage("Blocks Deleted.");
+            PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Delete");
+            this.cancel();
         } catch (Exception e) {
+            try {
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Delete");
+            } catch (Exception loss) {
+
+            }
+            this.cancel();
             ServerUtil.consoleLog(e.getLocalizedMessage());
             ServerUtil.consoleLog(e.getMessage());
+
         }
+
         PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Delete");
         this.cancel();
     }

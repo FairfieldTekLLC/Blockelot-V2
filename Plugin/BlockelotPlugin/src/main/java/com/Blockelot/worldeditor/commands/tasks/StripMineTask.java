@@ -2,6 +2,7 @@ package com.Blockelot.worldeditor.commands.tasks;
 
 import java.util.HashMap;
 import com.Blockelot.PluginManager;
+import com.Blockelot.Util.GriefPreventionUtil;
 import com.Blockelot.Util.MiscUtil;
 import com.Blockelot.Util.ServerUtil;
 import com.Blockelot.worldeditor.container.PlayerInfo;
@@ -47,6 +48,7 @@ public class StripMineTask extends BukkitRunnable {
     }
 
     public void SetBlock(Chunk chunk, int x, int y, int z, Material material) {
+
         Block changeBlock = chunk.getBlock(x, y, z);
         Material mat = changeBlock.getType();
         if (!MaterialCount.containsKey(mat)) {

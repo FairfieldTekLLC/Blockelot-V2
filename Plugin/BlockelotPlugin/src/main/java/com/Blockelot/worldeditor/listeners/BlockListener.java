@@ -40,7 +40,7 @@ public class BlockListener implements Listener {
 
     @EventHandler
     public void onPunchTree(BlockBreakEvent e) {
-        int radius = 3;
+        int radius = 5;
         int height = 32;
         if (e.getBlock().getType().equals(Material.OAK_LOG)
                 || e.getBlock().getType().equals(Material.BIRCH_LOG)

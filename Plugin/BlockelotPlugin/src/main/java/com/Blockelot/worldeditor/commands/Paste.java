@@ -165,6 +165,9 @@ public class Paste
                     return true;
                 }
                 player.sendMessage(ChatColor.RED + "Starting Paste Procedure...");
+                
+                
+                
                 PasteTask pt = new PasteTask(player, tLoc.getBlockX(), tLoc.getBlockY(), tLoc.getBlockZ(), axis, degrees);
 
                 pt.runTaskTimer((org.bukkit.plugin.Plugin) PluginManager.Plugin, 2, 15);

@@ -1,10 +1,12 @@
 package com.Blockelot.worldeditor.container;
 
 import com.Blockelot.Configuration;
+import com.Blockelot.PluginManager;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.Blockelot.Util.EnumHelper;
+import com.Blockelot.Util.GriefPreventionUtil;
 import static com.Blockelot.Util.Inventory.itemStackArrayToBase64;
 import com.Blockelot.Util.MaterialUtil;
 import static com.Blockelot.Util.MiscUtil.ByteArrayToInt;
@@ -192,6 +194,15 @@ public final class BlockInfo {
 
     public boolean ApplyBlockInfoToBlock(Block target, boolean eraseWater, BlockCollection undoBuffer, boolean applyPhysics, PlayerInfo pi) throws Exception {
 
+        if (PluginManager.GriefDefenderLoaded)
+        {
+            if (!GriefPreventionUtil.IsPlayerOwner(pi.getPlayer(),target.getX(), target.getY(), target.getZ()))
+                return false;            
+        }
+        
+        
+        
+        
         if (!target.getChunk().isLoaded()) {
             target.getChunk().load();
         }

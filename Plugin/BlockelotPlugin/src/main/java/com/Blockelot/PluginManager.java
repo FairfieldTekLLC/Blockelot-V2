@@ -36,10 +36,16 @@ import java.util.logging.Logger;
 import java.util.HashMap;
 import java.util.UUID;
 
+
+import com.griefdefender.api.GriefDefender;
+
 public class PluginManager {
 
     public static Tools Plugin;
     public static String Version;
+    
+    
+    
 
     public static HashMap<UUID, PlayerInfo> PlayerInfoList;
 
@@ -60,6 +66,8 @@ public class PluginManager {
             PlayerInfoList.remove(player.getUniqueId());
         }
     }
+    
+    public static boolean GriefDefenderLoaded = false;
 
     //public static final Configuration Config;
     private static final Logger log = Logger.getLogger("Minecraft");
