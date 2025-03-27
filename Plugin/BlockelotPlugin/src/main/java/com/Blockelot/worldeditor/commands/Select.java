@@ -63,13 +63,13 @@ public class Select
                 y = player.getWorld().getMaxHeight();
             }
             IPoint point = new IPoint(x, y, z);
-            if (PluginManager.GetPlayerInfo(player.getUniqueId()).SelectStart == null) {
-                PluginManager.GetPlayerInfo(player.getUniqueId()).SelectStart = point;
+            if (PluginManager.GetPlayerInfo(player.getUniqueId()).getSelectStart() == null) {
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setSelectStart ( point);
                 player.sendMessage(ChatColor.YELLOW + "Selected Start Point " + point.toString());
                 return true;
             }
-            if (PluginManager.GetPlayerInfo(player.getUniqueId()).SelectEnd == null) {
-                PluginManager.GetPlayerInfo(player.getUniqueId()).SelectEnd = point;
+            if (PluginManager.GetPlayerInfo(player.getUniqueId()).getSelectEnd() == null) {
+                PluginManager.GetPlayerInfo(player.getUniqueId()).setSelectEnd ( point);
                 player.sendMessage(ChatColor.YELLOW + "Selected End Point " + point.toString());
                 return true;
             }

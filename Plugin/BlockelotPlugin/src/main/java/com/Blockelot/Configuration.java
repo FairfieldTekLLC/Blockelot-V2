@@ -10,6 +10,10 @@ public class Configuration implements Serializable {
 
     private static transient final long serialVersionUID = -1681012206529286330L;
     public static String WorldId = "NEWSERVER";
+    
+    /**
+     *The max number of blocks that can be copied or pasted.
+     */
     public static int MaxClipboardSize = 1000000000;
     /*
     This is the URL the Java Plugin uses to talk to the backend with.
@@ -57,8 +61,19 @@ public class Configuration implements Serializable {
     //Blocks that are non pastable using the paste command
     public static String NonPastableBlocks = "";//IRON_BLOCK,GOLD_BLOCK,DIAMOND_BLOCK,BONE_BLOCK,COAL_BLOCK,DIAMOND_BLOCK,LAPIS_BLOCK,NETHERITE_BLOCK,QUART_BLOCK,SHULKER_BOX";
 
+    /**
+     * The minimum amount of experience required to fly.
+     */
     public static int FlyMinXp = 2;
+
+    /**
+     * The tick cost of flying.
+     */
     public static double FlyXpPrice = 0.02f;
+
+    /**
+     * the amount of ticks to wait for before deducting exp
+     */
     public static int FlyDeductTime = 10;
 
     /**

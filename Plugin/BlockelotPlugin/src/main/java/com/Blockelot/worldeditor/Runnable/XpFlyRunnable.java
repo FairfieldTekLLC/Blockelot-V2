@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.Blockelot.worldeditor.commands.tasks;
+package com.Blockelot;
 
 import com.Blockelot.Configuration;
 import static com.Blockelot.Configuration.FlyXpPrice;
+import com.Blockelot.PluginManager;
 import com.Blockelot.PluginManager;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;

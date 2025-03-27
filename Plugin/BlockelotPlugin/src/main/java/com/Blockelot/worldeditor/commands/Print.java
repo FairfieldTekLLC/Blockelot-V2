@@ -26,13 +26,13 @@ public class Print
                 return true;
             }
 
-            if (info.SelectStart != null) {
-                player.sendMessage("Start Position : " + info.SelectStart.toString());
+            if (info.getSelectStart() != null) {
+                player.sendMessage("Start Position : " + info.getSelectStart().toString());
             } else {
                 player.sendMessage("Starting Position not defined.");
             }
-            if (info.SelectEnd != null) {
-                player.sendMessage("End Position : " + info.SelectEnd.toString());
+            if (info.getSelectEnd() != null) {
+                player.sendMessage("End Position : " + info.getSelectEnd().toString());
             } else {
                 player.sendMessage("Ending Position not defined.");
             }

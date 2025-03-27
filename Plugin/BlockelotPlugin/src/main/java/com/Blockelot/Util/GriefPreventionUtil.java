@@ -22,7 +22,17 @@ import com.griefdefender.api.claim.Claim;
  */
 public class GriefPreventionUtil {
     
-    
+    /**
+     * Checks to see if the passed in box location is owned by the player
+     * @param player
+     * @param bx
+     * @param ex
+     * @param by
+     * @param ey
+     * @param bz
+     * @param ez
+     * @return
+     */
     public static boolean IsPlayerOwner(Player player, int bx, int ex, int by, int ey, int bz, int ez)
     {
         ServerUtil.consoleLog("Checking range " + bx + "<" + ex + " " + by + "<" + ey + " " + bz + "<" + ez);
@@ -42,8 +52,14 @@ public class GriefPreventionUtil {
         return true;
     }
     
-    
-    
+    /**
+     *Checks to see if the passed in xyz is owned by the player
+     * @param player
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
     public static boolean IsPlayerOwner(Player player, int x, int y, int z)
     {
         if (!PluginManager.GriefDefenderLoaded)
@@ -59,6 +75,14 @@ public class GriefPreventionUtil {
         return true;
     }
     
+    /**
+     * Checks to see if the passed chunk is owned by the player.
+     * @param player
+     * @param xx
+     * @param yy
+     * @param zz
+     * @return
+     */
     public static boolean CheckChunkForClaimOwner(Player player, int xx, int yy, int zz)
     {        
     if (!PluginManager.GriefDefenderLoaded)

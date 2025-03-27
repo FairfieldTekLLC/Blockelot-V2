@@ -7,7 +7,7 @@ import static com.Blockelot.Configuration.MaxBlocksReadPerTick;
 import static com.Blockelot.Configuration.MaxBlocksUploadPerCall;
 import static com.Blockelot.Configuration.MaxBlocksWritePerTick;
 import com.Blockelot.Util.ServerUtil;
-import com.Blockelot.worldeditor.commands.tasks.XpFlyRunnable;
+import com.Blockelot.worldeditor.Runnable.SelectionHighlightRunnable;
 import com.Blockelot.worldeditor.listeners.BlockListener;
 import com.Blockelot.worldeditor.listeners.EntityDamageByOtherEvent;
 import com.Blockelot.worldeditor.listeners.PlayerJoinListener;
@@ -36,9 +36,14 @@ public final class Tools extends JavaPlugin {
         //Initialize the Block listener
         this.getServer().getPluginManager().registerEvents((Listener) new BlockListener(), (org.bukkit.plugin.Plugin) this);
         this.getServer().getPluginManager().registerEvents((Listener) new EntityDamageByOtherEvent(), (org.bukkit.plugin.Plugin) this);
-        
+        new XpFlyRunnable().runTaskTimer(this, 0, FlyDeductTime);
+        //new SelectionHighlightRunnable().runTaskTimer(this,0,30);
+        /*
+        Used to initialize the GreifDefender plugin.
+        */
         GriefDefender gd;
         
+        //Find the plugin
         Plugin p =  this.getServer().getPluginManager().getPlugin("GriefDefender");
         
         if (p==null)
@@ -51,15 +56,11 @@ public final class Tools extends JavaPlugin {
               PluginManager.GriefDefenderLoaded=true;
               gd = new GriefDefender();
         }
-        //PluginManager.griefDefender = (GriefDefender)p;
-        
-        
-        
         
         if (!PluginManager.Initialize(this)) {
             getServer().getPluginManager().disablePlugin(this);
         }
-        new XpFlyRunnable().runTaskTimer(this, 0, FlyDeductTime);
+        
         
         
 

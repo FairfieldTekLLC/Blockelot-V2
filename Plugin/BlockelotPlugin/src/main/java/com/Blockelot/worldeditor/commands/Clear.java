@@ -25,8 +25,7 @@ public class Clear
                 return true;
             }
             PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-            pi.SelectStart = null;
-            pi.SelectEnd = null;
+            pi.ClearSelectedArea();
             pi.ClipSchematic.Clear();
             player.sendMessage(ChatColor.RED + "Cleared Selection.");
             return true;

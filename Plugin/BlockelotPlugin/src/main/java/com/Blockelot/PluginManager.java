@@ -44,32 +44,53 @@ public class PluginManager {
     public static Tools Plugin;
     public static String Version;
     
-    
-    
-
+    /**
+     * A collection of PlayerInfo for each player who is logged into the server
+     */
     public static HashMap<UUID, PlayerInfo> PlayerInfoList;
 
+    /**
+     * Retrieves Player  Info for the passed player UUID
+     * @param key
+     * @return PlayerInfo object
+     */
     public static PlayerInfo GetPlayerInfo(UUID key) {
         return PlayerInfoList.get(key);
     }
 
+    /**
+     * Adds a new PlayerInfo to the active player collection.
+     * @param pi
+     */
     public static void AddPlayerInfo(PlayerInfo pi) {
         PlayerInfoList.put(pi.getPlayer().getUniqueId(), pi);
     }
 
+    /**
+     * Checks to see if the PlayerInfoList contains the player.
+     * @param player
+     * @return true or false
+     */
     public static boolean HasPlayer(Player player) {
         return PlayerInfoList.containsKey(player.getUniqueId());
     }
 
+    /**
+     * Removes a PlayerInfo from the PlayerInfoList collection
+     * @param player
+     */
     public static void RemovePlayer(Player player) {
         if (PlayerInfoList.containsKey(player.getUniqueId())) {
             PlayerInfoList.remove(player.getUniqueId());
         }
     }
     
+    /**
+     * A flag that indicates if the GriefDefender plugin is loaded.
+     */
     public static boolean GriefDefenderLoaded = false;
 
-    //public static final Configuration Config;
+    
     private static final Logger log = Logger.getLogger("Minecraft");
 
     static {
@@ -83,6 +104,10 @@ public class PluginManager {
         }
     }
 
+    /**
+     * Gets the World Id from the configuration
+     * @return UUID
+     */
     public static String getWorldId() {
         return Configuration.WorldId;
     }
@@ -123,6 +148,7 @@ public class PluginManager {
         plugin.getCommand("b.about").setExecutor((CommandExecutor) new About());
         plugin.getCommand("b.autopickup").setExecutor((CommandExecutor) new AutoPickupToggle());
         plugin.getCommand("b.xpfly").setExecutor((CommandExecutor) new XpFly());
+        
         ServerUtil.consoleLog("Calling home... no really, I am.");
         ServerUtil.consoleLog("No reason for concern, how do you think the cloud storage works?");
         try {

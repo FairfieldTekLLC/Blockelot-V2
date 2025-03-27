@@ -30,14 +30,14 @@ public class ClipDimensions implements CommandExecutor {
             }
 
             PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-            if (pi.SelectStart == null || pi.SelectEnd == null) {
+            if (pi.getSelectStart() == null || pi.getSelectEnd() == null) {
                 player.sendMessage(ChatColor.YELLOW + "Please select something first!");
                 return true;
             }
 
-            int x = Math.abs(pi.SelectStart.X - pi.SelectEnd.X);
-            int y = Math.abs(pi.SelectStart.Y - pi.SelectEnd.X);
-            int z = Math.abs(pi.SelectStart.Z - pi.SelectEnd.Z);
+            int x = Math.abs(pi.getSelectStart().X - pi.getSelectEnd().X);
+            int y = Math.abs(pi.getSelectStart().Y - pi.getSelectEnd().X);
+            int z = Math.abs(pi.getSelectStart().Z - pi.getSelectEnd().Z);
 
             player.sendMessage(ChatColor.YELLOW + "Your selection dimension is " + x + " " + y + " " + z + ".");
 

@@ -36,40 +36,41 @@ public class Delete
                     player.sendMessage("Please wait for last command to finish.");
                     return true;
                 }
+                PluginManager.GetPlayerInfo(player.getUniqueId()).TurnOffSelectionBox();
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Delete");
 
                 if (!PluginManager.HasPlayer(player)) {
                     player.sendMessage("Select something first!");
                 }
-                if (PluginManager.GetPlayerInfo(player.getUniqueId()).SelectStart == null || PluginManager.GetPlayerInfo(player.getUniqueId()).SelectEnd == null) {
+                if (PluginManager.GetPlayerInfo(player.getUniqueId()).getSelectStart() == null || PluginManager.GetPlayerInfo(player.getUniqueId()).getSelectEnd() == null) {
                     player.sendMessage("Select something with /fft.we.select");
                 }
                 player.sendMessage(ChatColor.RED + "Starting Delete Procedure...");
 
                 var pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-                if (pi.SelectEnd == null || pi.SelectStart == null) {
+                if (pi.getSelectEnd() == null || pi.getSelectStart() == null) {
                     return false;
                 }
-                 if (pi.SelectStart.X > pi.SelectEnd.X) {
-                        sbx = pi.SelectEnd.X;
-                        sex = pi.SelectStart.X;
+                 if (pi.getSelectStart().X > pi.getSelectEnd().X) {
+                        sbx = pi.getSelectEnd().X;
+                        sex = pi.getSelectStart().X;
                     } else {
-                        sex = pi.SelectEnd.X;
-                        sbx = pi.SelectStart.X;
+                        sex = pi.getSelectEnd().X;
+                        sbx = pi.getSelectStart().X;
                     }
-                    if (pi.SelectStart.Y > pi.SelectEnd.Y) {
-                        sby = pi.SelectEnd.Y;
-                        sey = pi.SelectStart.Y;
+                    if (pi.getSelectStart().Y > pi.getSelectEnd().Y) {
+                        sby = pi.getSelectEnd().Y;
+                        sey = pi.getSelectStart().Y;
                     } else {
-                        sey = pi.SelectEnd.Y;
-                        sby = pi.SelectStart.Y;
+                        sey = pi.getSelectEnd().Y;
+                        sby = pi.getSelectStart().Y;
                     }
-                    if (pi.SelectStart.Z > pi.SelectEnd.Z) {
-                        sbz = pi.SelectEnd.Z;
-                        sez = pi.SelectStart.Z;
+                    if (pi.getSelectStart().Z > pi.getSelectEnd().Z) {
+                        sbz = pi.getSelectEnd().Z;
+                        sez = pi.getSelectStart().Z;
                     } else {
-                        sez = pi.SelectEnd.Z;
-                        sbz = pi.SelectStart.Z;
+                        sez = pi.getSelectEnd().Z;
+                        sbz = pi.getSelectStart().Z;
                     }
                 if (!GriefPreventionUtil.IsPlayerOwner(player, sbx, sex, sby, sey, sbz, sez)){
                     player.sendMessage("You do not have a claim for the selected area");

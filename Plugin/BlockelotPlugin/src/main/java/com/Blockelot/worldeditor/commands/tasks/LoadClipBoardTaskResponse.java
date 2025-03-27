@@ -55,8 +55,7 @@ public class LoadClipBoardTaskResponse
             if (!MadeRequest) {
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Load Clipboard");
                 pi.setLastAuth(this.Response.getAuth());
-                pi.SelectEnd = null;
-                pi.SelectStart = null;
+                pi.ClearSelectedArea();
                 pi.getPlayer().sendMessage(ChatColor.YELLOW + "Loading Schematic...");
                 pi.ClipSchematic.LoadResponse(Response);
                 MadeRequest = true;

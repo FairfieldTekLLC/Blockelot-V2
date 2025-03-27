@@ -37,6 +37,7 @@ public class Cut
                 }
 
                 PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(true, "Cut");
+                PluginManager.GetPlayerInfo(player.getUniqueId()).TurnOffSelectionBox();
 
                 if (PluginManager.HasPlayer(player)) {
                     int sbx;
@@ -46,31 +47,31 @@ public class Cut
                     int sbz;
                     int sey;
                     PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
-                    if (pi.SelectStart == null || pi.SelectEnd == null) {
+                    if (pi.getSelectStart() == null || pi.getSelectEnd() == null) {
                         player.sendMessage("Starting and Ending Coordinates not set.  Use /fft.we.select x y z ");
                         PluginManager.GetPlayerInfo(player.getUniqueId()).setIsProcessing(false, "Cut");
                         return true;
                     }
-                    if (pi.SelectStart.X > pi.SelectEnd.X) {
-                        sbx = pi.SelectEnd.X;
-                        sex = pi.SelectStart.X;
+                    if (pi.getSelectStart().X > pi.getSelectEnd().X) {
+                        sbx = pi.getSelectEnd().X;
+                        sex = pi.getSelectStart().X;
                     } else {
-                        sex = pi.SelectEnd.X;
-                        sbx = pi.SelectStart.X;
+                        sex = pi.getSelectEnd().X;
+                        sbx = pi.getSelectStart().X;
                     }
-                    if (pi.SelectStart.Y > pi.SelectEnd.Y) {
-                        sby = pi.SelectEnd.Y;
-                        sey = pi.SelectStart.Y;
+                    if (pi.getSelectStart().Y > pi.getSelectEnd().Y) {
+                        sby = pi.getSelectEnd().Y;
+                        sey = pi.getSelectStart().Y;
                     } else {
-                        sey = pi.SelectEnd.Y;
-                        sby = pi.SelectStart.Y;
+                        sey = pi.getSelectEnd().Y;
+                        sby = pi.getSelectStart().Y;
                     }
-                    if (pi.SelectStart.Z > pi.SelectEnd.Z) {
-                        sbz = pi.SelectEnd.Z;
-                        sez = pi.SelectStart.Z;
+                    if (pi.getSelectStart().Z > pi.getSelectEnd().Z) {
+                        sbz = pi.getSelectEnd().Z;
+                        sez = pi.getSelectStart().Z;
                     } else {
-                        sez = pi.SelectEnd.Z;
-                        sbz = pi.SelectStart.Z;
+                        sez = pi.getSelectEnd().Z;
+                        sbz = pi.getSelectStart().Z;
                     }
                     
                     if (!GriefPreventionUtil.IsPlayerOwner(player, sbx, sex, sby, sey, sbz, sez))
