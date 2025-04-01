@@ -11,6 +11,7 @@ import com.Blockelot.worldeditor.Runnable.SelectionHighlightRunnable;
 import com.Blockelot.worldeditor.listeners.BlockListener;
 import com.Blockelot.worldeditor.listeners.EntityDamageByOtherEvent;
 import com.Blockelot.worldeditor.listeners.PlayerJoinListener;
+import com.Blockelot.worldeditor.listeners.PlayerMoveEvents;
 import com.griefdefender.api.GriefDefender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
@@ -36,6 +37,7 @@ public final class Tools extends JavaPlugin {
         //Initialize the Block listener
         this.getServer().getPluginManager().registerEvents((Listener) new BlockListener(), (org.bukkit.plugin.Plugin) this);
         this.getServer().getPluginManager().registerEvents((Listener) new EntityDamageByOtherEvent(), (org.bukkit.plugin.Plugin) this);
+        this.getServer().getPluginManager().registerEvents((Listener) new PlayerMoveEvents(), (org.bukkit.plugin.Plugin) this);
         new XpFlyRunnable().runTaskTimer(this, 0, FlyDeductTime);
         //new SelectionHighlightRunnable().runTaskTimer(this,0,30);
         /*

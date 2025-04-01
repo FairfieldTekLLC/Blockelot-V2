@@ -29,8 +29,8 @@ public class EntityDamageByOtherEvent implements Listener {
             if (event.getEntity() instanceof Player player) {
                 PlayerInfo pi = PluginManager.GetPlayerInfo(player.getUniqueId());
                 if (pi.IsFlying) {
-                    pi.IsFlying = false;
-                    player.setAllowFlight(false);
+                    //pi.IsFlying = false;
+                    //player.setAllowFlight(false);
                     player.setFlying(false);
                     player.sendMessage("You've been shot down!");
                 }

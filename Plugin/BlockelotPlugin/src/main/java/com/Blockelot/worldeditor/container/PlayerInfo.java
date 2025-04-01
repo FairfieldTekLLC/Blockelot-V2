@@ -51,8 +51,6 @@ public class PlayerInfo {
         UUID = uuid;
     }
 
-    
-
     //Last authorization key used.  Passed when you need to make a new call.
     private String LastAuth = "";
     //Current path location in virtual file system.
@@ -100,19 +98,36 @@ public class PlayerInfo {
     Material Select7BlockMat;
     Block Select8Block;
     Material Select8BlockMat;
-            
-    public void TurnOffSelectionBox(){
-        Select1Block.setType(Select1BlockMat);
-        Select2Block.setType(Select2BlockMat);
-        Select3Block.setType(Select3BlockMat);
-        Select4Block.setType(Select4BlockMat);
-        Select5Block.setType(Select5BlockMat);
-        Select6Block.setType(Select6BlockMat);
-        Select7Block.setType(Select7BlockMat);
-        Select8Block.setType(Select8BlockMat);
-        
+
+    public void TurnOffSelectionBox() {
+
+        if (Select1Block != null) {
+            Select1Block.setType(Select1BlockMat);
+        }
+        if (Select2Block != null) {
+            Select2Block.setType(Select2BlockMat);
+        }
+        if (Select3Block != null) {
+            Select3Block.setType(Select3BlockMat);
+        }
+        if (Select4Block != null) {
+            Select4Block.setType(Select4BlockMat);
+        }
+        if (Select5Block != null) {
+            Select5Block.setType(Select5BlockMat);
+        }
+        if (Select6Block != null) {
+            Select6Block.setType(Select6BlockMat);
+        }
+        if (Select7Block != null) {
+            Select7Block.setType(Select7BlockMat);
+        }
+        if (Select8Block != null) {
+            Select8Block.setType(Select8BlockMat);
+        }
+
     }
-    
+
     public void TurnOnSelectionBox() {
         if (SelectStart == null || SelectEnd == null) {
             return;
@@ -157,43 +172,35 @@ public class PlayerInfo {
         Select2BlockMat = Select2Block.getType();
         Select2Block.setType(Material.GLOWSTONE);
 
-
         loc = new Location(Player.getWorld(), sbx, sby, sez);
         Select3Block = loc.getBlock();
         Select3BlockMat = Select3Block.getType();
         Select3Block.setType(Material.GLOWSTONE);
-
 
         loc = new Location(Player.getWorld(), sbx, sey, sbz);
         Select4Block = loc.getBlock();
         Select4BlockMat = Select4Block.getType();
         Select4Block.setType(Material.GLOWSTONE);
 
-        
         loc = new Location(Player.getWorld(), sex, sby, sbz);
         Select5Block = loc.getBlock();
         Select5BlockMat = Select5Block.getType();
         Select5Block.setType(Material.GLOWSTONE);
-
 
         loc = new Location(Player.getWorld(), sex, sey, sez);
         Select6Block = loc.getBlock();
         Select6BlockMat = Select6Block.getType();
         Select6Block.setType(Material.GLOWSTONE);
 
-
         loc = new Location(Player.getWorld(), sex, sby, sez);
         Select7Block = loc.getBlock();
         Select7BlockMat = Select7Block.getType();
         Select7Block.setType(Material.GLOWSTONE);
 
-
         loc = new Location(Player.getWorld(), sex, sey, sbz);
         Select8Block = loc.getBlock();
         Select8BlockMat = Select8Block.getType();
         Select8Block.setType(Material.GLOWSTONE);
-
-        
 
     }
 
